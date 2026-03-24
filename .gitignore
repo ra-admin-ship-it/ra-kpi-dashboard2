@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.pyo
+debug_*.json
+ui-ux-pro-max-skill-main/
+gas/

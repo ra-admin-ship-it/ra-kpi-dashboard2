@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RA KPI ダッシュボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0F172A;--bg2:#1E293B;--card:rgba(30,41,59,0.75);--card2:rgba(15,23,42,0.6);
+  --border:rgba(148,163,184,0.12);--border2:rgba(148,163,184,0.25);
+  --t1:#F1F5F9;--t2:#94A3B8;--t3:#64748B;
+  --blue:#3B82F6;--blue2:#60A5FA;--indigo:#6366F1;--purple:#8B5CF6;
+  --green:#10B981;--green2:#34D399;
+  --yellow:#F59E0B;--yellow2:#FCD34D;
+  --red:#EF4444;--red2:#F87171;
+  --amber:#F59E0B;
+  --r-sm:8px;--r-md:12px;--r-lg:16px;--r-xl:20px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
+  background-image:
+    radial-gradient(ellipse at 15% 0%,rgba(59,130,246,0.12) 0%,transparent 55%),
+    radial-gradient(ellipse at 85% 5%,rgba(99,102,241,0.09) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 100%,rgba(139,92,246,0.06) 0%,transparent 50%);
+  background-attachment:fixed;color:var(--t1);min-height:100vh;font-size:14px;line-height:1.5}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* HEADER */
+.hdr{background:rgba(15,23,42,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);
+  padding:0 24px;position:sticky;top:0;z-index:200}
+.hdr-in{max-width:1600px;margin:0 auto;height:62px;display:flex;align-items:center;gap:14px}
+.logo-box{width:36px;height:36px;border-radius:var(--r-sm);
+  background:linear-gradient(135deg,var(--blue),var(--indigo));
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-box svg{width:20px;height:20px;color:#fff;stroke:currentColor}
+.hdr-title{font-size:17px;font-weight:700;
+  background:linear-gradient(135deg,#F1F5F9 30%,#94A3B8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-sub{font-size:11px;color:var(--t3);font-weight:400}
+.hdr-space{flex:1}
+.badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;
+  background:rgba(59,130,246,0.15);color:var(--blue2);border:1px solid rgba(59,130,246,0.2)}
+.hdr-date{font-size:12px;color:var(--t3)}
+
+/* NAV */
+.nav{background:rgba(15,23,42,0.7);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+  padding:0 24px;position:sticky;top:62px;z-index:199}
+.nav-in{max-width:1600px;margin:0 auto;display:flex;gap:2px}
+.tab-btn{padding:14px 18px;font-size:13px;font-weight:500;color:var(--t2);cursor:pointer;
+  border:none;background:none;position:relative;transition:color 0.2s var(--ease);
+  font-family:inherit;white-space:nowrap}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--indigo));
+  opacity:0;transition:opacity 0.2s var(--ease);border-radius:2px 2px 0 0}
+.tab-btn:hover{color:var(--t1)}
+.tab-btn.active{color:var(--blue2)}
+.tab-btn.active::after{opacity:1}
+
+/* MAIN */
+.main{padding:24px}
+.inner{max-width:1600px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.panel{display:none;flex-direction:column;gap:22px}
+.panel.on{display:flex}
+
+/* CONTROLS */
+.ctrl-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctrl-grp{display:flex;align-items:center;gap:6px;background:var(--card);
+  border:1px solid var(--border);border-radius:var(--r-md);padding:6px 12px}
+.ctrl-lbl{font-size:11px;color:var(--t3);white-space:nowrap}
+.ctrl-val{font-size:13px;font-weight:600;color:var(--t1);min-width:110px;text-align:center}
+.ctrl-btn{background:none;border:none;color:var(--t2);cursor:pointer;padding:4px;
+  border-radius:4px;transition:all 0.15s;display:flex;align-items:center}
+.ctrl-btn:hover{background:var(--border2);color:var(--t1)}
+.ctrl-note{font-size:11px;color:var(--t3)}
+
+/* SUMMARY GRID */
+.sum-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);
+  padding:18px 20px;position:relative;overflow:hidden;
+  transition:transform 0.2s var(--ease),box-shadow 0.2s var(--ease),border-color 0.2s}
+.sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--indigo))}
+.sum-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.4);border-color:var(--border2)}
+.sum-lbl{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.06em}
+.sum-val{font-size:26px;font-weight:700;color:var(--t1);margin:4px 0 8px;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.sum-sub{font-size:11px;color:var(--t2)}
+
+/* SECTION CARD */
+.sec{background:var(--card);border:1px solid var(--border);border-radius:var(--r-xl);overflow:hidden}
+.sec-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px}
+.sec-icon{width:30px;height:30px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ic-blue{background:rgba(59,130,246,0.15)}
+.ic-purple{background:rgba(139,92,246,0.15)}
+.ic-amber{background:rgba(245,158,11,0.15)}
+.ic-green{background:rgba(16,185,129,0.15)}
+.sec-title{font-size:14px;font-weight:700}
+.sec-sub{font-size:11px;color:var(--t2);margin-top:1px}
+.sec-body{padding:18px 22px}
+.sec-body-flush{overflow-x:auto}
+
+/* DATA TABLE */
+.dt{width:100%;border-collapse:collapse}
+.dt th{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;
+  padding:8px 14px;text-align:center;background:rgba(0,0,0,0.25);white-space:nowrap}
+.dt th:first-child{text-align:left;min-width:60px}
+.dt td{padding:10px 14px;text-align:center;font-size:13px;
+  border-bottom:1px solid var(--border);vertical-align:middle}
+.dt td:first-child{text-align:left;font-weight:600;white-space:nowrap}
+.dt tbody tr:last-child td{border-bottom:none}
+.dt tbody tr:hover{background:rgba(255,255,255,0.015)}
+.team-row{background:rgba(59,130,246,0.06)!important}
+.team-row td{color:var(--blue2)!important;font-weight:700!important}
+
+/* PROGRESS BAR */
+.pb-wrap{display:flex;flex-direction:column;gap:3px;min-width:130px}
+.pb-info{display:flex;justify-content:space-between;align-items:baseline;font-size:11px}
+.pb-actual{font-weight:700;color:var(--t1);font-variant-numeric:tabular-nums}
+.pb-rate{font-weight:600}
+.pb-track{height:5px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+.pb-fill{height:100%;border-radius:3px;transition:width .6s var(--ease)}
+.fill-green{background:linear-gradient(90deg,var(--green),var(--green2))}
+.fill-yellow{background:linear-gradient(90deg,var(--yellow),var(--yellow2))}
+.fill-red{background:linear-gradient(90deg,var(--red),var(--red2))}
+.fill-blue{background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.pb-tgt{font-size:10px;color:var(--t3)}
+.c-green{color:var(--green)}
+.c-yellow{color:var(--yellow)}
+.c-red{color:var(--red)}
+.c-blue{color:var(--blue2)}
+
+/* PIPELINE FUNNEL */
+.funnel{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px}
+.funnel-step{text-align:center;padding:14px 10px;
+  background:rgba(0,0,0,0.25);border:1px solid var(--border);border-radius:var(--r-md);
+  transition:transform 0.2s,border-color 0.2s}
+.funnel-step:hover{transform:translateY(-2px);border-color:var(--border2)}
+.funnel-name{font-size:10px;color:var(--t3);margin-bottom:6px}
+.funnel-val{font-size:22px;font-weight:700;line-height:1;margin-bottom:3px;font-variant-numeric:tabular-nums}
+.funnel-tgt{font-size:10px;color:var(--t3);margin-bottom:6px}
+.funnel-bar{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+.funnel-pct{font-size:10px;margin-top:4px;color:var(--t3)}
+
+/* KGI */
+.kgi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.kgi-card{background:rgba(0,0,0,0.22);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:18px;transition:border-color 0.2s}
+.kgi-card:hover{border-color:var(--border2)}
+.kgi-member{font-size:15px;font-weight:700;margin-bottom:14px}
+.kgi-lbl{font-size:10px;color:var(--t3);margin-bottom:3px}
+.kgi-row{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
+.kgi-val{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums}
+.kgi-tgt{font-size:10px;color:var(--t3)}
+.kgi-metric{margin-bottom:12px}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:10px;margin:4px 0 14px}
+.div-line{flex:1;height:1px;background:var(--border)}
+.div-lbl{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap}
+
+/* CHARTS */
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.chart-wrap{position:relative;height:280px}
+.rate-badge{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;
+  background:rgba(59,130,246,0.15);color:var(--blue2)}
+
+/* NUMBER */
+.num{font-variant-numeric:tabular-nums}
+
+/* ── CSV DROP ZONE ─────────────────────────────────────────── */
+.csv-drop-btn{display:flex;align-items:center;gap:5px;padding:5px 11px;
+  border:1px dashed var(--border2);border-radius:var(--r-md);cursor:pointer;
+  transition:all 0.2s var(--ease);background:rgba(59,130,246,0.04);
+  font-size:11px;font-weight:500;color:var(--t2);white-space:nowrap;flex-shrink:0;
+  font-family:inherit;user-select:none}
+.csv-drop-btn:hover,.csv-drop-btn.over{border-color:var(--blue);
+  background:rgba(59,130,246,0.12);color:var(--blue2)}
+.csv-drop-btn svg{width:12px;height:12px;flex-shrink:0;stroke:currentColor}
+.csv-drop-btn.has-data{border-color:rgba(16,185,129,0.45);
+  background:rgba(16,185,129,0.08);color:var(--green)}
+
+/* ── MEDIA SECTION HEADING ──────────────────────────────────── */
+.media-heading{
+  display:flex;align-items:center;gap:7px;
+  padding:18px 22px 4px;
+  font-size:12px;font-weight:600;letter-spacing:.04em;
+  color:var(--t2);border-top:1px solid var(--border);
+  text-transform:uppercase;
+}
+/* ── HISTORY BAR ────────────────────────────────────────────── */
+.mhist-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 22px 4px;overflow-x:auto;
+  scrollbar-width:none;
+}
+.mhist-bar::-webkit-scrollbar{display:none}
+.mhist-label{
+  font-size:10px;color:var(--t3);white-space:nowrap;
+  padding-right:4px;flex-shrink:0;
+}
+.mhist-pill{
+  display:flex;align-items:center;gap:2px;
+  padding:3px 8px 3px 10px;border-radius:20px;
+  border:1px solid var(--border);background:var(--card2);
+  font-size:11px;color:var(--t2);white-space:nowrap;
+  flex-shrink:0;transition:border-color .15s,background .15s;
+}
+.mhist-pill span{cursor:pointer;}
+.mhist-pill:hover{border-color:var(--blue1);}
+.mhist-pill.active{
+  background:rgba(59,130,246,0.15);
+  border-color:var(--blue1);color:var(--blue2);font-weight:600;
+}
+.mhist-del{
+  background:none;border:none;color:var(--t3);
+  font-size:12px;cursor:pointer;padding:0 0 0 4px;line-height:1;
+  opacity:.5;transition:opacity .15s;
+}
+.mhist-del:hover{opacity:1;color:#ef4444;}
+/* ── MEDIA TABS ─────────────────────────────────────────────── */
+.mtab-bar{display:flex;align-items:flex-end;gap:3px;
+  padding:8px 22px 0;}
+.mtab-btn{padding:6px 13px;font-size:12px;font-weight:500;color:var(--t2);
+  cursor:pointer;border:1px solid var(--border);
+  border-radius:var(--r-sm) var(--r-sm) 0 0;border-bottom:none;
+  background:none;font-family:inherit;transition:all 0.15s;white-space:nowrap}
+.mtab-btn:hover{color:var(--t1);border-color:var(--border2)}
+.mtab-btn.active{background:var(--bg2);color:var(--blue2);
+  border-color:rgba(59,130,246,0.4);position:relative;z-index:1}
+.mtab-actions{margin-left:auto;display:flex;align-items:center;gap:8px;padding-bottom:2px}
+.mtab-clear{padding:4px 10px;font-size:11px;border:1px solid rgba(239,68,68,0.3);
+  border-radius:var(--r-sm);background:rgba(239,68,68,0.06);color:var(--red2);
+  cursor:pointer;font-family:inherit;transition:all 0.15s}
+.mtab-clear:hover{background:rgba(239,68,68,0.15);border-color:var(--red)}
+.mtab-meta{font-size:10px;color:var(--t3)}
+
+/* MEDIA CONTENT BOX */
+.mtab-content{background:var(--bg2);border:1px solid rgba(59,130,246,0.3);
+  border-top:none;border-radius:0 var(--r-md) var(--r-md) var(--r-md);
+  padding:16px 20px;margin:0 22px 20px;overflow-x:auto}
+
+/* MEDIA TABLE */
+.mdt{width:100%;border-collapse:collapse;font-size:12px}
+.mdt th{padding:6px 12px;font-size:10px;font-weight:600;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.04em;text-align:center;
+  background:rgba(0,0,0,0.2);white-space:nowrap}
+.mdt th:first-child{text-align:left;min-width:90px}
+.mdt td{padding:9px 12px;text-align:center;border-bottom:1px solid var(--border);
+  vertical-align:middle}
+.mdt td:first-child{text-align:left;font-weight:600}
+.mdt tbody tr:last-child td{border-bottom:none}
+.mdt tbody tr:hover{background:rgba(255,255,255,0.015)}
+.mdt-sep td{background:rgba(0,0,0,0.12)!important;
+  font-size:10px!important;color:var(--t3)!important;padding:3px 12px!important;
+  font-weight:400!important;border-bottom:1px solid var(--border)!important}
+.mv{font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;display:block}
+.mk{font-size:10px;color:var(--t3);display:block;margin-top:1px}
+.mr{font-size:10px;font-weight:600;display:block;margin-top:1px}
+.mbar{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;
+  overflow:hidden;margin-top:3px}
+.mbar-f{height:100%;border-radius:2px}
+
+/* ── 応募数管理タブ ─────────────────────────────────────────── */
+.app-chip{display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.app-chip-up{background:rgba(16,185,129,.15);color:var(--green)}
+.app-chip-down{background:rgba(239,68,68,.15);color:var(--red2)}
+.app-chip-flat{background:rgba(100,116,139,.15);color:var(--t3)}
+.app-company-table td:nth-child(2){max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.app-company-table th:nth-child(2){text-align:left}
+
+/* ── TOAST ──────────────────────────────────────────────────── */
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;
+  padding:11px 18px;border-radius:var(--r-md);font-size:13px;font-weight:500;
+  background:var(--bg2);color:var(--t1);border:1px solid var(--border2);
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  transform:translateY(16px);opacity:0;
+  transition:transform 0.22s var(--ease),opacity 0.22s var(--ease);
+  pointer-events:none}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.err{border-color:rgba(239,68,68,0.4);background:#1c1212}
+
+/* ── P1 カードグリッド ───────────────────────────────────────── */
+.p1-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:14px;padding:18px 22px}
+.p1-card{background:rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.07);
+  border-radius:var(--r-lg);padding:16px;position:relative;overflow:hidden;
+  border-top:2px solid var(--mc)}
+.p1-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.p1-card-name{font-size:15px;font-weight:700;color:var(--mc)}
+.p1-accent-dot{width:8px;height:8px;border-radius:50%;background:var(--mc);opacity:.6}
+.p1-rings{display:flex;justify-content:space-around;gap:6px;margin-bottom:14px}
+.p1-ring-item{display:flex;flex-direction:column;align-items:center;gap:4px}
+.p1-ring-lbl{font-size:10px;color:var(--t3);text-align:center}
+.p1-footer-stats{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.p1-fstat{display:flex;justify-content:space-between;align-items:center}
+.p1-fstat-lbl{font-size:10px;color:var(--t3)}
+.p1-fstat-val{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
+.p1-done{color:var(--green)}
+.p1-conv-row{text-align:center}
+.conv-pill{display:inline-flex;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;
+  background:rgba(99,102,241,0.15);color:#a5b4fc;border:1px solid rgba(99,102,241,0.2)}
+.behind-tag{color:var(--red2);font-weight:700}
+.achieve-tag{color:var(--green);font-weight:700}
+
+/* ── KGI プレミアムカード ─────────────────────────────────────── */
+.kgip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:16px;padding:22px}
+.kgip-card{
+  background:linear-gradient(160deg,rgba(12,20,38,0.95) 0%,rgba(20,32,52,0.85) 100%);
+  border:1px solid rgba(255,255,255,0.08);border-radius:20px;
+  padding:20px 18px 16px;position:relative;overflow:hidden;
+  transition:transform .22s var(--ease),border-color .22s,box-shadow .22s}
+.kgip-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0%,var(--mc) 50%,transparent 100%)}
+.kgip-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,0.15);
+  box-shadow:0 20px 50px rgba(0,0,0,0.5)}
+.kgip-glow{
+  position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  width:180px;height:130px;
+  background:radial-gradient(ellipse at center,var(--mc) 0%,transparent 68%);
+  opacity:.09;pointer-events:none;border-radius:50%}
+.kgip-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;position:relative}
+.kgip-name{font-size:16px;font-weight:700;color:var(--mc);letter-spacing:.01em}
+.kgip-badge{
+  font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;
+  background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.kgip-badge.ov{background:rgba(245,158,11,.12);color:#fcd34d;border-color:rgba(245,158,11,.25)}
+.kgip-badge.done{background:rgba(34,197,94,.12);color:#4ade80;border-color:rgba(34,197,94,.28)}
+.kgip-badge.neu{background:rgba(100,116,139,.12);color:var(--t3);border-color:rgba(100,116,139,.2)}
+.kgip-ring-area{display:flex;flex-direction:column;align-items:center;margin-bottom:16px;gap:4px;position:relative}
+.kgip-ring-unit{font-size:10px;color:var(--t3);letter-spacing:.04em}
+.kgip-sep{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin-bottom:13px}
+.kgip-stats2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.kgip-stat2{display:flex;flex-direction:column;gap:3px}
+.kgip-stat2-lbl{font-size:9px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.05em}
+.kgip-stat2-val{font-size:12px;font-weight:700;color:var(--t1);font-variant-numeric:tabular-nums}
+.kgip-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 12px;border-radius:10px;
+  background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.04)}
+.kgip-bottom-lbl{font-size:10px;color:var(--t3)}
+.kgip-bottom-behind{font-size:13px;font-weight:700;color:var(--red2);font-variant-numeric:tabular-nums}
+.kgip-bottom-done{font-size:12px;font-weight:700;color:#4ade80}
+.kgip-team{background:linear-gradient(160deg,rgba(25,18,5,0.95) 0%,rgba(35,25,8,0.85) 100%)!important}
+
+/* ── 週ピッカー ─────────────────────────────────────────────── */
+.ctrl-week-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:3px 10px;border-radius:var(--r-sm);
+  background:none;border:none;color:var(--t1);cursor:pointer;
+  font-size:13px;font-weight:600;font-family:inherit;
+  min-width:140px;justify-content:center;
+  transition:background .15s var(--ease)}
+.ctrl-week-btn:hover{background:rgba(255,255,255,0.07)}
+.wpick-drop{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:var(--r-md);min-width:220px;
+  box-shadow:0 16px 48px rgba(0,0,0,0.55);z-index:400;overflow:hidden}
+.wpick-header{
+  font-size:10px;font-weight:600;color:var(--t3);
+  padding:10px 14px 8px;border-bottom:1px solid var(--border);
+  text-transform:uppercase;letter-spacing:.05em}
+.wpick-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  transition:background .12s}
+.wpick-item:last-child{border-bottom:none}
+.wpick-item:hover{background:rgba(59,130,246,.1)}
+.wpick-item.active{background:rgba(59,130,246,.14)}
+.wpick-wn{font-size:11px;color:var(--t3);min-width:44px;flex-shrink:0}
+.wpick-range{font-size:13px;font-weight:600;color:var(--t1);flex:1}
+
+/* ── 応募数管理 スナップショットセレクター ──────────────────────── */
+/* ── 企業別テーブル ソート ───────────────────────────────────────── */
+.sort-th{cursor:pointer;user-select:none;white-space:nowrap}
+.sort-th:hover{color:var(--t1)!important}
+.sort-th.srt-active{color:var(--blue2)!important}
+.sort-ic{font-size:9px;margin-left:3px;opacity:.6;vertical-align:middle}
+.sort-th.srt-active .sort-ic{opacity:1}
+
+.app-snap-bar{display:flex;align-items:center;gap:10px;margin-top:10px;padding:10px 0 0;border-top:1px solid var(--border);flex-wrap:wrap}
+.app-snap-lbl{font-size:10px;color:var(--t3);font-weight:600;flex-shrink:0;text-transform:uppercase;letter-spacing:.04em}
+.app-snap-pills{display:flex;gap:6px;flex-wrap:wrap}
+.app-snap-pill{
+  font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;
+  border:1px solid var(--border2);background:none;color:var(--t2);
+  cursor:pointer;font-family:inherit;transition:all .15s}
+.app-snap-pill:hover{background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.3);color:var(--t1)}
+.app-snap-pill.active{background:rgba(59,130,246,.18);border-color:var(--blue2);color:var(--blue2)}
+.app-hist-badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;background:rgba(245,158,11,.12);color:#fcd34d;border:1px solid rgba(245,158,11,.25)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .main{padding:14px}.hdr-in{height:54px}
+  .tab-btn{padding:12px 12px;font-size:12px}
+  .sum-grid{grid-template-columns:repeat(2,1fr)}
+  .sec-body,.sec-head{padding:14px 16px}
+  .dt th,.dt td{padding:8px 8px;font-size:12px}
+  .chart-grid{grid-template-columns:1fr}
+  .kgi-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .kgi-grid{grid-template-columns:1fr}
+  .funnel{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="logo-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/>
+      </svg>
+    </div>
+    <div>
+      <div class="hdr-title">RA KPI ダッシュボード</div>
+      <div class="hdr-sub">Recruiting Advisor Performance Tracker</div>
+    </div>
+    <div class="hdr-space"></div>
+    <span class="badge" id="hdr-month-badge">2026年3月</span>
+    <span class="hdr-date" id="hdr-date">最終更新: 2026/03/24</span>
+    <label id="csv-drop-btn" class="csv-drop-btn" for="csv-file-input"
+      title="CSVをドロップまたはクリックで選択">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      CSV取込
+    </label>
+    <input type="file" id="csv-file-input" accept=".csv" style="display:none">
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <button class="tab-btn active" onclick="switchTab('weekly')">週次ビュー</button>
+    <button class="tab-btn" onclick="switchTab('monthly')">月次ビュー</button>
+    <button class="tab-btn" onclick="switchTab('weekly-hist')">週次履歴</button>
+    <button class="tab-btn" onclick="switchTab('monthly-hist')">月次履歴</button>
+    <button class="tab-btn" onclick="switchTab('applications')">【応募数管理】</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="inner">
+    <div class="panel on" id="panel-weekly"></div>
+    <div class="panel" id="panel-monthly"></div>
+    <div class="panel" id="panel-weekly-hist"></div>
+    <div class="panel" id="panel-monthly-hist"></div>
+    <div class="panel" id="panel-applications"></div>
+  </div>
+</main>
+
+</div>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// RA KPI DASHBOARD  ·  設定・データ定義
+// ═══════════════════════════════════════════════════════════════
+
+// ── メンバー（追加・変更はここだけ）──────────────────────────────
+const MEMBERS = ["森", "浅沼", "安木", "山本"];
+
+// ── メンバーアクセントカラー ──────────────────────────────────
+const MEMBER_COLORS = {
+  森:   "#C9A84C",
+  浅沼: "#AA88FF",
+  安木: "#00E5FF",
+  山本: "#00FF88",
+};
+
+// ── 達成率カラー閾値 ─────────────────────────────────────────────
+const COLOR_THRESHOLD = { red: 80, yellow: 100 };
+// 80%未満=赤  80〜99%=黄  100%以上=緑
+
+// ── GAS エンドポイント ────────────────────────────────────────────
+// gas/Code.gs をデプロイ後、生成されたURLをここに貼り付けるだけで自動連携
+const GAS_ENDPOINT = null;
+// 例: "https://script.google.com/macros/s/AKfycb.../exec"
+
+// ── サンプルデータ ───────────────────────────────────────────────
+const SAMPLE_DATA = {
+  "2026-03": {
+    weeks: {
+      1: {
+        p1: { // パイプライン① 新規開拓
+          フォーム送信数: { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          返信数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          アポイント数:   { 森:2,  浅沼:2,  安木:2,  山本:0 },
+          商談数:        { 森:2,  浅沼:0,  安木:0,  山本:0 },
+          契約締結数:    { 森:0,  浅沼:0,  安木:0,  山本:0 },
+        },
+        p2: { // パイプライン② 案件増加
+          AZ: { 森:88, 浅沼:37, 安木:30, 山本:1 },
+        },
+      },
+      2: {
+        p1: {
+          フォーム送信数: { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          返信数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          アポイント数:   { 森:2,  浅沼:3,  安木:3,  山本:0 },
+          商談数:        { 森:5,  浅沼:0,  安木:0,  山本:0 },
+          契約締結数:    { 森:2,  浅沼:0,  安木:0,  山本:0 },
+        },
+        p2: {
+          AZ: { 森:38, 浅沼:1, 安木:1, 山本:0 },
+        },
+      },
+      3: {
+        p1: {
+          フォーム送信数: { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          返信数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          アポイント数:   { 森:4,  浅沼:4,  安木:1,  山本:4 },
+          商談数:        { 森:2,  浅沼:0,  安木:0,  山本:0 },
+          契約締結数:    { 森:0,  浅沼:0,  安木:0,  山本:0 },
+        },
+        p2: {
+          AZ: { 森:51, 浅沼:40, 安木:33, 山本:0 },
+        },
+      },
+      4: {
+        p1: {
+          フォーム送信数: { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          返信数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
+          アポイント数:   { 森:2,  浅沼:3,  安木:0,  山本:3 },
+          商談数:        { 森:2,  浅沼:0,  安木:0,  山本:0 },
+          契約締結数:    { 森:0,  浅沼:0,  安木:0,  山本:0 },
+        },
+        p2: {
+          AZ: { 森:0, 浅沼:0, 安木:0, 山本:0 },
+        },
+      },
+    },
+    // 選考パイプライン（チーム合計・月次）
+    selection: {
+      アライアンス応募数: { actual:425, target:877 },
+      書類通過数: { actual:135, target:236 },
+      一次面接数: { actual:88,  target:185 },
+      二次面接数: { actual:1,   target:22  },
+      最終面接数: { actual:34,  target:11  },
+      内定数:     { actual:13,  target:20  },
+    },
+    // 月次目標
+    targets: {
+      p1: {
+        商談数:     { 森:16, 浅沼:20, 安木:20, 山本:20 },
+        契約締結数: { 森:12, 浅沼:8,  安木:8,  山本:8  },
+      },
+      p2: {
+        AZ: { 森:200, 浅沼:132, 安木:132, 山本:132 },
+      },
+    },
+    // KGI
+    kgi: {
+      森:   { 粗利実績:2547181, 粗利目標:1800000, 売上実績:10157830 },
+      浅沼: { 粗利実績:270000,  粗利目標:540000,  売上実績:900000   },
+      安木: { 粗利実績:0,       粗利目標:540000,  売上実績:0        },
+      山本: { 粗利実績:0,       粗利目標:0,       売上実績:0        },
+    },
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════
+// データ取得
+// 優先順位:
+//   1. GAS_ENDPOINT が設定されていればGASから取得
+//   2. data.json（Claude Codeスケジューラーが毎日生成）
+//   3. SAMPLE_DATA（フォールバック）
+// ═══════════════════════════════════════════════════════════════
+async function loadData() {
+  // 1. GAS endpoint（明示設定時のみ）
+  if (GAS_ENDPOINT) {
+    try {
+      const res = await fetch(GAS_ENDPOINT);
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const d = await res.json();
+      if (d.error) throw new Error(d.error);
+      return mergeGASData(d);
+    } catch(e) {
+      console.warn("[GAS] fetch failed:", e.message);
+    }
+  }
+
+  // 2. ローカル data.json（Claude Codeスケジューラー生成）
+  try {
+    const res = await fetch("./data.json");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const d = await res.json();
+    if (d.error) throw new Error(d.error);
+    console.info("[data.json] loaded successfully");
+    return mergeGASData(d);
+  } catch(e) {
+    console.info("[data.json] not available, using SAMPLE_DATA:", e.message);
+  }
+
+  // 3. フォールバック
+  return SAMPLE_DATA;
+}
+
+/**
+ * GAS から返った AZ 集計データを SAMPLE_DATA にマージして返す。
+ * - GAS が持つのは AZ データのみ（p2.AZ）
+ * - p1（商談・契約等）/ selection / targets / kgi は SAMPLE_DATA を使用
+ * - GAS データが存在する月・週の AZ 値は GAS データで上書き
+ *
+ * @param {Object} gasData  { az: { "YYYY-MM": { week: { member: n } } }, lastUpdated, ... }
+ * @return {Object} マージ済みデータ
+ */
+function mergeGASData(gasData) {
+  // SAMPLE_DATA を深コピーしてベースとして使用
+  const base = JSON.parse(JSON.stringify(SAMPLE_DATA));
+
+  if (!gasData || !gasData.az) return base;
+
+  const emptyP1 = () => ({
+    フォーム送信数: Object.fromEntries(MEMBERS.map(m => [m, 0])),
+    返信数:        Object.fromEntries(MEMBERS.map(m => [m, 0])),
+    アポイント数:   Object.fromEntries(MEMBERS.map(m => [m, 0])),
+    商談数:        Object.fromEntries(MEMBERS.map(m => [m, 0])),
+    契約締結数:    Object.fromEntries(MEMBERS.map(m => [m, 0])),
+  });
+
+  Object.entries(gasData.az).forEach(([ym, weeklyAZ]) => {
+    // 月がまだ SAMPLE_DATA にない場合は新規作成
+    if (!base[ym]) {
+      base[ym] = {
+        weeks:     {},
+        selection: {},
+        targets:   { p1: {}, p2: { AZ: Object.fromEntries(MEMBERS.map(m=>[m,0])) } },
+        kgi:       Object.fromEntries(MEMBERS.map(m => [m, { 粗利実績:0, 粗利目標:0, 売上実績:0 }])),
+      };
+    }
+
+    Object.entries(weeklyAZ).forEach(([week, azByMember]) => {
+      const wNum = parseInt(week, 10);
+      // 週がまだない場合は空データで初期化
+      if (!base[ym].weeks[wNum]) {
+        base[ym].weeks[wNum] = { p1: emptyP1(), p2: { AZ: {} } };
+      }
+      // AZ データを GAS の値で上書き（MEMBERS 以外のキーは無視）
+      const filtered = {};
+      MEMBERS.forEach(m => { filtered[m] = azByMember[m] || 0; });
+      base[ym].weeks[wNum].p2.AZ = filtered;
+    });
+  });
+
+  // ヘッダーの最終更新日時を更新
+  if (gasData.lastUpdated) {
+    const d = new Date(gasData.lastUpdated);
+    const label = d.toLocaleString("ja-JP", { timeZone: "Asia/Tokyo",
+      year:"numeric", month:"2-digit", day:"2-digit",
+      hour:"2-digit", minute:"2-digit" });
+    const el = document.getElementById("hdr-date");
+    if (el) el.textContent = "GAS 最終更新: " + label;
+  }
+
+  return base;
+}
+
+/** GAS 取得エラーをヘッダーに表示 */
+function showGASError(msg) {
+  const el = document.getElementById("hdr-date");
+  if (el) el.innerHTML =
+    `<span style="color:var(--red2);font-size:11px">GAS接続エラー（サンプルデータ表示中）</span>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// アプリ状態
+// ═══════════════════════════════════════════════════════════════
+let DATA = {};
+let APP_DATA      = null;
+let activeSnapIdx = null; // null = 最新スナップを表示
+let curMonth = "2026-03";
+let curWeek  = 3;
+let activeTab = "weekly";
+let charts = [];
+let appShowAllCompanies = false;
+let appSortKey = "monthlyThis"; // デフォルト: 今月 降順
+let appSortDir = "desc";        // "asc" | "desc"
+
+// ═══════════════════════════════════════════════════════════════
+// ユーティリティ
+// ═══════════════════════════════════════════════════════════════
+const sum = (obj) => MEMBERS.reduce((s, m) => s + (obj?.[m] || 0), 0);
+
+function rate(actual, target) {
+  if (!target || target === 0) return actual > 0 ? 9999 : null;
+  return actual / target * 100;
+}
+
+function color(r) {
+  if (r === null) return "blue";
+  if (r >= COLOR_THRESHOLD.yellow) return "green";
+  if (r >= COLOR_THRESHOLD.red)    return "yellow";
+  return "red";
+}
+
+function emoji(r) {
+  const c = color(r);
+  return c === "green" ? "🟢" : c === "yellow" ? "🟡" : c === "red" ? "🔴" : "⚪";
+}
+
+function fmtN(n) {
+  if (n === null || n === undefined) return "—";
+  return n.toLocaleString("ja-JP");
+}
+
+function fmtY(n) {
+  if (n === null || n === undefined) return "—";
+  if (n === 0) return "¥0";
+  const sign = n < 0 ? "-¥" : "¥";
+  return sign + Math.abs(Math.round(n)).toLocaleString("en-US");
+}
+
+function fmtPct(r) {
+  if (r === null) return "—";
+  if (r > 999) return "超過";
+  return r.toFixed(0) + "%";
+}
+
+function clamp(r) { return r === null ? 0 : Math.min(100, r); }
+
+function monthLabel(ym) {
+  const [y, m] = ym.split("-");
+  return `${y}年${parseInt(m)}月`;
+}
+
+// 週番号 → その週の開始・終了日を返す
+function weekDateRange(ym, wn) {
+  const [y, m] = ym.split("-").map(Number);
+  const starts = { 1: 1, 2: 8, 3: 15, 4: 22 };
+  const start   = starts[wn] || 1;
+  const lastDay = new Date(y, m, 0).getDate(); // 月末日
+  const end     = wn >= 4 ? lastDay : (starts[wn + 1] || 29) - 1;
+  return { y, m, start, end };
+}
+
+// "3/22〜3/29" 形式のラベルを返す
+function weekRangeLabel(ym, wn) {
+  const { m, start, end } = weekDateRange(ym, wn);
+  return `${m}/${start}〜${m}/${end}`;
+}
+
+// 月次データから指標を週合計
+function cumul(monthData, metric, pipe) {
+  const out = {};
+  MEMBERS.forEach(m => out[m] = 0);
+  Object.values(monthData.weeks).forEach(w => {
+    MEMBERS.forEach(m => { out[m] += w[pipe]?.[metric]?.[m] || 0; });
+  });
+  return out;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// UIコンポーネント
+// ═══════════════════════════════════════════════════════════════
+function chevL() {
+  return `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>`;
+}
+function chevR() {
+  return `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>`;
+}
+
+function progressBar(actual, target) {
+  if (target === null || target === undefined) {
+    return `<div class="pb-wrap">
+      <div class="pb-info">
+        <span class="pb-actual">${fmtN(actual)}</span>
+        <span class="c-blue" style="font-size:10px">目標未設定</span>
+      </div>
+      <div class="pb-track"><div class="pb-fill fill-blue" style="width:0%"></div></div>
+    </div>`;
+  }
+  const r = rate(actual, target);
+  const c = color(r);
+  return `<div class="pb-wrap">
+    <div class="pb-info">
+      <span class="pb-actual">${fmtN(actual)}</span>
+      <span class="pb-rate c-${c}">${emoji(r)} ${fmtPct(r)}</span>
+    </div>
+    <div class="pb-track"><div class="pb-fill fill-${c}" style="width:${clamp(r)}%"></div></div>
+    <div class="pb-tgt">目標 ${fmtN(target)}</div>
+  </div>`;
+}
+
+function summaryCard(label, actual, target) {
+  const r = rate(actual, target);
+  const c = color(r);
+  return `<div class="sum-card">
+    <div class="sum-lbl">${label}</div>
+    <div class="sum-val num">${fmtN(actual)}</div>
+    <div class="pb-track" style="height:4px;margin-bottom:6px">
+      <div class="pb-fill fill-${c}" style="width:${clamp(r)}%"></div>
+    </div>
+    <div class="sum-sub">
+      <span class="c-${c}">${emoji(r)} ${fmtPct(r)}</span>
+      <span style="color:var(--t3)"> / 目標 ${fmtN(target)}</span>
+    </div>
+  </div>`;
+}
+
+function summaryPlain(label, value, sub) {
+  return `<div class="sum-card">
+    <div class="sum-lbl">${label}</div>
+    <div class="sum-val">${value}</div>
+    <div class="sum-sub" style="color:var(--t3)">${sub}</div>
+  </div>`;
+}
+
+function selectionFunnel(sel) {
+  if (!sel) return "<p style='color:var(--t3)'>データなし</p>";
+  return `<div class="funnel">
+    ${Object.entries(sel).map(([name, {actual, target}]) => {
+      const r = rate(actual, target);
+      const c = color(r);
+      return `<div class="funnel-step">
+        <div class="funnel-name">${name}</div>
+        <div class="funnel-val c-${c}">${actual}</div>
+        <div class="funnel-tgt">目標 ${target}</div>
+        <div class="funnel-bar">
+          <div class="pb-fill fill-${c}" style="width:${clamp(r)}%;height:100%;border-radius:2px"></div>
+        </div>
+        <div class="funnel-pct">${fmtPct(r)}</div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+// ── SVG 円形プログレスリング ─────────────────────────────────
+// actual/target を中央にテキスト表示する SVG を返す
+function circleRing(actual, target, accent, size) {
+  size = size || 78;
+  const cx = size / 2, cy = size / 2;
+  const r   = size * 0.40;
+  const sw  = size * 0.09;
+  const circ = 2 * Math.PI * r;
+  const pct  = target > 0 ? Math.min(actual / target, 1) : 0;
+  const dash = pct * circ;
+  const done = target > 0 && actual >= target;
+  const fc   = done ? "#22c55e" : accent;
+  const fs1  = Math.round(size * 0.22);
+  const fs2  = Math.round(size * 0.13);
+  const y1   = cy + size * 0.06;
+  const y2   = cy + size * 0.22;
+  return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" style="display:block">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="${sw}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${fc}" stroke-width="${sw}"
+      stroke-dasharray="${dash.toFixed(1)} ${Math.max(0,circ-dash).toFixed(1)}"
+      stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
+    <text x="${cx}" y="${y1}" text-anchor="middle" dominant-baseline="middle"
+      fill="${done?'#22c55e':'#fff'}" font-size="${fs1}" font-weight="700"
+      font-family="'Noto Sans JP',sans-serif">${actual}</text>
+    ${target > 0 ? `<text x="${cx}" y="${y2}" text-anchor="middle" dominant-baseline="middle"
+      fill="rgba(255,255,255,0.35)" font-size="${fs2}"
+      font-family="'Noto Sans JP',sans-serif">/ ${target}</text>` : ''}
+  </svg>`;
+}
+
+// ── P1 メンバーカードグリッド ─────────────────────────────────
+function p1CardGrid(apoD, dealD, contD, apoTgts, dealTgts, contTgts) {
+  return `<div class="p1-grid">
+    ${MEMBERS.map(m => {
+      const apo   = apoD[m]  || 0, apoT  = apoTgts[m]  || 0;
+      const deal  = dealD[m] || 0, dealT = dealTgts[m] || 0;
+      const cont  = contD[m] || 0, contT = contTgts[m] || 0;
+      const ac    = MEMBER_COLORS[m] || "#3B82F6";
+      const conv  = deal > 0 ? (cont/deal*100).toFixed(1)+"%" : "—";
+      const dealR = dealT > 0 ? deal/dealT*100 : 0;
+      const behind = Math.max(0, dealT - deal);
+      const done   = dealT > 0 && deal >= dealT;
+      return `<div class="p1-card" style="--mc:${ac}">
+        <div class="p1-card-top">
+          <span class="p1-card-name">${m}</span>
+          <span class="p1-accent-dot"></span>
+        </div>
+        <div class="p1-rings">
+          <div class="p1-ring-item">
+            ${circleRing(apo, apoT, ac, 76)}
+            <span class="p1-ring-lbl">アポ</span>
+          </div>
+          <div class="p1-ring-item">
+            ${circleRing(deal, dealT, ac, 76)}
+            <span class="p1-ring-lbl">商談</span>
+          </div>
+          <div class="p1-ring-item">
+            ${circleRing(cont, contT, ac, 76)}
+            <span class="p1-ring-lbl">契約</span>
+          </div>
+        </div>
+        <div class="p1-footer-stats">
+          <div class="p1-fstat">
+            <span class="p1-fstat-lbl">商談目標</span>
+            <span class="p1-fstat-val">${dealT}件</span>
+          </div>
+          <div class="p1-fstat">
+            <span class="p1-fstat-lbl">達成率</span>
+            <span class="p1-fstat-val${done?' p1-done':''}">${fmtPct(dealR)}</span>
+          </div>
+          <div class="p1-fstat">
+            <span class="p1-fstat-lbl">ビハインド</span>
+            <span class="p1-fstat-val">${done
+              ? '<span class="achieve-tag">達成！</span>'
+              : `<span class="behind-tag">-${behind}</span>`
+            }</span>
+          </div>
+        </div>
+        <div class="p1-conv-row">
+          <span class="conv-pill">転換率 ${conv}</span>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+// ── AZ メンバーカードグリッド ─────────────────────────────────
+function azCardGrid(azD, tgtD) {
+  const teamAZ  = sum(azD);
+  const teamTgt = MEMBERS.reduce((s, m) => s + (tgtD[m] || 0), 0);
+
+  const memberCards = MEMBERS.map(m => {
+    const az   = azD[m]  || 0;
+    const tgt  = tgtD[m] || 0;
+    const ac   = MEMBER_COLORS[m] || "#3B82F6";
+    const r    = tgt > 0 ? az / tgt * 100 : 0;
+    const beh  = Math.max(0, tgt - az);
+    const done = tgt > 0 && az >= tgt;
+    return `<div class="p1-card" style="--mc:${ac}">
+      <div class="p1-card-top">
+        <span class="p1-card-name">${m}</span>
+        <span class="p1-accent-dot"></span>
+      </div>
+      <div class="kgi2-ring-wrap" style="margin-bottom:14px">
+        ${circleRing(az, tgt, ac, 96)}
+        <div class="kgi2-unit">件</div>
+      </div>
+      <div class="p1-footer-stats">
+        <div class="p1-fstat"><span class="p1-fstat-lbl">目標</span><span class="p1-fstat-val">${tgt}件</span></div>
+        <div class="p1-fstat"><span class="p1-fstat-lbl">達成率</span><span class="p1-fstat-val${done?' p1-done':''}">${fmtPct(r)}</span></div>
+        <div class="p1-fstat"><span class="p1-fstat-lbl">ビハインド</span><span class="p1-fstat-val">${done
+          ? '<span class="achieve-tag">達成！</span>'
+          : `<span class="behind-tag">-${beh}</span>`}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const tR    = teamTgt > 0 ? teamAZ / teamTgt * 100 : 0;
+  const tBeh  = Math.max(0, teamTgt - teamAZ);
+  const tDone = teamTgt > 0 && teamAZ >= teamTgt;
+  const teamCard = `<div class="p1-card kgi2-team" style="--mc:#F59E0B">
+    <div class="p1-card-top">
+      <span class="p1-card-name" style="color:#F59E0B">チーム合計</span>
+      <span class="p1-accent-dot"></span>
+    </div>
+    <div class="kgi2-ring-wrap" style="margin-bottom:14px">
+      ${circleRing(teamAZ, teamTgt, '#F59E0B', 96)}
+      <div class="kgi2-unit">件</div>
+    </div>
+    <div class="p1-footer-stats">
+      <div class="p1-fstat"><span class="p1-fstat-lbl">目標</span><span class="p1-fstat-val">${teamTgt}件</span></div>
+      <div class="p1-fstat"><span class="p1-fstat-lbl">達成率</span><span class="p1-fstat-val${tDone?' p1-done':''}">${fmtPct(tR)}</span></div>
+      <div class="p1-fstat"><span class="p1-fstat-lbl">ビハインド</span><span class="p1-fstat-val">${tDone
+        ? '<span class="achieve-tag">達成！</span>'
+        : `<span class="behind-tag">-${tBeh}</span>`}</span></div>
+    </div>
+  </div>`;
+
+  return `<div class="p1-grid" style="margin-bottom:8px">${memberCards}${teamCard}</div>`;
+}
+
+function kgiSection(kgi, period) {
+  if (!kgi) return "";
+  const teamGP  = MEMBERS.reduce((s,m) => s + (kgi[m]?.粗利実績 || 0), 0);
+  const teamGPT = MEMBERS.reduce((s,m) => s + (kgi[m]?.粗利目標 || 0), 0);
+  const teamRev = MEMBERS.reduce((s,m) => s + (kgi[m]?.売上実績 || 0), 0);
+  const teamR   = rate(teamGP, teamGPT);
+
+  function kgiCard(name, gp, gpt, rev, ac, isTeam) {
+    const r      = rate(gp, gpt);
+    const rNum   = r !== null ? r : 0;
+    const behind = Math.max(0, gpt - gp);
+    const done   = gpt > 0 && gp >= gpt;
+    const gpM    = Math.round(gp / 10000);
+    const gptM   = Math.round(gpt / 10000);
+    const noTgt  = gpt === 0 || r === null;
+    const badgeCls = noTgt ? 'neu' : done ? 'done' : rNum >= 80 ? 'ov' : '';
+    const badgeTxt = noTgt ? '目標未設定' : done ? '達成' : fmtPct(r);
+    return `<div class="kgip-card${isTeam?' kgip-team':''}" style="--mc:${ac}">
+      <div class="kgip-glow"></div>
+      <div class="kgip-header">
+        <span class="kgip-name">${name}</span>
+        <span class="kgip-badge ${badgeCls}">${badgeTxt}</span>
+      </div>
+      <div class="kgip-ring-area">
+        ${circleRing(gpM, gptM, ac, 110)}
+        <span class="kgip-ring-unit">万円</span>
+      </div>
+      <div class="kgip-sep"></div>
+      <div class="kgip-stats2">
+        <div class="kgip-stat2">
+          <span class="kgip-stat2-lbl">粗利目標</span>
+          <span class="kgip-stat2-val">${fmtY(gpt)}</span>
+        </div>
+        <div class="kgip-stat2">
+          <span class="kgip-stat2-lbl">${isTeam ? '売上合計' : '売上実績'}</span>
+          <span class="kgip-stat2-val">${fmtY(rev)}</span>
+        </div>
+      </div>
+      <div class="kgip-bottom">
+        <span class="kgip-bottom-lbl">ビハインド</span>
+        ${done
+          ? `<span class="kgip-bottom-done">✓ 達成</span>`
+          : `<span class="kgip-bottom-behind">${fmtY(-behind)}</span>`
+        }
+      </div>
+    </div>`;
+  }
+
+  const memberCards = MEMBERS.map(m => {
+    const d  = kgi[m] || {};
+    const ac = MEMBER_COLORS[m] || "#3B82F6";
+    return kgiCard(m, d.粗利実績||0, d.粗利目標||0, d.売上実績||0, ac, false);
+  }).join('');
+
+  const teamCard = kgiCard("チーム合計", teamGP, teamGPT, teamRev, "#F59E0B", true);
+
+  return `<div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon ic-amber">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="sec-title">KGI 売上・粗利</div>
+        <div class="sec-sub">${period}実績</div>
+      </div>
+    </div>
+    <div class="kgip-grid">
+      ${memberCards}${teamCard}
+    </div>
+  </div>`;
+}
+
+// ── 週ピッカー制御 ───────────────────────────────────────────
+function toggleWeekPicker(e) {
+  e.stopPropagation();
+  const el = document.getElementById("week-picker-dd");
+  if (!el) return;
+  const opening = el.style.display === "none";
+  el.style.display = opening ? "block" : "none";
+  if (opening) {
+    const close = ev => { if (!el.contains(ev.target)) el.style.display = "none"; };
+    setTimeout(() => document.addEventListener("click", close, { once: true }), 0);
+  }
+}
+function selectWeekPicker(wn) {
+  const el = document.getElementById("week-picker-dd");
+  if (el) el.style.display = "none";
+  curWeek = wn;
+  redraw();
+}
+function renderWeekPicker() {
+  const md = DATA[curMonth];
+  if (!md) return "";
+  const weeks = Object.keys(md.weeks).map(Number).sort((a, b) => a - b);
+  const items = weeks.map(wn => {
+    const { m, start, end } = weekDateRange(curMonth, wn);
+    const isActive = curWeek === wn;
+    return `<div class="wpick-item${isActive ? ' active' : ''}" onclick="selectWeekPicker(${wn})">
+      <span class="wpick-wn">第${wn}週</span>
+      <span class="wpick-range">${m}/${start} 〜 ${m}/${end}</span>
+      ${isActive ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue2)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>` : ''}
+    </div>`;
+  }).join('');
+  return `<div id="week-picker-dd" class="wpick-drop" style="display:none">
+    <div class="wpick-header">${monthLabel(curMonth)} — 週を選択</div>
+    ${items}
+  </div>`;
+}
+
+function controlBar(showWeek) {
+  return `<div class="ctrl-bar">
+    <div class="ctrl-grp">
+      <span class="ctrl-lbl">月</span>
+      <button class="ctrl-btn" onclick="prevMonth()" aria-label="前の月">${chevL()}</button>
+      <span class="ctrl-val">${monthLabel(curMonth)}</span>
+      <button class="ctrl-btn" onclick="nextMonth()" aria-label="次の月">${chevR()}</button>
+    </div>
+    ${showWeek ? `<div class="ctrl-grp" style="position:relative">
+      <span class="ctrl-lbl">週</span>
+      <button class="ctrl-btn" onclick="prevWeek()" aria-label="前の週">${chevL()}</button>
+      <button class="ctrl-week-btn" onclick="toggleWeekPicker(event)" title="クリックで週を選択">
+        ${weekRangeLabel(curMonth, curWeek)}
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="opacity:.45;flex-shrink:0">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+      </button>
+      <button class="ctrl-btn" onclick="nextWeek()" aria-label="次の週">${chevR()}</button>
+      ${renderWeekPicker()}
+    </div>
+    <span class="ctrl-note">※週次目標は月次目標÷4の概算</span>` : ""}
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// タブ①: 週次ビュー
+// ═══════════════════════════════════════════════════════════════
+function renderWeekly() {
+  const el = document.getElementById("panel-weekly");
+  const md = DATA[curMonth];
+  if (!md) { el.innerHTML = noData(); return; }
+  const wd = md.weeks[curWeek];
+  if (!wd) { el.innerHTML = noData(); return; }
+
+  const targets = md.targets;
+  const wf = 0.25; // 週次目標係数
+
+  const p1 = wd.p1 || {};
+  const p2 = wd.p2 || {};
+  const az = p2.AZ || {};
+
+  const wTgt = {
+    // アポ目標 = 商談数目標 ÷ 0.8（アポの80%が商談に転換する設計）
+    アポイント数: Object.fromEntries(MEMBERS.map(m => [m, Math.round(Math.ceil((targets.p1?.商談数?.[m] || 0) / 0.8) * wf)])),
+    商談数:       Object.fromEntries(MEMBERS.map(m => [m, Math.round((targets.p1?.商談数?.[m]     || 0) * wf)])),
+    契約締結数:   Object.fromEntries(MEMBERS.map(m => [m, Math.round((targets.p1?.契約締結数?.[m] || 0) * wf)])),
+    AZ:           Object.fromEntries(MEMBERS.map(m => [m, Math.round((targets.p2?.AZ?.[m]         || 0) * wf)])),
+  };
+
+  const tApo       = sum(p1.アポイント数);
+  const tDeals     = sum(p1.商談数);
+  const tContracts = sum(p1.契約締結数);
+  const tAZ        = sum(az);
+  const convRate   = tDeals > 0 ? (tContracts / tDeals * 100).toFixed(1) : "0.0";
+
+  el.innerHTML = `
+    ${controlBar(true)}
+    <div class="sum-grid">
+      ${summaryCard("AZ（案件増加）", tAZ, sum(wTgt.AZ))}
+      ${summaryCard("アポ獲得数", tApo, sum(wTgt.アポイント数))}
+      ${summaryCard("商談実施数", tDeals, sum(wTgt.商談数))}
+      ${summaryCard("契約締結数", tContracts, sum(wTgt.契約締結数))}
+      ${summaryPlain("商談→契約 転換率", convRate + "%", "今週チーム合計")}
+    </div>
+
+    ${kgiSection(md.kgi, "月次")}
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-blue">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="sec-title">パイプライン① 新規開拓</div>
+          <div class="sec-sub">${weekRangeLabel(curMonth, curWeek)} 担当者別実績</div>
+        </div>
+      </div>
+      <div class="sec-body-flush">
+        <table class="dt">
+          <thead><tr>
+            <th>担当者</th><th>アポイント</th><th>商談数</th><th>契約締結</th><th>転換率</th>
+          </tr></thead>
+          <tbody>
+            ${MEMBERS.map(m => {
+              const apo   = p1.アポイント数?.[m] || 0;
+              const deals = p1.商談数?.[m] || 0;
+              const cont  = p1.契約締結数?.[m] || 0;
+              const conv  = deals > 0 ? (cont / deals * 100).toFixed(1) + "%" : "—";
+              return `<tr>
+                <td>${m}</td>
+                <td>${progressBar(apo, wTgt.アポイント数[m])}</td>
+                <td>${progressBar(deals, wTgt.商談数[m])}</td>
+                <td>${progressBar(cont, wTgt.契約締結数[m])}</td>
+                <td><span class="rate-badge">${conv}</span></td>
+              </tr>`;
+            }).join('')}
+            <tr class="team-row">
+              <td>チーム合計</td>
+              <td>${progressBar(sum(p1.アポイント数 || {}), sum(wTgt.アポイント数))}</td>
+              <td>${progressBar(tDeals, sum(wTgt.商談数))}</td>
+              <td>${progressBar(tContracts, sum(wTgt.契約締結数))}</td>
+              <td><span class="rate-badge">${convRate}%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      ${renderMediaSection(curWeek)}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-purple">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">パイプライン② 案件増加・収益化</div>
+          <div class="sec-sub">${weekRangeLabel(curMonth, curWeek)} AZ ＋ 月次選考パイプライン</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="divider"><div class="div-line"></div><span class="div-lbl">AZ（案件増加数）週次</span><div class="div-line"></div></div>
+        ${azCardGrid(az, wTgt.AZ)}
+        <div class="divider"><div class="div-line"></div><span class="div-lbl">選考パイプライン（月次チーム合計）</span><div class="div-line"></div></div>
+        ${selectionFunnel(md.selection)}
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// タブ②: 月次ビュー
+// ═══════════════════════════════════════════════════════════════
+function renderMonthly() {
+  const el = document.getElementById("panel-monthly");
+  const md = DATA[curMonth];
+  if (!md) { el.innerHTML = noData(); return; }
+
+  const tgt = md.targets;
+  const cAZ  = cumul(md, "AZ", "p2");
+  const cD   = cumul(md, "商談数", "p1");
+  const cC   = cumul(md, "契約締結数", "p1");
+  const cA   = cumul(md, "アポイント数", "p1");
+
+  const tAZ = sum(cAZ), tD = sum(cD), tC = sum(cC);
+  const tgAZ = sum(tgt.p2?.AZ || {}), tgD = sum(tgt.p1?.商談数 || {}), tgC = sum(tgt.p1?.契約締結数 || {});
+  const convRate = tD > 0 ? (tC / tD * 100).toFixed(1) : "0.0";
+  // アポ月次目標 = 商談数目標 ÷ 0.8
+  const tgApo = Object.fromEntries(MEMBERS.map(m => [m, Math.ceil((tgt.p1?.商談数?.[m] || 0) / 0.8)]));
+  const tgApoTotal = sum(tgApo);
+
+  el.innerHTML = `
+    ${controlBar(false)}
+    <div class="sum-grid">
+      ${summaryCard("AZ（月次累計）", tAZ, tgAZ)}
+      ${summaryCard("アポ獲得数（累計）", sum(cA), tgApoTotal)}
+      ${summaryCard("商談実施数（累計）", tD, tgD)}
+      ${summaryCard("契約締結（累計）", tC, tgC)}
+      ${summaryPlain("商談→契約 転換率", convRate + "%", "月次累計")}
+    </div>
+
+    ${kgiSection(md.kgi, "月次")}
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-blue">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <div class="sec-title">パイプライン① 新規開拓</div>
+          <div class="sec-sub">${monthLabel(curMonth)} 月次累計</div>
+        </div>
+      </div>
+      <div class="sec-body-flush">
+        <table class="dt">
+          <thead><tr>
+            <th>担当者</th><th>アポイント</th><th>商談数</th><th>契約締結</th><th>転換率</th>
+          </tr></thead>
+          <tbody>
+            ${MEMBERS.map(m => {
+              const a = cA[m] || 0, d = cD[m] || 0, c = cC[m] || 0;
+              const conv = d > 0 ? (c/d*100).toFixed(1)+"%" : "—";
+              return `<tr>
+                <td>${m}</td>
+                <td>${progressBar(a, tgApo[m] || 0)}</td>
+                <td>${progressBar(d, tgt.p1?.商談数?.[m] || 0)}</td>
+                <td>${progressBar(c, tgt.p1?.契約締結数?.[m] || 0)}</td>
+                <td><span class="rate-badge">${conv}</span></td>
+              </tr>`;
+            }).join('')}
+            <tr class="team-row">
+              <td>チーム合計</td>
+              <td>${progressBar(sum(cA), tgApoTotal)}</td>
+              <td>${progressBar(tD, tgD)}</td>
+              <td>${progressBar(tC, tgC)}</td>
+              <td><span class="rate-badge">${convRate}%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      ${renderMediaSection(null)}
+    </div>
+
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-purple">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">パイプライン② 案件増加・収益化</div>
+          <div class="sec-sub">${monthLabel(curMonth)} 月次累計</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="divider"><div class="div-line"></div><span class="div-lbl">AZ（案件増加数）月次累計</span><div class="div-line"></div></div>
+        ${azCardGrid(cAZ, tgt.p2?.AZ || {})}
+        <div class="divider"><div class="div-line"></div><span class="div-lbl">選考パイプライン（月次チーム合計）</span><div class="div-line"></div></div>
+        ${selectionFunnel(md.selection)}
+      </div>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// タブ③: 週次履歴
+// ═══════════════════════════════════════════════════════════════
+function renderWeeklyHist() {
+  const el = document.getElementById("panel-weekly-hist");
+  const md = DATA[curMonth];
+  if (!md) { el.innerHTML = noData(); return; }
+
+  const weeks = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
+  const labels = weeks.map(w => `第${w}週`);
+
+  el.innerHTML = `
+    ${controlBar(false)}
+    <div class="chart-grid">
+      ${chartCard("chart-wh-az",      "AZ（案件増加数）週次推移",       "ic-purple", "#8B5CF6")}
+      ${chartCard("chart-wh-deals",   "商談数 週次推移",                 "ic-blue",   "#3B82F6")}
+      ${chartCard("chart-wh-cont",    "契約締結数 週次推移",             "ic-green",  "#10B981")}
+      ${chartCard("chart-wh-conv",    "商談→契約 転換率 週次推移(%)",    "ic-amber",  "#F59E0B")}
+    </div>
+  `;
+
+  const mc = { "森":"#3B82F6","浅沼":"#8B5CF6","安木":"#10B981","山本":"#F59E0B" };
+  const baseDs = (metric, pipe) => MEMBERS.map(m => ({
+    label: m,
+    data: weeks.map(w => md.weeks[w]?.[pipe]?.[metric]?.[m] || 0),
+    borderColor: mc[m], backgroundColor: mc[m]+"22",
+    tension: 0.4, fill: false, borderWidth: 2, pointRadius: 5, pointHoverRadius: 7,
+  }));
+
+  const convDs = MEMBERS.map(m => ({
+    label: m,
+    data: weeks.map(w => {
+      const d = md.weeks[w]?.p1?.商談数?.[m] || 0;
+      const c = md.weeks[w]?.p1?.契約締結数?.[m] || 0;
+      return d > 0 ? parseFloat((c/d*100).toFixed(1)) : 0;
+    }),
+    borderColor: mc[m], backgroundColor: mc[m]+"22",
+    tension: 0.4, fill: false, borderWidth: 2, pointRadius: 5, pointHoverRadius: 7,
+  }));
+
+  const co = chartOpts({});
+  const coBar = { ...co, type: "bar" };
+
+  charts.push(new Chart(document.getElementById("chart-wh-az"),    { type:"bar",  data:{labels, datasets:baseDs("AZ","p2")},    options:co }));
+  charts.push(new Chart(document.getElementById("chart-wh-deals"),  { type:"line", data:{labels, datasets:baseDs("商談数","p1")},  options:co }));
+  charts.push(new Chart(document.getElementById("chart-wh-cont"),   { type:"line", data:{labels, datasets:baseDs("契約締結数","p1")}, options:co }));
+  charts.push(new Chart(document.getElementById("chart-wh-conv"),   { type:"line", data:{labels, datasets:convDs},
+    options:chartOpts({ y:{ callback: v => v+"%" } }) }));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// タブ④: 月次履歴
+// ═══════════════════════════════════════════════════════════════
+function renderMonthlyHist() {
+  const el = document.getElementById("panel-monthly-hist");
+  const months = Object.keys(DATA).sort();
+  const labels = months.map(monthLabel);
+
+  el.innerHTML = `
+    <div class="chart-grid">
+      <div class="sec" style="grid-column:1/-1">
+        <div class="sec-head">
+          <div class="sec-icon ic-purple"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="sec-title">AZ 月次推移（担当者別）</div>
+        </div>
+        <div class="sec-body"><div class="chart-wrap"><canvas id="chart-mh-az"></canvas></div></div>
+      </div>
+      ${chartCard("chart-mh-deals", "商談・契約 月次推移（チーム合計）", "ic-blue", "#3B82F6")}
+      ${chartCard("chart-mh-kgi",   "KGI 粗利 月次推移",               "ic-amber","#F59E0B")}
+    </div>
+  `;
+
+  const mc = { "森":"#3B82F6","浅沼":"#8B5CF6","安木":"#10B981","山本":"#F59E0B" };
+  const co = chartOpts({});
+
+  // AZ per member
+  charts.push(new Chart(document.getElementById("chart-mh-az"), {
+    type: "bar",
+    data: { labels, datasets: MEMBERS.map(m => ({
+      label: m,
+      data: months.map(mo => Object.values(DATA[mo]?.weeks || {}).reduce((s,w) => s+(w.p2?.AZ?.[m]||0), 0)),
+      backgroundColor: mc[m]+"99", borderColor: mc[m], borderWidth: 1,
+    })) },
+    options: co,
+  }));
+
+  // Deals & Contracts team total
+  charts.push(new Chart(document.getElementById("chart-mh-deals"), {
+    type: "bar",
+    data: { labels, datasets: [
+      { label:"商談数",    data: months.map(mo => Object.values(DATA[mo]?.weeks||{}).reduce((s,w)=>s+sum(w.p1?.商談数||{}),0)),    backgroundColor:"#3B82F699",borderColor:"#3B82F6",borderWidth:1 },
+      { label:"契約締結数", data: months.map(mo => Object.values(DATA[mo]?.weeks||{}).reduce((s,w)=>s+sum(w.p1?.契約締結数||{}),0)), backgroundColor:"#10B98199",borderColor:"#10B981",borderWidth:1 },
+    ]},
+    options: co,
+  }));
+
+  // KGI gross profit
+  charts.push(new Chart(document.getElementById("chart-mh-kgi"), {
+    type: "bar",
+    data: { labels, datasets: MEMBERS.map(m => ({
+      label: m + " 粗利",
+      data: months.map(mo => DATA[mo]?.kgi?.[m]?.粗利実績 || 0),
+      backgroundColor: mc[m]+"99", borderColor: mc[m], borderWidth: 1,
+    })) },
+    options: chartOpts({ y:{ callback: v => "¥"+(v/1e6).toFixed(1)+"M" } }),
+  }));
+}
+
+// ═══════════════════════════════════════════════════════════════
+// チャートヘルパー
+// ═══════════════════════════════════════════════════════════════
+function chartCard(id, title, iconCls, iconColor) {
+  const icon = iconCls === "ic-purple" ? "#8B5CF6" : iconCls === "ic-blue" ? "#3B82F6" : iconCls === "ic-amber" ? "#F59E0B" : "#10B981";
+  return `<div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon ${iconCls}">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="${icon}" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
+      </div>
+      <div class="sec-title">${title}</div>
+    </div>
+    <div class="sec-body"><div class="chart-wrap"><canvas id="${id}"></canvas></div></div>
+  </div>`;
+}
+
+function chartOpts(overrides) {
+  return {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { color:"#94A3B8", font:{ family:"Noto Sans JP", size:11 }, boxWidth:12 } },
+      tooltip: { backgroundColor:"#1E293B", titleColor:"#F1F5F9", bodyColor:"#94A3B8", borderColor:"#334155", borderWidth:1, padding:10 },
+    },
+    scales: {
+      x: { ticks:{ color:"#64748B", font:{ family:"Noto Sans JP" } }, grid:{ color:"rgba(255,255,255,0.04)" } },
+      y: {
+        ticks:{ color:"#64748B", font:{ family:"Noto Sans JP" }, callback: overrides.y?.callback || undefined },
+        grid:{ color:"rgba(255,255,255,0.04)" }, beginAtZero:true,
+      },
+    },
+  };
+}
+
+function noData() {
+  return `<div style="text-align:center;padding:60px;color:var(--t3)">データがありません</div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ナビゲーション制御
+// ═══════════════════════════════════════════════════════════════
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll(".tab-btn").forEach((b, i) => {
+    b.classList.toggle("active", ["weekly","monthly","weekly-hist","monthly-hist","applications"][i] === tab);
+  });
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("on"));
+  document.getElementById(`panel-${tab}`)?.classList.add("on");
+  redraw();
+}
+
+function redraw() {
+  charts.forEach(c => c.destroy());
+  charts = [];
+  if (activeTab === "weekly")       renderWeekly();
+  else if (activeTab === "monthly") renderMonthly();
+  else if (activeTab === "weekly-hist")  renderWeeklyHist();
+  else if (activeTab === "monthly-hist") renderMonthlyHist();
+  else if (activeTab === "applications")  renderApplications();
+  // ヘッダーバッジ更新
+  document.getElementById("hdr-month-badge").textContent = monthLabel(curMonth);
+}
+
+function prevMonth() {
+  const months = Object.keys(DATA).sort();
+  const i = months.indexOf(curMonth);
+  if (i > 0) { curMonth = months[i-1]; redraw(); }
+}
+function nextMonth() {
+  const months = Object.keys(DATA).sort();
+  const i = months.indexOf(curMonth);
+  if (i < months.length - 1) { curMonth = months[i+1]; redraw(); }
+}
+function prevWeek() {
+  const md = DATA[curMonth];
+  if (!md) return;
+  const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
+  const i = ws.indexOf(curWeek);
+  if (i > 0) { curWeek = ws[i-1]; redraw(); }
+}
+function nextWeek() {
+  const md = DATA[curMonth];
+  if (!md) return;
+  const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
+  const i = ws.indexOf(curWeek);
+  if (i < ws.length - 1) { curWeek = ws[i+1]; redraw(); }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// P1 CSV 取り込み機能
+// ═══════════════════════════════════════════════════════════════
+
+const P1CSV_HISTORY_KEY = "ra_kpi_p1csv_history_v1";
+
+// 媒体セクション名（タブ表示順）
+const MEDIA_SECTION_NAMES = ["全体", "GRIT", "つばめ", "SAKURA"];
+// 各セクションのヘッダー行を識別する正規表現
+const SECTION_HEADER_RE = {
+  "全体":   /^全体$/,
+  "GRIT":   /^GRIT/i,
+  "つばめ": /^つばめ/,
+  "SAKURA": /^SAKURA/i,
+};
+
+// 抽出対象の指標（CSVの0列目と一致させる）
+const CSV_METRICS_KPI   = ["リスト送付数","対応数","送付完了数","送付完了率","アポ数","転換率"];
+const CSV_METRICS_PLAIN = ["費用合計","商談獲得単価"];
+const CSV_METRICS_ALL   = [...CSV_METRICS_KPI, ...CSV_METRICS_PLAIN];
+
+let p1CSVHistory   = [];  // スナップショット配列（新しい順）
+let activeHistoryIdx = 0; // 現在表示中のスナップショット index
+let activeMediaTab = "全体";
+
+// アクティブなスナップショットを返すヘルパー
+function getActiveCSV() {
+  return p1CSVHistory.length > 0 ? p1CSVHistory[activeHistoryIdx] : null;
+}
+
+// 期間キー（同週の重複アップを防ぐ dedup キー）
+function csvPeriodKey(data) {
+  const last = (data.weekLabels || []).slice(-1)[0] || "";
+  return `${data.month || ""}_${last}`;
+}
+
+// スナップショット表示ラベル（"3/23〜3/29" など）
+function csvSnapLabel(data) {
+  return (data.weekLabels || []).slice(-1)[0] || new Date(data.uploadedAt).toLocaleDateString("ja-JP");
+}
+
+// ── localStorage ─────────────────────────────────────────────
+function loadP1CSV() {
+  try {
+    const raw = localStorage.getItem(P1CSV_HISTORY_KEY);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      p1CSVHistory = parsed;
+    } else if (parsed && parsed.sections) {
+      // 旧フォーマット（単体オブジェクト）からの移行
+      p1CSVHistory = [{ ...parsed, id: csvPeriodKey(parsed), label: csvSnapLabel(parsed) }];
+    }
+    activeHistoryIdx = 0;
+  } catch(e) { console.warn("p1csv load failed", e); }
+}
+
+function saveP1CSV(data) {
+  const id    = csvPeriodKey(data);
+  const label = csvSnapLabel(data);
+  const snap  = { ...data, id, label };
+
+  // 同じ期間キーがあれば上書き、なければ先頭に追加
+  const existIdx = p1CSVHistory.findIndex(s => s.id === id);
+  if (existIdx >= 0) {
+    p1CSVHistory[existIdx] = snap;
+    activeHistoryIdx = existIdx;
+  } else {
+    p1CSVHistory.unshift(snap);
+    activeHistoryIdx = 0;
+    if (p1CSVHistory.length > 24) p1CSVHistory = p1CSVHistory.slice(0, 24);
+  }
+
+  try { localStorage.setItem(P1CSV_HISTORY_KEY, JSON.stringify(p1CSVHistory)); }
+  catch(e) { console.error("p1csv save failed", e); }
+}
+
+function clearP1CSV() {
+  localStorage.removeItem(P1CSV_HISTORY_KEY);
+  p1CSVHistory = [];
+  activeHistoryIdx = 0;
+  activeMediaTab = "全体";
+  updateDropBtnState();
+  redraw();
+  showToast("全データをクリアしました");
+}
+
+// 特定スナップショットを削除
+function deleteHistorySnapshot(idx) {
+  p1CSVHistory.splice(idx, 1);
+  activeHistoryIdx = Math.min(activeHistoryIdx, Math.max(0, p1CSVHistory.length - 1));
+  try { localStorage.setItem(P1CSV_HISTORY_KEY, JSON.stringify(p1CSVHistory)); }
+  catch(e) {}
+  updateDropBtnState();
+  redraw();
+}
+
+// スナップショット切り替え
+function selectHistorySnapshot(idx) {
+  activeHistoryIdx = idx;
+  redraw();
+}
+
+// ── CSV Parser ───────────────────────────────────────────────
+// マルチラインセル（引用符内改行）に対応した全文パーサー
+function parseCSVMultiline(text) {
+  const rows = [];
+  let curRow = [], field = "", inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i], nx = text[i + 1];
+    if (ch === '"') {
+      if (inQ && nx === '"') { field += '"'; i++; } // エスケープ ""
+      else inQ = !inQ;
+    } else if (ch === ',' && !inQ) {
+      curRow.push(field.trim()); field = "";
+    } else if ((ch === '\r' || ch === '\n') && !inQ) {
+      if (ch === '\r' && nx === '\n') i++; // CRLF
+      curRow.push(field.trim()); field = "";
+      rows.push(curRow);
+      curRow = [];
+    } else {
+      field += ch;
+    }
+  }
+  if (field || curRow.length) { curRow.push(field.trim()); rows.push(curRow); }
+  return rows;
+}
+
+function parseNumVal(s) {
+  if (s === null || s === undefined || s === "") return null;
+  const str = String(s).trim();
+  if (str === "#DIV/0!" || str === "#N/A" || str === "#REF!") return null;
+  const n = parseFloat(str.replace(/[,，%％円\s¥¥￥]/g, ""));
+  return isNaN(n) ? null : n;
+}
+
+function parseFormCSV(text) {
+  // BOM除去 & マルチライン対応パース
+  const rows = parseCSVMultiline(text.replace(/^\uFEFF/, ""));
+  if (rows.length < 5) throw new Error("行数が少なすぎます");
+
+  // 週ラベルを探す（例: "3/2~3/8" や "3/2〜3/8"）
+  let weekLabels = [];
+  for (let i = 0; i < Math.min(10, rows.length); i++) {
+    const found = rows[i].filter(c => /\d+\/\d+[~〜]\d+\/\d+/.test(c));
+    if (found.length >= 2) { weekLabels = found.slice(0, 4); break; }
+  }
+
+  // コンテンツベースのセクション開始行を検出
+  const sectionStarts = {};
+  rows.forEach((row, i) => {
+    const c0 = (row[0] || "").replace(/[\r\n]/g, "").trim();
+    for (const name of MEDIA_SECTION_NAMES) {
+      if (!(name in sectionStarts) && SECTION_HEADER_RE[name].test(c0)) {
+        sectionStarts[name] = i;
+      }
+    }
+  });
+
+  // 各セクションの行を抽出してパース
+  const sections = {};
+  MEDIA_SECTION_NAMES.forEach((name, idx) => {
+    const start = sectionStarts[name];
+    if (start === undefined) return;
+    const nextName = MEDIA_SECTION_NAMES.slice(idx + 1).find(n => n in sectionStarts);
+    const end = nextName ? sectionStarts[nextName] : rows.length;
+    sections[name] = parseSectionRows(rows.slice(start, end));
+  });
+
+  // 月推定（週ラベルの月数字から）
+  let month = curMonth;
+  if (weekLabels.length) {
+    const m = weekLabels[0].match(/^(\d{1,2})\//);
+    if (m) {
+      const mo = parseInt(m[1]);
+      const y  = parseInt(curMonth.split("-")[0]) || new Date().getFullYear();
+      month = `${y}-${String(mo).padStart(2,"0")}`;
+    }
+  }
+
+  return { uploadedAt: new Date().toISOString(), weekLabels, month, sections };
+}
+
+function parseSectionRows(rows) {
+  // 実際のCSV構造:
+  //   リスト送付\n弊社ボール | 実績/KPI/達成率 | w1..w4 | 合計
+  //   対応数/送付完了数/送付完了率 | 実績/KPI/達成率 | ...
+  //   転換率 | アポ数  | ...  ← アポ数の実績
+  //          | 転換率  | ...  ← 転換率の実績
+  //          | 達成率  | ...  ← 転換率の達成率
+  //   費用   | 消化費用 | ...  (無視)
+  //          | SAKURA  | ...  (無視)
+  //          | 合計    | ...  ← 費用合計の実績
+  //          | 商談獲得単価 | ... ← 商談獲得単価の実績
+  const out = {};
+  let curName = null;   // 直前のメトリクス表示名
+  let inCost  = false;  // 費用ブロック中フラグ
+  let inConv  = false;  // 転換率ブロック中フラグ
+
+  const vals = row => [2,3,4,5,6].map(i => parseNumVal(row[i]));
+  const set  = (name, key, row) => {
+    if (!out[name]) out[name] = {};
+    out[name][key] = vals(row);
+  };
+
+  rows.forEach(row => {
+    if (!row || row.length < 2) return;
+    const c0 = (row[0] || "").replace(/[\r\n]/g, "").trim();
+    const c1 = (row[1] || "").trim();
+
+    if (c0 !== "") {
+      // ── ブロック先頭（c0が非空）──
+      inCost = false; inConv = false;
+
+      if (c0.includes("リスト送付") || c0.includes("弊社ボール")) {
+        curName = "リスト送付数";
+      } else if (c0 === "対応数" || c0 === "送付完了数" || c0 === "送付完了率") {
+        curName = c0;
+      } else if (c0 === "転換率") {
+        inConv = true; curName = null;
+        if (c1 === "アポ数") {
+          set("アポ数", "a", row); // アポ数は実績値のみ
+        }
+        return; // ブロック先頭の転換率行はここで終了
+      } else if (c0 === "費用") {
+        inCost = true; curName = null;
+        return;
+      } else {
+        curName = null; // 未知（ヘッダー行など）
+      }
+    } else {
+      // ── 継続行（c0が空）──
+      if (inCost) {
+        if (c1 === "合計")        set("費用合計",    "a", row);
+        if (c1 === "商談獲得単価") set("商談獲得単価","a", row);
+        return;
+      }
+      if (inConv) {
+        if (c1 === "転換率") set("転換率", "a", row);
+        if (c1 === "達成率") set("転換率", "r", row);
+        return;
+      }
+    }
+
+    // ── 通常メトリクスの 実績/KPI/達成率 行 ──
+    if (!curName) return;
+    const key = c1 === "実績" ? "a" : c1.toUpperCase() === "KPI" ? "k" : c1 === "達成率" ? "r" : null;
+    if (!key) return;
+    set(curName, key, row);
+  });
+
+  return out;
+}
+
+// ── DropZone ─────────────────────────────────────────────────
+function setupDropZone() {
+  const btn   = document.getElementById("csv-drop-btn");
+  const input = document.getElementById("csv-file-input");
+  if (!btn || !input) return;
+
+  input.addEventListener("change", e => {
+    const f = e.target.files?.[0];
+    if (f) handleCSVFile(f);
+    input.value = "";
+  });
+
+  // ドキュメント全体でドラッグ検知
+  document.addEventListener("dragover", e => {
+    e.preventDefault();
+    if (e.dataTransfer?.items?.length) btn.classList.add("over");
+  });
+  document.addEventListener("dragleave", e => {
+    if (!e.relatedTarget || !document.body.contains(e.relatedTarget))
+      btn.classList.remove("over");
+  });
+  document.addEventListener("drop", e => {
+    e.preventDefault();
+    btn.classList.remove("over");
+    const f = Array.from(e.dataTransfer?.files || []).find(f => f.name.endsWith(".csv"));
+    if (f) handleCSVFile(f);
+  });
+}
+
+function handleCSVFile(file) {
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = parseFormCSV(ev.target.result);
+      // 少なくとも1セクションにデータがあるか確認
+      const hasData = Object.values(data.sections).some(s => Object.keys(s).length > 0);
+      if (!hasData) throw new Error("指標データが見つかりません（列構造を確認してください）");
+      saveP1CSV(data);
+      updateDropBtnState();
+      redraw();
+      showToast("CSVを読み込みました");
+    } catch(e) {
+      console.error("CSV parse error:", e);
+      showToast("CSVの形式が正しくありません: " + e.message, true);
+    }
+  };
+  reader.onerror = () => showToast("ファイルの読み込みに失敗しました", true);
+  reader.readAsText(file, "UTF-8");
+}
+
+function updateDropBtnState() {
+  const btn = document.getElementById("csv-drop-btn");
+  if (!btn) return;
+  const csv = getActiveCSV();
+  if (csv) {
+    btn.classList.add("has-data");
+    const d = new Date(csv.uploadedAt).toLocaleString("ja-JP",
+      { month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" });
+    btn.title = `CSV読込済み (${p1CSVHistory.length}件 / 最新:${d})`;
+  } else {
+    btn.classList.remove("has-data");
+    btn.title = "CSVをドロップまたはクリックで選択";
+  }
+}
+
+// ── Toast ─────────────────────────────────────────────────────
+function showToast(msg, isErr = false) {
+  let t = document.getElementById("ra-toast");
+  if (!t) { t = document.createElement("div"); t.id = "ra-toast"; document.body.appendChild(t); }
+  t.textContent = msg;
+  t.className = "toast" + (isErr ? " err" : "");
+  t.offsetHeight; // force reflow
+  t.classList.add("show");
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+// ── Media Section Renderer ────────────────────────────────────
+/**
+ * Pipeline① セクション内の媒体別タブUIを生成する
+ * @param {number|null} weekNum  週次ビュー時は週番号、月次ビュー時は null
+ */
+function renderMediaSection(weekNum) {
+  if (p1CSVHistory.length === 0) return "";
+
+  const csv = getActiveCSV();
+  if (!csv) return "";
+
+  // ── スナップショット履歴バー ──────────────────────────────
+  const histBar = p1CSVHistory.length > 1 ? `
+    <div class="mhist-bar">
+      <span class="mhist-label">履歴</span>
+      ${p1CSVHistory.map((s, i) => `
+        <div class="mhist-pill${i === activeHistoryIdx ? " active" : ""}">
+          <span onclick="selectHistorySnapshot(${i})">${s.label}</span>
+          <button class="mhist-del" onclick="deleteHistorySnapshot(${i})" title="削除">×</button>
+        </div>
+      `).join("")}
+    </div>
+  ` : "";
+
+  // ── 媒体タブ ─────────────────────────────────────────────
+  const sectionNames = MEDIA_SECTION_NAMES;
+  const tabs = sectionNames.map(name =>
+    `<button class="mtab-btn${activeMediaTab === name ? " active" : ""}"
+      onclick="setMediaTab('${name}')">${name}</button>`
+  ).join("");
+
+  const section  = csv.sections?.[activeMediaTab] || {};
+  const wLabels  = csv.weekLabels?.slice(0, 4) || ["第1週","第2週","第3週","第4週"];
+  const uploadDt = new Date(csv.uploadedAt).toLocaleString("ja-JP",
+    { month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit" });
+
+  // 週次ビューの場合、対象週のカラムをハイライト（週番号→index）
+  const hiliteIdx = weekNum != null ? weekNum - 1 : -1;
+
+  // ── テーブルヘッダー列 ──────────────────────────────────────
+  const thCols = wLabels.map((l, i) =>
+    `<th style="${i === hiliteIdx ? "color:var(--blue2)" : ""}">${l}</th>`
+  ).join("") + "<th>合計</th>";
+
+  // ── KPI付き指標の行 ────────────────────────────────────────
+  function kpiCell(a, k, isHi) {
+    if (a === null && k === null) return `<td style="color:var(--t3)">—</td>`;
+    const r   = (a !== null && k) ? a / k * 100 : null;
+    const c   = color(r);
+    const w   = r !== null ? Math.min(100, r) : 0;
+    const hi  = isHi ? "background:rgba(59,130,246,0.07);" : "";
+    return `<td style="${hi}">
+      <span class="mv">${a !== null ? fmtN(a) : "—"}</span>
+      ${k !== null ? `<span class="mk">KPI ${fmtN(k)}</span>` : ""}
+      ${r !== null ? `<span class="mr c-${c}">${emoji(r)} ${fmtPct(r)}</span>
+        <div class="mbar"><div class="mbar-f fill-${c}" style="width:${w}%"></div></div>` : ""}
+    </td>`;
+  }
+
+  const rows1 = CSV_METRICS_KPI.map(name => {
+    const d = section[name] || {};
+    const cells = wLabels.map((_, i) =>
+      kpiCell(d.a?.[i] ?? null, d.k?.[i] ?? null, i === hiliteIdx)
+    ).join("");
+    return `<tr><td>${name}</td>${cells}${kpiCell(d.a?.[4]??null, d.k?.[4]??null, false)}</tr>`;
+  }).join("");
+
+  // ── KPIなし指標の行 ────────────────────────────────────────
+  function plainCell(v, isCur, isHi) {
+    const hi = isHi ? "background:rgba(59,130,246,0.07);" : "";
+    if (v === null) return `<td style="${hi}color:var(--t3)">—</td>`;
+    const disp = isCur ? "¥" + fmtN(v) : fmtN(v);
+    return `<td style="${hi}"><span class="mv">${disp}</span></td>`;
+  }
+
+  const rows2 = CSV_METRICS_PLAIN.map(name => {
+    const d     = section[name] || {};
+    const isCur = name.includes("費用") || name.includes("単価");
+    const cells = wLabels.map((_, i) =>
+      plainCell(d.a?.[i]??null, isCur, i === hiliteIdx)
+    ).join("");
+    return `<tr><td>${name}</td>${cells}${plainCell(d.a?.[4]??null, isCur, false)}</tr>`;
+  }).join("");
+
+  return `
+    <div class="media-heading">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:.7">
+        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+        <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+      </svg>
+      お問い合わせフォーム数値
+    </div>
+    ${histBar}
+    <div class="mtab-bar">
+      <span style="font-size:10px;color:var(--t3);margin-right:6px;padding-bottom:4px;white-space:nowrap">媒体別</span>
+      ${tabs}
+      <div class="mtab-actions">
+        <span class="mtab-meta">${uploadDt}取込</span>
+        <button class="mtab-clear" onclick="clearP1CSV()" title="全履歴をクリア">クリア</button>
+      </div>
+    </div>
+    <div class="mtab-content">
+      <table class="mdt">
+        <thead><tr><th>指標</th>${thCols}</tr></thead>
+        <tbody>
+          ${rows1}
+          <tr class="mdt-sep"><td colspan="${wLabels.length + 2}">費用・単価</td></tr>
+          ${rows2}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function setMediaTab(name) {
+  activeMediaTab = name;
+  redraw();
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 応募数管理タブ
+// ═══════════════════════════════════════════════════════════════
+
+async function loadAppData() {
+  try {
+    const res = await fetch("./applications_data.json");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const d = await res.json();
+    console.info("[applications_data.json] loaded:", d.snapshots?.length, "snapshots");
+    return d;
+  } catch(e) {
+    console.info("[applications_data.json] not available:", e.message);
+    return null;
+  }
+}
+
+function selectAppSnap(idx) {
+  activeSnapIdx = idx;
+  renderApplications();
+}
+
+function renderApplications() {
+  const el = document.getElementById("panel-applications");
+  if (!el) return;
+  charts.forEach(c => c.destroy());
+  charts = [];
+
+  if (!APP_DATA || !APP_DATA.snapshots || APP_DATA.snapshots.length === 0) {
+    el.innerHTML = `
+      <div class="sec">
+        <div class="sec-body" style="text-align:center;padding:48px 22px">
+          <div style="font-size:15px;color:var(--t2);margin-bottom:10px">📊 データが未取得です</div>
+          <div style="font-size:12px;color:var(--t3);line-height:1.8">
+            以下のコマンドを実行してデータを取得してください：<br>
+            <code style="display:inline-block;margin-top:6px;background:rgba(0,0,0,0.4);padding:6px 14px;border-radius:6px;font-family:monospace;color:var(--blue2)">python update_applications.py</code>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  const snaps = APP_DATA.snapshots;
+  const idx = (activeSnapIdx !== null && activeSnapIdx >= 0 && activeSnapIdx < snaps.length)
+    ? activeSnapIdx : snaps.length - 1;
+  const current = snaps[idx];
+
+  el.innerHTML =
+    _appHeader(current, snaps, idx) +
+    _appSection1(current, snaps) +
+    _appSection2(current, snaps) +
+    _appSection3(current) +
+    _appSection4(snaps);
+
+  setTimeout(() => _drawAppCharts(current, snaps), 0);
+}
+
+function _appHeader(snap, snaps, activeIdx) {
+  const dt = snap.fetchedAt
+    ? new Date(snap.fetchedAt).toLocaleString("ja-JP", {
+        timeZone:"Asia/Tokyo", year:"numeric", month:"2-digit",
+        day:"2-digit", hour:"2-digit", minute:"2-digit"
+      })
+    : "—";
+  const isLatest = activeIdx === snaps.length - 1;
+
+  // スナップショット選択ピル（常に表示）
+  const snapBar = `
+    <div class="app-snap-bar">
+      <span class="app-snap-lbl">取得履歴</span>
+      <div class="app-snap-pills">
+        ${[...snaps].reverse().map((s, ri) => {
+          const origIdx = snaps.length - 1 - ri;
+          const label = s.weekLabel ?? (s.fetchedAt||"").slice(0,10);
+          return `<button class="app-snap-pill${origIdx === activeIdx ? ' active' : ''}"
+            onclick="selectAppSnap(${origIdx})">${label}</button>`;
+        }).join('')}
+        ${snaps.length === 1 ? `<span style="font-size:10px;color:var(--t3);align-self:center">毎週月曜に自動追加されます</span>` : ''}
+      </div>
+    </div>`;
+
+  return `<div style="padding:2px 0 6px">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--t3)">取得日時: ${dt}</span>
+      <span style="font-size:11px;color:var(--t3)">|</span>
+      <span style="font-size:11px;color:var(--t3)">今週基準日: ${snap.weekLabel ?? "—"}</span>
+      ${!isLatest ? `<span class="app-hist-badge">過去データ表示中</span>` : ''}
+    </div>
+    ${snapBar}
+  </div>`;
+}
+
+function _growthChip(s) {
+  if (!s || s === "-" || s === "") return `<span style="color:var(--t3)">—</span>`;
+  const v = parseFloat(s.replace("%",""));
+  if (isNaN(v)) return `<span style="color:var(--t3)">${s}</span>`;
+  const cls = v > 100 ? "app-chip-up" : v < 100 ? "app-chip-down" : "app-chip-flat";
+  const icon = v > 100 ? "▲" : v < 100 ? "▼" : "→";
+  return `<span class="app-chip ${cls}">${icon} ${s}</span>`;
+}
+
+function _trendArrow(cur, prev) {
+  if (cur === 0 && prev === 0) return `<span style="color:var(--t3)">—</span>`;
+  if (prev === 0) return `<span style="color:var(--green);font-size:11px">▲ NEW</span>`;
+  const r = cur / prev * 100;
+  if (r >= 110) return `<span style="color:var(--green);font-size:11px">▲ ${r.toFixed(0)}%</span>`;
+  if (r >= 90)  return `<span style="color:var(--t2);font-size:11px">→ ${r.toFixed(0)}%</span>`;
+  return `<span style="color:var(--red2);font-size:11px">▼ ${r.toFixed(0)}%</span>`;
+}
+
+// ─── セクション① 全DB応募数推移 ────────────────────────────────
+function _appSection1(latest, snaps) {
+  const db = latest.db || {};
+  const wt = db.weekly?.thisWeek    || {};
+  const wl = db.weekly?.lastWeek    || {};
+  const wp = db.weekly?.twoWeeksAgo || {};
+  const mt = db.monthly?.thisMonth    || {};
+  const ml = db.monthly?.lastMonth    || {};
+  const mp = db.monthly?.twoMonthsAgo || {};
+
+  const cards = `
+    <div class="sum-grid">
+      <div class="sum-card">
+        <div class="sum-lbl">今月 応募数合計</div>
+        <div class="sum-val num">${fmtN(mt.total)}</div>
+        <div class="sum-sub" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <span style="color:var(--blue2)">CIRCUS ${fmtN(mt.circus)}</span>
+          <span style="color:var(--purple)">CA ${fmtN(mt.crowdAgent)}</span>
+          <span style="color:var(--green)">JoBins ${fmtN(mt.jobins)}</span>
+        </div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-lbl">先月 応募数合計</div>
+        <div class="sum-val num">${fmtN(ml.total)}</div>
+        <div class="sum-sub">${_growthChip(mt.growthTotal)} 前月比</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-lbl">今週 応募数合計</div>
+        <div class="sum-val num">${fmtN(wt.total)}</div>
+        <div class="sum-sub" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <span style="color:var(--blue2)">CIRCUS ${fmtN(wt.circus)}</span>
+          <span style="color:var(--purple)">CA ${fmtN(wt.crowdAgent)}</span>
+          <span style="color:var(--green)">JoBins ${fmtN(wt.jobins)}</span>
+        </div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-lbl">先週 応募数合計</div>
+        <div class="sum-val num">${fmtN(wl.total)}</div>
+        <div class="sum-sub">${_growthChip(wt.growthTotal)} 前週比</div>
+      </div>
+    </div>`;
+
+  const histSection = snaps.length > 1 ? (() => {
+    const rows = snaps.slice().reverse().map(s => {
+      const w = s.db?.weekly?.thisWeek    || {};
+      const m = s.db?.monthly?.thisMonth  || {};
+      return `<tr>
+        <td>${s.weekLabel ?? (s.fetchedAt||"").slice(0,10) ?? "—"}</td>
+        <td>${fmtN(w.total)}</td>
+        <td style="color:var(--blue2)">${fmtN(w.circus)}</td>
+        <td style="color:var(--purple)">${fmtN(w.crowdAgent)}</td>
+        <td style="color:var(--green)">${fmtN(w.jobins)}</td>
+        <td>${fmtN(m.total)}</td>
+        <td style="color:var(--blue2)">${fmtN(m.circus)}</td>
+        <td style="color:var(--purple)">${fmtN(m.crowdAgent)}</td>
+        <td style="color:var(--green)">${fmtN(m.jobins)}</td>
+      </tr>`;
+    }).join("");
+    return `
+      <div class="divider" style="margin-top:20px">
+        <div class="div-line"></div><span class="div-lbl">週次履歴（DB別）</span><div class="div-line"></div>
+      </div>
+      <div class="sec-body-flush">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th rowspan="2">取得週</th>
+              <th colspan="4" style="border-bottom:1px solid var(--border)">週次応募数</th>
+              <th colspan="4" style="border-bottom:1px solid var(--border)">月次応募数（当月）</th>
+            </tr>
+            <tr>
+              <th>合計</th><th>CIRCUS</th><th>CrowdAgent</th><th>JoBins</th>
+              <th>合計</th><th>CIRCUS</th><th>CrowdAgent</th><th>JoBins</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  })() : "";
+
+  return `
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-blue">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">① 全DBの応募数推移</div>
+          <div class="sec-sub">CIRCUS / CrowdAgent / JoBins 別集計</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        ${cards}
+        <div class="chart-grid" style="margin-top:20px">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px">週次（今週 / 先週 / 先々週）</div>
+            <div class="chart-wrap" style="height:210px"><canvas id="chart-db-weekly"></canvas></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px">月次（今月 / 先月 / 先々月）</div>
+            <div class="chart-wrap" style="height:210px"><canvas id="chart-db-monthly"></canvas></div>
+          </div>
+          ${snaps.length > 2 ? `
+          <div style="grid-column:1/-1">
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px">週次推移 履歴（DB別）</div>
+            <div class="chart-wrap" style="height:200px"><canvas id="chart-db-history"></canvas></div>
+          </div>` : ""}
+        </div>
+        ${histSection}
+      </div>
+    </div>`;
+}
+
+// ─── セクション② 自社・アライアンス ────────────────────────────
+function _appSection2(latest, snaps) {
+  const sp = latest.split || {};
+  const wt = sp.weekly?.thisWeek    || {};
+  const wl = sp.weekly?.lastWeek    || {};
+  const wp = sp.weekly?.twoWeeksAgo || {};
+  const mt = sp.monthly?.thisMonth    || {};
+  const ml = sp.monthly?.lastMonth    || {};
+
+  const alliPct = mt.total ? Math.round((mt.alliance||0)/mt.total*100) : 0;
+  const ownPct  = 100 - alliPct;
+
+  const cards = `
+    <div class="sum-grid">
+      <div class="sum-card">
+        <div class="sum-lbl">今月 総応募数</div>
+        <div class="sum-val num">${fmtN(mt.total)}</div>
+        <div class="sum-sub">${_growthChip(mt.growthTotal)} 前月比</div>
+      </div>
+      <div class="sum-card" style="--mc:var(--blue2)">
+        <div class="sum-lbl" style="color:var(--blue2)">今月 アライアンス</div>
+        <div class="sum-val num" style="color:var(--blue2)">${fmtN(mt.alliance)}</div>
+        <div class="sum-sub">${alliPct}% ${_growthChip(mt.growthAlliance)} 前月比</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-lbl" style="color:var(--green)">今月 自社</div>
+        <div class="sum-val num" style="color:var(--green)">${fmtN(mt.own)}</div>
+        <div class="sum-sub">${ownPct}% ${_growthChip(mt.growthOwn)} 前月比</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-lbl">今週 総応募数</div>
+        <div class="sum-val num">${fmtN(wt.total)}</div>
+        <div class="sum-sub" style="display:flex;gap:8px">
+          <span style="color:var(--blue2)">提携 ${fmtN(wt.alliance)}</span>
+          <span style="color:var(--green)">自社 ${fmtN(wt.own)}</span>
+        </div>
+      </div>
+    </div>`;
+
+  const histSection = snaps.length > 1 ? (() => {
+    const rows = snaps.slice().reverse().map(s => {
+      const w = s.split?.weekly?.thisWeek   || {};
+      const m = s.split?.monthly?.thisMonth || {};
+      const ap = m.total ? Math.round((m.alliance||0)/m.total*100) : 0;
+      return `<tr>
+        <td>${s.weekLabel ?? (s.fetchedAt||"").slice(0,10)}</td>
+        <td>${fmtN(w.total)}</td>
+        <td style="color:var(--blue2)">${fmtN(w.alliance)}</td>
+        <td style="color:var(--green)">${fmtN(w.own)}</td>
+        <td>${fmtN(m.total)}</td>
+        <td style="color:var(--blue2)">${fmtN(m.alliance)}</td>
+        <td style="color:var(--green)">${fmtN(m.own)}</td>
+        <td><span class="app-chip app-chip-flat">${ap}% 提携</span></td>
+      </tr>`;
+    }).join("");
+    return `
+      <div class="divider" style="margin-top:20px">
+        <div class="div-line"></div><span class="div-lbl">週次履歴（応募元別）</span><div class="div-line"></div>
+      </div>
+      <div class="sec-body-flush">
+        <table class="dt">
+          <thead>
+            <tr>
+              <th rowspan="2">取得週</th>
+              <th colspan="3" style="border-bottom:1px solid var(--border)">週次</th>
+              <th colspan="3" style="border-bottom:1px solid var(--border)">月次（当月）</th>
+              <th rowspan="2">構成比</th>
+            </tr>
+            <tr>
+              <th>合計</th><th>アライアンス</th><th>自社</th>
+              <th>合計</th><th>アライアンス</th><th>自社</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+  })() : "";
+
+  return `
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-purple">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">② 自社・アライアンス 応募数内訳</div>
+          <div class="sec-sub">総応募数の応募元別内訳</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        ${cards}
+        <div class="chart-grid" style="margin-top:20px">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px;align-self:flex-start">今月内訳（アライアンス vs 自社）</div>
+            <div style="width:220px;height:220px"><canvas id="chart-split-donut"></canvas></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px">週次推移（今週 / 先週 / 先々週）</div>
+            <div class="chart-wrap" style="height:220px"><canvas id="chart-split-weekly"></canvas></div>
+          </div>
+          ${snaps.length > 2 ? `
+          <div style="grid-column:1/-1">
+            <div style="font-size:12px;font-weight:600;color:var(--t2);margin-bottom:10px">週次応募数 時系列推移（履歴）</div>
+            <div class="chart-wrap" style="height:200px"><canvas id="chart-split-history"></canvas></div>
+          </div>` : ""}
+        </div>
+        ${histSection}
+      </div>
+    </div>`;
+}
+
+// ─── セクション③ 企業別 ─────────────────────────────────────────
+// ソート用の数値を返す
+function _coSortVal(c, key) {
+  const ratio = (cur, prev) => prev > 0 ? cur / prev : (cur > 0 ? 999 : 0);
+  switch (key) {
+    case "weeklyThis":  return c.weeklyThis;
+    case "weeklyLast":  return c.weeklyLast;
+    case "weeklyPrev":  return c.weeklyPrev;
+    case "weeklyRatio": return ratio(c.weeklyThis, c.weeklyLast);
+    case "monthlyThis": return c.monthlyThis;
+    case "monthlyLast": return c.monthlyLast;
+    case "monthlyPrev": return c.monthlyPrev;
+    case "monthlyRatio":return ratio(c.monthlyThis, c.monthlyLast);
+    case "name":        return (c.name || "").toLowerCase();
+    default:            return c.monthlyThis;
+  }
+}
+
+function _appSection3(latest) {
+  // ソート
+  const companies = (latest.companies || [])
+    .filter(c => c.monthlyThis > 0 || c.monthlyLast > 0 || c.weeklyThis > 0)
+    .sort((a, b) => {
+      const va = _coSortVal(a, appSortKey), vb = _coSortVal(b, appSortKey);
+      if (typeof va === "string") return appSortDir === "asc" ? va.localeCompare(vb) : vb.localeCompare(va);
+      return appSortDir === "asc" ? va - vb : vb - va;
+    });
+
+  if (companies.length === 0) {
+    return `<div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-amber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div><div class="sec-title">③ 企業別 応募数</div></div>
+      </div>
+      <div class="sec-body" style="text-align:center;color:var(--t3);padding:32px">データなし</div>
+    </div>`;
+  }
+
+  const total = companies.length;
+  const display = appShowAllCompanies ? companies : companies.slice(0, 30);
+
+  const rows = display.map((c, i) => `
+    <tr>
+      <td style="color:var(--t3);font-size:11px">${i + 1}</td>
+      <td>${c.name}</td>
+      <td>${fmtN(c.weeklyThis)}</td>
+      <td style="color:var(--t3)">${fmtN(c.weeklyLast)}</td>
+      <td style="color:var(--t3)">${fmtN(c.weeklyPrev)}</td>
+      <td>${_trendArrow(c.weeklyThis, c.weeklyLast)}</td>
+      <td><strong>${fmtN(c.monthlyThis)}</strong></td>
+      <td style="color:var(--t3)">${fmtN(c.monthlyLast)}</td>
+      <td style="color:var(--t3)">${fmtN(c.monthlyPrev)}</td>
+      <td>${_trendArrow(c.monthlyThis, c.monthlyLast)}</td>
+    </tr>`).join("");
+
+  const toggleBtn = total > 30 ? `
+    <div style="text-align:center;margin-top:14px">
+      <button onclick="toggleAppCompanies()" style="padding:7px 20px;border:1px solid var(--border2);
+        border-radius:var(--r-md);background:none;color:var(--t2);cursor:pointer;font-size:12px;font-family:inherit">
+        ${appShowAllCompanies ? "上位 30 社のみ表示" : `全 ${total} 社を表示`}
+      </button>
+    </div>` : "";
+
+  return `
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-amber">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">③ 企業別 応募数</div>
+          <div class="sec-sub">今月応募数 降順（0件除く ${total} 社）</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="sec-body-flush">
+          <table class="dt app-company-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th class="sort-th${appSortKey==='name'?' srt-active':''}" onclick="sortAppBy('name')">
+                  企業名<span class="sort-ic">${appSortKey==='name'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='weeklyThis'?' srt-active':''}" onclick="sortAppBy('weeklyThis')">
+                  今週<span class="sort-ic">${appSortKey==='weeklyThis'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='weeklyLast'?' srt-active':''}" onclick="sortAppBy('weeklyLast')">
+                  先週<span class="sort-ic">${appSortKey==='weeklyLast'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='weeklyPrev'?' srt-active':''}" onclick="sortAppBy('weeklyPrev')">
+                  先々週<span class="sort-ic">${appSortKey==='weeklyPrev'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='weeklyRatio'?' srt-active':''}" onclick="sortAppBy('weeklyRatio')">
+                  週次推移<span class="sort-ic">${appSortKey==='weeklyRatio'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='monthlyThis'?' srt-active':''}" onclick="sortAppBy('monthlyThis')">
+                  今月<span class="sort-ic">${appSortKey==='monthlyThis'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='monthlyLast'?' srt-active':''}" onclick="sortAppBy('monthlyLast')">
+                  先月<span class="sort-ic">${appSortKey==='monthlyLast'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='monthlyPrev'?' srt-active':''}" onclick="sortAppBy('monthlyPrev')">
+                  先々月<span class="sort-ic">${appSortKey==='monthlyPrev'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+                <th class="sort-th${appSortKey==='monthlyRatio'?' srt-active':''}" onclick="sortAppBy('monthlyRatio')">
+                  月次推移<span class="sort-ic">${appSortKey==='monthlyRatio'?(appSortDir==='asc'?'▲':'▼'):'⇅'}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        ${toggleBtn}
+      </div>
+    </div>`;
+}
+
+function toggleAppCompanies() {
+  appShowAllCompanies = !appShowAllCompanies;
+  renderApplications();
+}
+
+function sortAppBy(key) {
+  if (appSortKey === key) {
+    appSortDir = appSortDir === "desc" ? "asc" : "desc";
+  } else {
+    appSortKey = key;
+    appSortDir = "desc"; // 新しい列は降順から開始
+  }
+  renderApplications();
+}
+
+// ─── セクション④ 推移チャート ────────────────────────────────────
+function _appSection4(snaps) {
+  if (snaps.length === 0) return "";
+  const iconSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`;
+  const waiting = snaps.length < 2 ? `
+    <div style="display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:var(--r-md);background:rgba(59,130,246,0.07);border:1px solid rgba(59,130,246,0.15);margin-bottom:20px">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue2)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span style="font-size:11px;color:var(--blue2)">毎週月曜にデータが追加されると推移グラフが描画されます（現在 ${snaps.length} 件 / 2件以上で表示）</span>
+    </div>` : '';
+  return `<div class="sec">
+    <div class="sec-head">
+      <div class="sec-icon ic-blue">${iconSvg}</div>
+      <div>
+        <div class="sec-title">④ 推移チャート</div>
+        <div class="sec-sub">週次・月次の時系列推移（全取得履歴）</div>
+      </div>
+    </div>
+    <div class="sec-body">
+      ${waiting}
+      <div style="margin-bottom:28px">
+        <div style="font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">週次推移 ― 今週の応募数（取得週ごと）</div>
+        <div style="height:230px"><canvas id="chart-trend-weekly"></canvas></div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px">月次推移 ― 月合計 応募数（月ごとの最新スナップ）</div>
+        <div style="height:230px"><canvas id="chart-trend-monthly"></canvas></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ─── Chart.js 描画 ───────────────────────────────────────────────
+function _drawAppCharts(latest, snaps) {
+  const db = latest.db   || {};
+  const sp = latest.split || {};
+
+  const C_CIRCUS   = "#3B82F6";
+  const C_CA       = "#8B5CF6";
+  const C_JOBINS   = "#10B981";
+  const C_ALLIANCE = "#3B82F6";
+  const C_OWN      = "#10B981";
+
+  const baseOpts = (stacked=true) => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position:"bottom", labels:{ boxWidth:10, font:{size:11} } },
+    },
+    scales: stacked ? {
+      x: { stacked:true, grid:{ color:"rgba(255,255,255,0.05)" } },
+      y: { stacked:true, grid:{ color:"rgba(255,255,255,0.05)" }, ticks:{ maxTicksLimit:6 } },
+    } : {
+      x: { grid:{ color:"rgba(255,255,255,0.05)" } },
+      y: { grid:{ color:"rgba(255,255,255,0.05)" }, ticks:{ maxTicksLimit:6 } },
+    },
+  });
+
+  function mkChart(id, cfg) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    charts.push(new Chart(el, cfg));
+  }
+
+  // ① DB 週次 stacked bar
+  const wt=db.weekly?.thisWeek||{}, wl=db.weekly?.lastWeek||{}, wp=db.weekly?.twoWeeksAgo||{};
+  mkChart("chart-db-weekly", {
+    type:"bar",
+    data:{
+      labels:["今週","先週","先々週"],
+      datasets:[
+        { label:"CIRCUS",     data:[wt.circus??0,wl.circus??0,wp.circus??0],     backgroundColor:C_CIRCUS },
+        { label:"CrowdAgent", data:[wt.crowdAgent??0,wl.crowdAgent??0,wp.crowdAgent??0], backgroundColor:C_CA },
+        { label:"JoBins",     data:[wt.jobins??0,wl.jobins??0,wp.jobins??0],     backgroundColor:C_JOBINS },
+      ],
+    },
+    options:baseOpts(true),
+  });
+
+  // ① DB 月次 stacked bar
+  const mt=db.monthly?.thisMonth||{}, ml=db.monthly?.lastMonth||{}, mp=db.monthly?.twoMonthsAgo||{};
+  mkChart("chart-db-monthly", {
+    type:"bar",
+    data:{
+      labels:["今月","先月","先々月"],
+      datasets:[
+        { label:"CIRCUS",     data:[mt.circus??0,ml.circus??0,mp.circus??0],     backgroundColor:C_CIRCUS },
+        { label:"CrowdAgent", data:[mt.crowdAgent??0,ml.crowdAgent??0,mp.crowdAgent??0], backgroundColor:C_CA },
+        { label:"JoBins",     data:[mt.jobins??0,ml.jobins??0,mp.jobins??0],     backgroundColor:C_JOBINS },
+      ],
+    },
+    options:baseOpts(true),
+  });
+
+  // ① DB 履歴 (snaps > 2)
+  if (snaps.length > 2) {
+    mkChart("chart-db-history", {
+      type:"bar",
+      data:{
+        labels: snaps.map(s => s.weekLabel ?? (s.fetchedAt||"").slice(0,10)),
+        datasets:[
+          { label:"CIRCUS",     data:snaps.map(s=>s.db?.weekly?.thisWeek?.circus??0),     backgroundColor:C_CIRCUS },
+          { label:"CrowdAgent", data:snaps.map(s=>s.db?.weekly?.thisWeek?.crowdAgent??0), backgroundColor:C_CA },
+          { label:"JoBins",     data:snaps.map(s=>s.db?.weekly?.thisWeek?.jobins??0),     backgroundColor:C_JOBINS },
+        ],
+      },
+      options:baseOpts(true),
+    });
+  }
+
+  // ② Split Donut (今月)
+  const smt = sp.monthly?.thisMonth || {};
+  mkChart("chart-split-donut", {
+    type:"doughnut",
+    data:{
+      labels:["アライアンス","自社"],
+      datasets:[{
+        data:[smt.alliance??0, smt.own??0],
+        backgroundColor:[C_ALLIANCE, C_OWN],
+        borderWidth:0,
+      }],
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:"bottom", labels:{ boxWidth:10, font:{size:11} } } },
+      cutout:"62%",
+    },
+  });
+
+  // ② Split 週次 stacked bar
+  const swt=sp.weekly?.thisWeek||{}, swl=sp.weekly?.lastWeek||{}, swp=sp.weekly?.twoWeeksAgo||{};
+  mkChart("chart-split-weekly", {
+    type:"bar",
+    data:{
+      labels:["今週","先週","先々週"],
+      datasets:[
+        { label:"アライアンス", data:[swt.alliance??0,swl.alliance??0,swp.alliance??0], backgroundColor:C_ALLIANCE },
+        { label:"自社",         data:[swt.own??0,swl.own??0,swp.own??0],               backgroundColor:C_OWN },
+      ],
+    },
+    options:baseOpts(true),
+  });
+
+  // ② Split 履歴 (snaps > 2)
+  if (snaps.length > 2) {
+    mkChart("chart-split-history", {
+      type:"bar",
+      data:{
+        labels: snaps.map(s => s.weekLabel ?? (s.fetchedAt||"").slice(0,10)),
+        datasets:[
+          { label:"アライアンス", data:snaps.map(s=>s.split?.weekly?.thisWeek?.alliance??0), backgroundColor:C_ALLIANCE },
+          { label:"自社",         data:snaps.map(s=>s.split?.weekly?.thisWeek?.own??0),      backgroundColor:C_OWN },
+        ],
+      },
+      options:baseOpts(true),
+    });
+  }
+
+  // ④ 推移チャート（snaps >= 2）
+  if (snaps.length >= 2) {
+    const lineOpts = {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:"bottom", labels:{ boxWidth:10, font:{size:11} } } },
+      scales:{
+        x:{ grid:{ color:"rgba(255,255,255,0.05)" }, ticks:{ maxTicksLimit:12 } },
+        y:{ grid:{ color:"rgba(255,255,255,0.05)" }, ticks:{ maxTicksLimit:6 }, beginAtZero:true },
+      },
+      elements:{ point:{ radius:3, hoverRadius:5 }, line:{ tension:0.35 } },
+    };
+
+    // 週次推移
+    const wLabels = snaps.map(s => s.weekLabel ?? (s.fetchedAt||"").slice(0,10));
+    mkChart("chart-trend-weekly", {
+      type:"line",
+      data:{
+        labels: wLabels,
+        datasets:[
+          { label:"合計",         data:snaps.map(s=>s.db?.weekly?.thisWeek?.total??0),          borderColor:"rgba(255,255,255,0.7)", backgroundColor:"rgba(255,255,255,0.05)", fill:true },
+          { label:"CIRCUS",       data:snaps.map(s=>s.db?.weekly?.thisWeek?.circus??0),         borderColor:C_CIRCUS,  backgroundColor:"transparent" },
+          { label:"CrowdAgent",   data:snaps.map(s=>s.db?.weekly?.thisWeek?.crowdAgent??0),     borderColor:C_CA,      backgroundColor:"transparent" },
+          { label:"JoBins",       data:snaps.map(s=>s.db?.weekly?.thisWeek?.jobins??0),         borderColor:C_JOBINS,  backgroundColor:"transparent" },
+          { label:"アライアンス", data:snaps.map(s=>s.split?.weekly?.thisWeek?.alliance??0),    borderColor:"#F59E0B", backgroundColor:"transparent", borderDash:[5,3] },
+        ],
+      },
+      options: lineOpts,
+    });
+
+    // 月次推移: 同月の最後のスナップをグルーピング
+    const monthMap = {};
+    snaps.forEach(s => {
+      const raw = (s.weekLabel ?? s.fetchedAt ?? "").replace(/\//g, "-");
+      const ym  = raw.slice(0, 7);
+      if (ym) monthMap[ym] = s;
+    });
+    const sortedYMs = Object.keys(monthMap).sort();
+    if (sortedYMs.length >= 1) {
+      mkChart("chart-trend-monthly", {
+        type:"line",
+        data:{
+          labels: sortedYMs,
+          datasets:[
+            { label:"月合計",       data:sortedYMs.map(ym=>monthMap[ym].db?.monthly?.thisMonth?.total??0),         borderColor:"rgba(255,255,255,0.7)", backgroundColor:"rgba(255,255,255,0.05)", fill:true },
+            { label:"CIRCUS",       data:sortedYMs.map(ym=>monthMap[ym].db?.monthly?.thisMonth?.circus??0),        borderColor:C_CIRCUS,  backgroundColor:"transparent" },
+            { label:"CrowdAgent",   data:sortedYMs.map(ym=>monthMap[ym].db?.monthly?.thisMonth?.crowdAgent??0),    borderColor:C_CA,      backgroundColor:"transparent" },
+            { label:"JoBins",       data:sortedYMs.map(ym=>monthMap[ym].db?.monthly?.thisMonth?.jobins??0),        borderColor:C_JOBINS,  backgroundColor:"transparent" },
+            { label:"アライアンス", data:sortedYMs.map(ym=>monthMap[ym].split?.monthly?.thisMonth?.alliance??0),   borderColor:"#F59E0B", backgroundColor:"transparent", borderDash:[5,3] },
+          ],
+        },
+        options: lineOpts,
+      });
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// 初期化
+// ═══════════════════════════════════════════════════════════════
+Chart.defaults.font.family = "Noto Sans JP";
+Chart.defaults.color = "#94A3B8";
+
+(async function init() {
+  loadP1CSV();          // localStorage から復元
+  [DATA, APP_DATA] = await Promise.all([loadData(), loadAppData()]);
+  const months = Object.keys(DATA).sort();
+  curMonth = months[months.length - 1] || curMonth;
+  const md = DATA[curMonth];
+  if (md) {
+    const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
+    curWeek = ws[ws.length - 1] || 3;
+  }
+  redraw();
+  setupDropZone();      // ドロップゾーン設定
+  updateDropBtnState(); // ボタン初期状態
+})();
+</script>
+</body>
+</html>
