@@ -26,6 +26,7 @@ import os
 import csv
 import io
 import re
+import subprocess
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
@@ -154,6 +155,31 @@ def update_month_in_html(content: str, ym: str, new_val: int) -> tuple[str, bool
 
 
 # =====================================================================
+# GitHub へ自動プッシュ
+# =====================================================================
+def git_push(now: datetime):
+    """index.html を git add → commit → push する。失敗してもスクリプトは続行。"""
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    date_str  = now.strftime("%Y-%m-%d")
+    msg       = f"auto: update alliance {date_str}"
+    try:
+        subprocess.run(["git", "-C", repo_dir, "add", "index.html"],
+                       check=True, capture_output=True)
+        result = subprocess.run(["git", "-C", repo_dir, "diff", "--cached", "--quiet"],
+                                capture_output=True)
+        if result.returncode == 0:
+            print("  ℹ️  index.html に変更なし。git push をスキップしました")
+            return
+        subprocess.run(["git", "-C", repo_dir, "commit", "-m", msg],
+                       check=True, capture_output=True)
+        subprocess.run(["git", "-C", repo_dir, "push"],
+                       check=True, capture_output=True)
+        print(f"  🚀 GitHub へ push 完了: {msg}")
+    except subprocess.CalledProcessError as e:
+        print(f"  ⚠️  git push 失敗（ローカルは更新済み）: {e.stderr.decode(errors='replace').strip()}")
+
+
+# =====================================================================
 # メイン更新処理
 # =====================================================================
 def update_html(cur_val: int | None, prev_val: int | None):
@@ -191,6 +217,7 @@ def update_html(cur_val: int | None, prev_val: int | None):
         f.write(content)
 
     print(f"  💾 index.html を保存しました")
+    git_push(datetime.now(JST))
 
 
 # =====================================================================
