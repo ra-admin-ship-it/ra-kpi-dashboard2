@@ -193,6 +193,11 @@ def update_kgi_in_html(content: str, ym: str, member_values: dict) -> tuple[str,
         売上 = vals["売上実績"]
         粗利 = vals["粗利実績"]
 
+        # 0 の場合は既存値を保持（一時的なデータ欠損で実績値を消さない）
+        if 粗利 == 0 and 売上 == 0:
+            print(f"  ⏭️  {ym} {member}: 売上・粗利ともに0のためスキップ（既存値保持）")
+            continue
+
         # パターン:
         # 森:   { 粗利実績:2547181, 粗利目標:1800000, 売上実績:10157830 },
         # グループ1: 「メンバー名:   { 粗利実績:」

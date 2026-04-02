@@ -190,12 +190,18 @@ def write_json(az: dict):
         for ym, weeks in sorted(az.items())
     }
 
-    payload = {
-        "az":          az_str,
-        "lastUpdated": datetime.now(JST).isoformat(),
-        "source":      "Google Spreadsheet (Claude Code scheduled)",
-        "members":     list(MEMBER_NAMES.keys()),
-    }
+    # 既存データを読み込んで保持（p1, kgi 等の構造化データを消さない）
+    try:
+        with open(OUTPUT_PATH, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+    except Exception:
+        payload = {}
+
+    # az 関連キーのみ更新
+    payload["az"]          = az_str
+    payload["lastUpdated"] = datetime.now(JST).isoformat()
+    payload["source"]      = "Google Spreadsheet (Claude Code scheduled)"
+    payload["members"]     = list(MEMBER_NAMES.keys())
 
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
