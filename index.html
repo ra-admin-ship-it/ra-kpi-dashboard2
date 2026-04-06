@@ -733,7 +733,10 @@ function mergeFullData(d) {
     }
     if (mData.selection) {
       rm.selection = rm.selection || {};
-      for (const [k, v] of Object.entries(mData.selection)) rm.selection[k] = v;
+      // フィールドごとに深くマージ（SAMPLE_DATA の target を保持しつつ actual を上書き）
+      for (const [k, v] of Object.entries(mData.selection)) {
+        rm.selection[k] = Object.assign({}, rm.selection[k] || {}, v);
+      }
     }
     if (mData.kgi) {
       rm.kgi = rm.kgi || {};
