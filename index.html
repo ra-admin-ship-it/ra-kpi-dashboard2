@@ -171,6 +171,14 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
 .chart-wrap{position:relative;height:280px}
 .rate-badge{display:inline-flex;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;
   background:rgba(59,130,246,0.15);color:var(--blue2)}
+/* P1 手動編集ボタン */
+.p1-edit{display:flex;align-items:center;gap:4px}
+.p1-edit .pb-wrap{flex:1}
+.p1-adj{width:22px;height:22px;border-radius:50%;border:1px solid var(--border2);background:none;
+  color:var(--t2);cursor:pointer;font-size:14px;font-weight:700;display:flex;align-items:center;
+  justify-content:center;transition:all .15s;flex-shrink:0;font-family:inherit;line-height:1}
+.p1-adj:hover{background:var(--border2);color:var(--t1)}
+.p1-adj:active{transform:scale(0.9)}
 
 /* NUMBER */
 .num{font-variant-numeric:tabular-nums}
@@ -577,7 +585,7 @@ const SAMPLE_DATA = {
         p1: {
           フォーム送信数: { 森:0, 浅沼:0, 山本:0 },
           返信数:        { 森:0, 浅沼:0, 山本:0 },
-          アポイント数:   { 森:1, 浅沼:1, 山本:0 },
+          アポイント数:   { 森:4, 浅沼:2, 山本:0 },
           商談数:        { 森:4, 浅沼:0, 山本:0 },
           契約締結数:    { 森:0, 浅沼:0, 山本:0 },
         },
@@ -779,6 +787,61 @@ let charts = [];
 let appShowAllCompanies = false;
 let appSortKey = "monthlyThis"; // デフォルト: 今月 降順
 let appSortDir = "desc";        // "asc" | "desc"
+
+// ═══════════════════════════════════════════════════════════════
+// P1 手動編集
+// ═══════════════════════════════════════════════════════════════
+function adjustP1(member, field, delta) {
+  const md = DATA[curMonth];
+  if (!md) return;
+  const wd = md.weeks[curWeek];
+  if (!wd) {
+    md.weeks[curWeek] = { p1: {}, p2: {} };
+  }
+  const p1 = md.weeks[curWeek].p1 = md.weeks[curWeek].p1 || {};
+  p1[field] = p1[field] || {};
+  p1[field][member] = Math.max(0, (p1[field][member] || 0) + delta);
+  saveP1Overrides();
+  redraw();
+}
+
+const P1_OVERRIDES_KEY = "ra_kpi_p1_overrides_v1";
+
+function saveP1Overrides() {
+  // DATA 内の全 p1 データを保存（月・週・フィールド・メンバー）
+  const overrides = {};
+  for (const [ym, md] of Object.entries(DATA)) {
+    if (!/^\d{4}-\d{2}$/.test(ym)) continue;
+    for (const [wn, wd] of Object.entries(md.weeks || {})) {
+      if (!wd.p1) continue;
+      for (const [field, members] of Object.entries(wd.p1)) {
+        for (const [m, v] of Object.entries(members)) {
+          const key = `${ym}_${wn}_${field}_${m}`;
+          overrides[key] = v;
+        }
+      }
+    }
+  }
+  try { localStorage.setItem(P1_OVERRIDES_KEY, JSON.stringify(overrides)); } catch(e) {}
+}
+
+function loadP1Overrides() {
+  try {
+    const raw = localStorage.getItem(P1_OVERRIDES_KEY);
+    if (!raw) return;
+    const overrides = JSON.parse(raw);
+    for (const [key, val] of Object.entries(overrides)) {
+      const [ym, wn, field, member] = key.split("_");
+      if (!DATA[ym]) continue;
+      const md = DATA[ym];
+      md.weeks = md.weeks || {};
+      md.weeks[wn] = md.weeks[wn] || { p1: {}, p2: {} };
+      md.weeks[wn].p1 = md.weeks[wn].p1 || {};
+      md.weeks[wn].p1[field] = md.weeks[wn].p1[field] || {};
+      md.weeks[wn].p1[field][member] = val;
+    }
+  } catch(e) {}
+}
 
 // ═══════════════════════════════════════════════════════════════
 // ユーティリティ
@@ -1307,11 +1370,12 @@ function renderWeekly() {
               const deals = p1.商談数?.[m] || 0;
               const cont  = p1.契約締結数?.[m] || 0;
               const conv  = deals > 0 ? (cont / deals * 100).toFixed(1) + "%" : "—";
+              const adj = (field, d) => `adjustP1('${m}','${field}',${d})`;
               return `<tr>
                 <td>${m}</td>
-                <td>${progressBar(apo, wTgt.アポイント数[m])}</td>
-                <td>${progressBar(deals, wTgt.商談数[m])}</td>
-                <td>${progressBar(cont, wTgt.契約締結数[m])}</td>
+                <td><div class="p1-edit"><button class="p1-adj" onclick="${adj('アポイント数',-1)}">−</button>${progressBar(apo, wTgt.アポイント数[m])}<button class="p1-adj" onclick="${adj('アポイント数',1)}">+</button></div></td>
+                <td><div class="p1-edit"><button class="p1-adj" onclick="${adj('商談数',-1)}">−</button>${progressBar(deals, wTgt.商談数[m])}<button class="p1-adj" onclick="${adj('商談数',1)}">+</button></div></td>
+                <td><div class="p1-edit"><button class="p1-adj" onclick="${adj('契約締結数',-1)}">−</button>${progressBar(cont, wTgt.契約締結数[m])}<button class="p1-adj" onclick="${adj('契約締結数',1)}">+</button></div></td>
                 <td><span class="rate-badge">${conv}</span></td>
               </tr>`;
             }).join('')}
@@ -2793,6 +2857,7 @@ Chart.defaults.color = "#94A3B8";
 (async function init() {
   loadP1CSV();          // localStorage から復元
   [DATA, APP_DATA] = await Promise.all([loadData(), loadAppData()]);
+  loadP1Overrides();    // 手動編集値を復元
   const months = Object.keys(DATA).sort();
   curMonth = months[months.length - 1] || curMonth;
   const md = DATA[curMonth];
