@@ -126,42 +126,48 @@ def parse_date(raw: str):
 
 
 # =====================================================================
-# 週番号と日付範囲を取得
+# KPI 月・週番号（最終金曜ルール）
+# 月の最終週 = 最後の金曜日を含む週（月〜日）
+# その翌月曜から次月の第1週
 # =====================================================================
-def get_week_ranges(year: int, month: int) -> dict:
-    """
-    月曜〜日曜を1週間として {1: (start_day, end_day), ...} を返す。
-    月初が月曜でない場合、1日〜最初の月曜前日は第1週に含める。
-    月によって第5週が発生する場合がある。
-    """
-    last_day = calendar.monthrange(year, month)[1]
-    # calendar.monthrange()[0]: 0=月曜 ... 6=日曜
-    first_day_weekday = calendar.monthrange(year, month)[0]
-    # 最初の月曜日（1=月曜ならday=1、それ以外は翌月曜）
-    days_to_monday = (7 - first_day_weekday) % 7
-    first_monday = 1 + days_to_monday  # 例: 3月2026は6(日曜)→ days=1 → first_monday=2
+def _last_friday(y: int, m: int) -> int:
+    """月の最後の金曜日の日を返す"""
+    last_day = calendar.monthrange(y, m)[1]
+    for d in range(last_day, 0, -1):
+        if datetime(y, m, d).weekday() == 4:  # 4=金曜
+            return d
+    return last_day
 
-    ranges = {}
-    # 第1週: day 1 〜 最初の日曜日 (first_monday + 6)
-    week1_end = min(first_monday + 6, last_day)
-    ranges[1] = (1, week1_end)
-    # 第2週以降: 各月曜〜日曜
-    wn = 2
-    cur_monday = first_monday + 7
-    while cur_monday <= last_day:
-        end_day = min(cur_monday + 6, last_day)
-        ranges[wn] = (cur_monday, end_day)
-        wn += 1
-        cur_monday += 7
-    return ranges
+def _kpi_month_start(y: int, m: int) -> datetime:
+    """KPI月の開始日（月曜）を返す"""
+    pm = 12 if m == 1 else m - 1
+    py = y - 1 if m == 1 else y
+    plf_day = _last_friday(py, pm)
+    plf = datetime(py, pm, plf_day)
+    days_to_sun = (6 - plf.weekday()) % 7
+    pl_sun = plf + timedelta(days=days_to_sun)
+    return pl_sun + timedelta(days=1)
 
+def get_kpi_month_and_week(dt: datetime) -> tuple:
+    """日付から (ym_string, week_number) を返す"""
+    wd = dt.weekday()  # 月=0..日=6
+    days_to_fri = (4 - wd) % 7
+    friday = dt + timedelta(days=days_to_fri)
+    kpi_y, kpi_m = friday.year, friday.month
+    ym = f"{kpi_y:04d}-{kpi_m:02d}"
+    start = _kpi_month_start(kpi_y, kpi_m)
+    mon_of_dt = dt - timedelta(days=wd)
+    week_num = ((mon_of_dt.replace(tzinfo=None) - start.replace(tzinfo=None)).days // 7) + 1
+    return ym, max(1, week_num)
 
-def get_week_num(day: int, week_ranges: dict) -> int | None:
-    """日付 (day) が属する週番号を返す。"""
-    for wn, (start, end) in week_ranges.items():
-        if start <= day <= end:
-            return wn
-    return None
+def get_kpi_week_count(year: int, month: int) -> int:
+    """KPI月の週数を返す"""
+    start = _kpi_month_start(year, month)
+    lf_day = _last_friday(year, month)
+    lf = datetime(year, month, lf_day)
+    days_to_sun = (6 - lf.weekday()) % 7
+    last_sun = lf + timedelta(days=days_to_sun)
+    return ((last_sun - start.replace(tzinfo=None)).days // 7) + 1
 
 
 # =====================================================================
@@ -169,20 +175,15 @@ def get_week_num(day: int, week_ranges: dict) -> int | None:
 # =====================================================================
 def aggregate(csv_text: str, year: int, month: int) -> dict:
     """
-    {
-      week_num: {
-        "アポイント数":  {"森": N, "浅沼": N, "安木": N, "山本": N},
-        "商談数":        {"森": N, ...},
-        "契約締結数":    {"森": N, ...},
-      },
-      ...
-    }
+    KPI月の最終金曜ルールで集計。日付が属するKPI月・週を判定し、
+    対象月のデータのみ返す。
     """
-    week_ranges = get_week_ranges(year, month)
+    target_ym = f"{year:04d}-{month:02d}"
+    week_count = get_kpi_week_count(year, month)
 
-    # 結果を 0 初期化（週数は動的）
+    # 結果を 0 初期化
     result = {}
-    for wn in week_ranges.keys():
+    for wn in range(1, week_count + 1):
         result[wn] = {
             "アポイント数":  {m: 0 for m in MEMBERS},
             "商談数":        {m: 0 for m in MEMBERS},
@@ -193,23 +194,18 @@ def aggregate(csv_text: str, year: int, month: int) -> dict:
     if not rows:
         return result
 
-    # ヘッダー行スキップ（1行目がヘッダーと仮定）
     data_rows = rows[1:]
-
     skipped = 0
     counted = 0
 
     for row_idx, row in enumerate(data_rows, start=2):
-        # 列数が足りない行はスキップ
         if len(row) <= max(COL_APO, COL_MEMBER, COL_SHADAN, COL_KEIYAKU, COL_STATUS):
             continue
 
-        # 担当者
         member = row[COL_MEMBER].strip()
         if member not in MEMBERS:
             continue
 
-        # ステータスチェック（既存対応は除外）
         status = row[COL_STATUS].strip()
         if status == EXCLUDE_STATUS:
             skipped += 1
@@ -217,31 +213,31 @@ def aggregate(csv_text: str, year: int, month: int) -> dict:
 
         counted += 1
 
-        # ── アポイント数（B列: 流入日時） ──────────────────────────
+        # ── アポイント数 ──
         apo_raw = row[COL_APO].strip() if len(row) > COL_APO else ""
         if apo_raw:
             dt = parse_date(apo_raw)
-            if dt and dt.year == year and dt.month == month:
-                wn = get_week_num(dt.day, week_ranges)
-                if wn:
+            if dt:
+                ym, wn = get_kpi_month_and_week(dt)
+                if ym == target_ym and wn in result:
                     result[wn]["アポイント数"][member] += 1
 
-        # ── 商談数（U列: 初回商談日） ──────────────────────────────
+        # ── 商談数 ──
         shadan_raw = row[COL_SHADAN].strip() if len(row) > COL_SHADAN else ""
         if shadan_raw:
             dt = parse_date(shadan_raw)
-            if dt and dt.year == year and dt.month == month:
-                wn = get_week_num(dt.day, week_ranges)
-                if wn:
+            if dt:
+                ym, wn = get_kpi_month_and_week(dt)
+                if ym == target_ym and wn in result:
                     result[wn]["商談数"][member] += 1
 
-        # ── 契約締結数（X列: 契約締結日） ─────────────────────────
+        # ── 契約締結数 ──
         keiyaku_raw = row[COL_KEIYAKU].strip() if len(row) > COL_KEIYAKU else ""
         if keiyaku_raw:
             dt = parse_date(keiyaku_raw)
-            if dt and dt.year == year and dt.month == month:
-                wn = get_week_num(dt.day, week_ranges)
-                if wn:
+            if dt:
+                ym, wn = get_kpi_month_and_week(dt)
+                if ym == target_ym and wn in result:
                     result[wn]["契約締結数"][member] += 1
 
     print(f"  処理行数: {counted}行（既存対応除外: {skipped}行）")

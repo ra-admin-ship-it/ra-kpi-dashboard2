@@ -114,14 +114,45 @@ def parse_date(s: str):
 
 
 # =====================================================================
-# 月内の週番号（日付ベース）
+# KPI 月・週番号（最終金曜ルール）
+# 月の最終週 = 最後の金曜日を含む週（月〜日）
+# その翌月曜から次月の第1週
 # =====================================================================
-def week_of_month(dt: datetime) -> int:
-    d = dt.day
-    if d <=  7: return 1
-    if d <= 14: return 2
-    if d <= 21: return 3
-    return 4
+import calendar as _cal
+
+def _last_friday(y: int, m: int) -> int:
+    """月の最後の金曜日の日を返す"""
+    last_day = _cal.monthrange(y, m)[1]
+    for d in range(last_day, 0, -1):
+        if datetime(y, m, d).weekday() == 4:  # 4=金曜
+            return d
+    return last_day
+
+def _kpi_month_start(y: int, m: int) -> datetime:
+    """KPI月の開始日（月曜）を返す。前月の最終金曜の週末日曜の翌日。"""
+    pm = 12 if m == 1 else m - 1
+    py = y - 1 if m == 1 else y
+    plf_day = _last_friday(py, pm)
+    plf = datetime(py, pm, plf_day, tzinfo=JST)
+    days_to_sun = (6 - plf.weekday()) % 7  # weekday: 月=0..日=6
+    pl_sun = plf + timedelta(days=days_to_sun)
+    return pl_sun + timedelta(days=1)  # 翌月曜
+
+def get_kpi_month_and_week(dt: datetime) -> tuple:
+    """日付から (ym_string, week_number) を返す。"""
+    # この日の属する週の金曜日を求める
+    wd = dt.weekday()  # 月=0..日=6
+    days_to_fri = (4 - wd) % 7
+    friday = dt + timedelta(days=days_to_fri)
+    # 金曜日のカレンダー月がKPI月
+    kpi_y, kpi_m = friday.year, friday.month
+    ym = f"{kpi_y:04d}-{kpi_m:02d}"
+    # KPI月の開始月曜から何週目か
+    start = _kpi_month_start(kpi_y, kpi_m)
+    # dt の週の月曜
+    mon_of_dt = dt - timedelta(days=wd)
+    week_num = ((mon_of_dt - start).days // 7) + 1
+    return ym, max(1, week_num)
 
 
 # =====================================================================
@@ -166,8 +197,7 @@ def build_az(csv_text: str) -> dict:
             skipped += 1
             continue
 
-        ym   = dt.strftime("%Y-%m")
-        week = week_of_month(dt)
+        ym, week = get_kpi_month_and_week(dt)
 
         # 集計（1求人に複数担当がいる場合は全員にカウント）
         for m in members:

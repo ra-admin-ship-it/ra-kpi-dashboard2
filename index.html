@@ -543,18 +543,6 @@ const SAMPLE_DATA = {
           AZ: { 森:0, 浅沼:0, 安木:0, 山本:0 },
         },
       },
-      5: {
-        p1: {
-          フォーム送信数: { 森:0,  浅沼:0,  安木:0,  山本:0 },
-          返信数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
-          アポイント数:   { 森:0,  浅沼:0,  安木:0,  山本:0 },
-          商談数:        { 森:0,  浅沼:0,  安木:0,  山本:0 },
-          契約締結数:    { 森:0,  浅沼:0,  安木:0,  山本:0 },
-        },
-        p2: {
-          AZ: { 森:0, 浅沼:0, 安木:0, 山本:0 },
-        },
-      },
     },
     // 選考パイプライン（チーム合計・月次）
     selection: {
@@ -589,8 +577,8 @@ const SAMPLE_DATA = {
         p1: {
           フォーム送信数: { 森:0, 浅沼:0, 山本:0 },
           返信数:        { 森:0, 浅沼:0, 山本:0 },
-          アポイント数:   { 森:1, 浅沼:0, 山本:0 },
-          商談数:        { 森:3, 浅沼:0, 山本:0 },
+          アポイント数:   { 森:1, 浅沼:1, 山本:0 },
+          商談数:        { 森:4, 浅沼:0, 山本:0 },
           契約締結数:    { 森:0, 浅沼:0, 山本:0 },
         },
         p2: {
@@ -836,33 +824,58 @@ function monthLabel(ym) {
   return `${y}年${parseInt(m)}月`;
 }
 
-// 週番号 → その週の開始・終了日を返す（月曜〜日曜）
-function weekDateRange(ym, wn) {
-  const [y, m] = ym.split("-").map(Number);
-  const lastDay = new Date(y, m, 0).getDate();
-  // 月の1日が何曜日か (JS: 0=日, 1=月, ..., 6=土)
-  const firstDayWeekday = new Date(y, m - 1, 1).getDay();
-  // 最初の月曜日まで何日必要か (日曜=1日後, 月曜=0日後, 土曜=2日後)
-  const daysToMonday = (8 - firstDayWeekday) % 7;
-  const firstMonday  = 1 + daysToMonday;
-  // 第1週: 1日 〜 最初の日曜日
-  // 第N週: firstMonday + (N-1)*7 〜 firstMonday + N*7 - 1
-  let start, end;
-  if (wn === 1) {
-    start = 1;
-    end   = Math.min(firstMonday + 6, lastDay);
-  } else {
-    start = firstMonday + (wn - 1) * 7;
-    end   = Math.min(start + 6, lastDay);
-    if (start > lastDay) return null;
+// ── 週計算（最終金曜ルール）────────────────────────────────────
+// 月の最終週 = 最後の金曜日を含む週（月〜日）
+// その翌月曜から次月の第1週
+function _lastFriday(y, m) {
+  const last = new Date(y, m, 0).getDate();
+  for (let d = last; d >= 1; d--) {
+    if (new Date(y, m - 1, d).getDay() === 5) return new Date(y, m - 1, d);
   }
-  return { y, m, start, end };
+  return new Date(y, m - 1, last); // fallback
 }
-
-// "3/22〜3/29" 形式のラベルを返す
+function _mondayOf(dt) {
+  const d = new Date(dt);
+  const day = d.getDay(); // 0=日
+  const diff = day === 0 ? -6 : 1 - day;
+  d.setDate(d.getDate() + diff);
+  return d;
+}
+// 指定月のKPI週リストを返す [{start:Date, end:Date}, ...]
+function getMonthWeeks(ym) {
+  const [y, m] = ym.split("-").map(Number);
+  // この月の最終金曜の週末（日曜）= KPI月の終了
+  const lf = _lastFriday(y, m);
+  const lastSun = new Date(lf); lastSun.setDate(lf.getDate() + (7 - lf.getDay()) % 7);
+  // 前月の最終金曜の週末（日曜）の翌日（月曜）= KPI月の開始
+  const pm = m === 1 ? 12 : m - 1, py = m === 1 ? y - 1 : y;
+  const plf = _lastFriday(py, pm);
+  const plSun = new Date(plf); plSun.setDate(plf.getDate() + (7 - plf.getDay()) % 7);
+  const firstMon = new Date(plSun); firstMon.setDate(firstMon.getDate() + 1);
+  // 週リスト生成
+  const weeks = [];
+  const cur = new Date(firstMon);
+  while (cur <= lastSun) {
+    const end = new Date(cur); end.setDate(end.getDate() + 6);
+    weeks.push({ start: new Date(cur), end: new Date(end) });
+    cur.setDate(cur.getDate() + 7);
+  }
+  return weeks;
+}
+// 週番号 → 開始・終了日
+function weekDateRange(ym, wn) {
+  const weeks = getMonthWeeks(ym);
+  if (wn < 1 || wn > weeks.length) return null;
+  const w = weeks[wn - 1];
+  return { startDate: w.start, endDate: w.end };
+}
+// "3/30〜4/5" 形式（月跨ぎ対応）
 function weekRangeLabel(ym, wn) {
-  const { m, start, end } = weekDateRange(ym, wn);
-  return `${m}/${start}〜${m}/${end}`;
+  const r = weekDateRange(ym, wn);
+  if (!r) return "—";
+  const sm = r.startDate.getMonth() + 1, sd = r.startDate.getDate();
+  const em = r.endDate.getMonth() + 1, ed = r.endDate.getDate();
+  return `${sm}/${sd}〜${em}/${ed}`;
 }
 
 // 月次データから指標を週合計
