@@ -228,6 +228,14 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
   background:var(--card);color:var(--t1);font-size:13px;font-family:inherit;margin:8px 0 16px}
 .leads-pat-box .btn-row{display:flex;gap:8px;justify-content:flex-end}
 .leads-count{font-size:11px;color:var(--t3);margin-left:auto}
+.leads-search{padding:6px 12px;border-radius:var(--r-md);border:1px solid var(--border);
+  background:var(--card);color:var(--t1);font-size:12px;font-family:inherit;width:180px}
+.leads-search::placeholder{color:var(--t3)}
+.leads-tbl th.sort-th{cursor:pointer;user-select:none;transition:color .15s}
+.leads-tbl th.sort-th:hover{color:var(--blue2)}
+.leads-tbl th.srt-active{color:var(--blue2)}
+.leads-sort-ic{font-size:10px;margin-left:2px;opacity:.5}
+.leads-tbl th.srt-active .leads-sort-ic{opacity:1}
 .leads-co-link{color:var(--blue2);cursor:pointer;text-decoration:none;font-weight:600}
 .leads-co-link:hover{text-decoration:underline}
 .leads-excl{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--t2);cursor:pointer;user-select:none}
@@ -3038,7 +3046,10 @@ function _statusClass(s) {
   return "st-progress";
 }
 
-let leadsExcludeDone = true; // デフォルト: 契約締結完了を除外
+let leadsExcludeDone = true;
+let leadsSearchQuery = "";
+let leadsSortKey = "statusUpdatedAt";
+let leadsSortDir = "desc";
 
 function _svcName(s) { return typeof s === "string" ? s : s?.name || ""; }
 function _svcNames(svcs) { return (svcs||[]).map(s => _svcName(s)); }
@@ -3052,7 +3063,16 @@ function renderLeads() {
   if (leadsExcludeDone) filtered = filtered.filter(l => l.status !== "契約締結完了");
   if (leadsFilterStatus !== "all") filtered = filtered.filter(l => l.status === leadsFilterStatus);
   if (leadsFilterRep !== "all") filtered = filtered.filter(l => l.representative === leadsFilterRep);
-  filtered.sort((a,b) => (b.statusUpdatedAt||b.lastContactDate||"").localeCompare(a.statusUpdatedAt||a.lastContactDate||""));
+  if (leadsSearchQuery) {
+    const q = leadsSearchQuery.toLowerCase();
+    filtered = filtered.filter(l => (l.company||"").toLowerCase().includes(q));
+  }
+  // Sort
+  filtered.sort((a,b) => {
+    const va = a[leadsSortKey]||"", vb = b[leadsSortKey]||"";
+    const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+    return leadsSortDir === "asc" ? cmp : -cmp;
+  });
 
   const statusOpts = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])].filter(s=>s!=="契約締結完了"||!leadsExcludeDone);
   const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
@@ -3096,6 +3116,7 @@ function renderLeads() {
       </div>
       <div class="sec-body">
         <div class="leads-toolbar">
+          <input class="leads-search" type="text" placeholder="企業名で検索..." value="${_esc(leadsSearchQuery)}" oninput="leadsSearchQuery=this.value;renderLeads()">
           <label class="leads-excl"><input type="checkbox" ${leadsExcludeDone?"checked":""} onchange="leadsExcludeDone=this.checked;renderLeads()">契約締結完了を除く</label>
           <select class="leads-filter" onchange="leadsFilterStatus=this.value;renderLeads()">
             <option value="all">全ステータス</option>
@@ -3113,14 +3134,25 @@ function renderLeads() {
         <div class="leads-scroll">
           <table class="leads-tbl">
             <thead><tr>
-              <th>企業名</th><th>担当</th><th>サービス</th><th>初回商談日</th>
-              <th>ステータス</th><th>最終接点日</th><th>次のアクション</th><th>備考</th><th></th>
+              <th class="sort-th${leadsSortKey==='company'?' srt-active':''}" onclick="sortLeads('company')">企業名<span class="leads-sort-ic">${leadsSortKey==='company'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
+              <th class="sort-th${leadsSortKey==='representative'?' srt-active':''}" onclick="sortLeads('representative')">担当<span class="leads-sort-ic">${leadsSortKey==='representative'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
+              <th>サービス</th>
+              <th class="sort-th${leadsSortKey==='firstMeetingDate'?' srt-active':''}" onclick="sortLeads('firstMeetingDate')">初回商談日<span class="leads-sort-ic">${leadsSortKey==='firstMeetingDate'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
+              <th class="sort-th${leadsSortKey==='status'?' srt-active':''}" onclick="sortLeads('status')">ステータス<span class="leads-sort-ic">${leadsSortKey==='status'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
+              <th class="sort-th${leadsSortKey==='lastContactDate'?' srt-active':''}" onclick="sortLeads('lastContactDate')">最終接点日<span class="leads-sort-ic">${leadsSortKey==='lastContactDate'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
+              <th>次のアクション</th><th>備考</th><th></th>
             </tr></thead>
             <tbody>${rows}</tbody>
           </table>
         </div>
       </div>
     </div>`;
+}
+
+function sortLeads(key) {
+  if (leadsSortKey === key) { leadsSortDir = leadsSortDir === "desc" ? "asc" : "desc"; }
+  else { leadsSortKey = key; leadsSortDir = "desc"; }
+  renderLeads();
 }
 
 function editLead(idx, field, value) {
