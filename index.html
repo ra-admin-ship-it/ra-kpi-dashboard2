@@ -3246,7 +3246,14 @@ function editLead(idx, field, value) {
   if (field === "status") {
     LEADS_DATA.leads[idx].statusUpdatedAt = _today();
   }
+  // スクロール位置を保持して再描画
+  const scroll = document.querySelector(".leads-scroll");
+  const scrollTop = scroll?.scrollTop || 0;
   renderLeads();
+  requestAnimationFrame(() => {
+    const s = document.querySelector(".leads-scroll");
+    if (s) s.scrollTop = scrollTop;
+  });
 }
 function _today() { return new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"); }
 function _esc(s) { return (s||"").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
