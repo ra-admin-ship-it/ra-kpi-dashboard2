@@ -274,6 +274,11 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
 .ld-svc-add-btn{padding:4px 10px;border-radius:var(--r-sm);border:1px dashed var(--border2);
   background:none;color:var(--t3);font-size:11px;cursor:pointer;font-family:inherit;transition:all .15s}
 .ld-svc-add-btn:hover{border-color:var(--blue);color:var(--blue2);background:rgba(59,130,246,0.05)}
+.leads-chk{width:16px;height:16px;accent-color:var(--blue);cursor:pointer}
+.leads-merge-bar{display:flex;align-items:center;gap:10px;padding:8px 14px;margin-bottom:10px;
+  border-radius:var(--r-md);background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);
+  font-size:12px;color:var(--blue2);animation:ldIn .2s ease}
+.leads-merge-bar button{margin-left:auto}
 
 /* NUMBER */
 .num{font-variant-numeric:tabular-nums}
@@ -3060,6 +3065,7 @@ let leadsExcludeDone = true;
 let leadsSearchQuery = "";
 let leadsSortKey = "statusUpdatedAt";
 let leadsSortDir = "desc";
+let leadsSelected = new Set(); // 選択中のlead ID
 
 function _svcName(s) { return typeof s === "string" ? s : s?.name || ""; }
 function _svcNames(svcs) { return (svcs||[]).map(s => _svcName(s)); }
@@ -3093,7 +3099,9 @@ function renderLeads() {
     const idx = leads.findIndex(x => x.id === l.id);
     const sc = _statusClass(l.status);
     const svcs = _svcNames(l.services).map(s=>`<span class="leads-svc-tag">${s}</span>`).join("");
+    const chk = leadsSelected.has(l.id) ? "checked" : "";
     return `<tr>
+      <td><input type="checkbox" class="leads-chk" ${chk} onchange="toggleLeadSelect('${l.id}')"></td>
       <td><a class="leads-co-link" onclick="openLeadDetail(${idx})">${l.company}</a></td>
       <td class="leads-rep">${l.representative||""}</td>
       <td><div class="leads-svc">${svcs}</div></td>
@@ -3145,9 +3153,15 @@ function renderLeads() {
           <button class="leads-btn" onclick="showPATModal()" style="font-size:11px" title="トークン設定">⚙</button>
           <span class="leads-count">${filtered.length} / ${leads.length} 件</span>
         </div>
+        ${leadsSelected.size >= 2 ? `<div class="leads-merge-bar">
+          <span>${leadsSelected.size}件選択中 — マージ先の企業名を選んで統合します</span>
+          <button class="leads-btn leads-btn-primary" onclick="mergeSelectedLeads()">🔗 マージ</button>
+          <button class="leads-btn" onclick="leadsSelected.clear();renderLeads()">キャンセル</button>
+        </div>` : ""}
         <div class="leads-scroll">
           <table class="leads-tbl">
             <thead><tr>
+              <th style="width:30px"></th>
               <th class="sort-th${leadsSortKey==='company'?' srt-active':''}" onclick="sortLeads('company')">企業名<span class="leads-sort-ic">${leadsSortKey==='company'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
               <th class="sort-th${leadsSortKey==='representative'?' srt-active':''}" onclick="sortLeads('representative')">担当<span class="leads-sort-ic">${leadsSortKey==='representative'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
               <th>サービス</th>
@@ -3172,6 +3186,54 @@ function renderLeadsDebounced() {
     const inp = document.getElementById("leads-search-input");
     if (inp) { inp.focus(); inp.selectionStart = inp.selectionEnd = inp.value.length; }
   }, 200);
+}
+
+function toggleLeadSelect(id) {
+  if (leadsSelected.has(id)) leadsSelected.delete(id);
+  else leadsSelected.add(id);
+  renderLeads();
+}
+
+function mergeSelectedLeads() {
+  const leads = LEADS_DATA.leads;
+  const selected = leads.filter(l => leadsSelected.has(l.id));
+  if (selected.length < 2) return;
+
+  // マージ先を選択
+  const names = selected.map((l,i) => `${i+1}. ${l.company}`).join("\n");
+  const choice = prompt(`マージ先の番号を入力してください（この企業名が残ります）:\n\n${names}`);
+  const ci = parseInt(choice) - 1;
+  if (isNaN(ci) || ci < 0 || ci >= selected.length) return;
+
+  const target = selected[ci];
+  const others = selected.filter((_,i) => i !== ci);
+
+  // マージ: 他の企業のサービス・備考・日付を統合
+  for (const src of others) {
+    // サービスを統合（重複除外）
+    const existingNames = _svcNames(target.services);
+    for (const svc of (src.services||[])) {
+      const name = _svcName(svc);
+      if (!existingNames.includes(name)) {
+        target.services.push(svc);
+        existingNames.push(name);
+      }
+    }
+    // 日付: より新しい方を採用
+    if ((src.firstMeetingDate||"") > (target.firstMeetingDate||"")) target.firstMeetingDate = src.firstMeetingDate;
+    if ((src.lastContactDate||"") > (target.lastContactDate||"")) target.lastContactDate = src.lastContactDate;
+    if ((src.statusUpdatedAt||"") > (target.statusUpdatedAt||"")) target.statusUpdatedAt = src.statusUpdatedAt;
+    // 備考を結合
+    if (src.remarks) target.remarks = [target.remarks, src.remarks].filter(Boolean).join(" / ");
+    if (src.nextAction && !target.nextAction) target.nextAction = src.nextAction;
+  }
+
+  // マージ元を削除
+  const otherIds = new Set(others.map(l => l.id));
+  LEADS_DATA.leads = leads.filter(l => !otherIds.has(l.id));
+  leadsSelected.clear();
+  renderLeads();
+  alert(`「${target.company}」に${others.length}件をマージしました`);
 }
 
 function sortLeads(key) {
