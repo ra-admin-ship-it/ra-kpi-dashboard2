@@ -1,0 +1,2237 @@
+{
+  "lastUpdated": "2026-04-13T15:34:25+09:00",
+  "leads": [
+    {
+      "id": "0f625a07",
+      "company": "株式会社アガツマ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/04/25",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/04/25",
+      "nextAction": "",
+      "remarks": "パクさんに白井さんへ連絡依頼中"
+    },
+    {
+      "id": "2564ecaa",
+      "company": "株式会社STAR CAREER",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "58399ea0",
+      "company": "JAGフィールド株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "8c771389",
+      "company": "株式会社ADKデジタル・コミュニケーションズ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "52bd89be",
+      "company": "株式会社Sun terras",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "8f7320c8",
+      "company": "DORIRU株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "a7b8443b",
+      "company": "HRクラウド株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "安木さん対応"
+    },
+    {
+      "id": "a11cc259",
+      "company": "大同生命保険株式会社：埼玉支社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "まず推薦及び決定➡そこから契約"
+    },
+    {
+      "id": "aaa90307",
+      "company": "株式会社ビーバーズ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/15",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/07/15",
+      "lastContactDate": "2025/07/15",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "2b646fdc",
+      "company": "Ｈ２ＳＴＡＴＩＯＮ 株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/15",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2025/07/15",
+      "lastContactDate": "2025/07/15",
+      "nextAction": "",
+      "remarks": "今週か来週の頭にハタケヤマ様から連絡もらう"
+    },
+    {
+      "id": "51ad86da",
+      "company": "株式会社wevnal",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/22",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/07/22",
+      "lastContactDate": "2025/07/22",
+      "nextAction": "",
+      "remarks": "25日までに回答を頂く。"
+    },
+    {
+      "id": "9a81c630",
+      "company": "株式会社ブルード",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/25",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/07/25",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "330c0fa1",
+      "company": "Evand株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/23",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/07/23",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "1af84393",
+      "company": "株式会社GearChange",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/08/22",
+      "lastContactDate": "2025/08/22",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "26a9faa3",
+      "company": "アライ電機産業株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/14",
+      "draftSentDate": "",
+      "contractSentDate": "2025/09/08",
+      "contractSignedDate": "2025/09/09",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/09/04",
+      "lastContactDate": "2025/09/04",
+      "nextAction": "",
+      "remarks": "クラウドサイン送付済み"
+    },
+    {
+      "id": "8eb43b3f",
+      "company": "株式会社NECT",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/27",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/08/27",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "df5cb001",
+      "company": "株式会社リレーション",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/27",
+      "draftSentDate": "",
+      "contractSentDate": "2025/09/10",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/09/10",
+      "lastContactDate": "2025/09/10",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "dd8a27ef",
+      "company": "株式会社アルプス技研",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/09",
+      "draftSentDate": "",
+      "contractSentDate": "2025/09/04",
+      "contractSignedDate": "2025/10/08",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/09/12",
+      "lastContactDate": "2025/09/12",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "a67295d9",
+      "company": "株式会社ファインズ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/26",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/08/26",
+      "lastContactDate": "2025/08/26",
+      "nextAction": "",
+      "remarks": "相手のドラフトリーガルチェック"
+    },
+    {
+      "id": "524d393a",
+      "company": "佐川印刷株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/04",
+      "draftSentDate": "",
+      "contractSentDate": "2025/08/29",
+      "contractSignedDate": "",
+      "status": "相手：原本捺印及び返送待ち",
+      "statusUpdatedAt": "2025/08/04",
+      "lastContactDate": "2025/08/04",
+      "nextAction": "",
+      "remarks": "原本対応"
+    },
+    {
+      "id": "4c42d061",
+      "company": "アデコ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/27",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "2025/10/07",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/07",
+      "lastContactDate": "2025/10/07",
+      "nextAction": "",
+      "remarks": "ドラフト来たので確認OKと返信済み"
+    },
+    {
+      "id": "93f19e73",
+      "company": "アコーディスコンサルティング",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/01",
+      "draftSentDate": "2025/10/07",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "2025/10/07",
+      "lastContactDate": "2025/10/07",
+      "nextAction": "",
+      "remarks": "深江さんに電話：①10月7日➡留守電残し\n\n：深江　俊彦　/　Toshihiko Fukae\n\nMobile: 080-7582-6155\n\nMail: toshihiko.fukae@akkodis.co.jp"
+    },
+    {
+      "id": "50d05fd2",
+      "company": "株式会社ジャスティ",
+      "representative": "森",
+      "services": [
+        "人材紹介",
+        "ヤギオファー",
+        "TORERU"
+      ],
+      "firstMeetingDate": "2025/09/09",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "2025/10/07",
+      "remarks": "電話で状況確認する"
+    },
+    {
+      "id": "6ee6d161",
+      "company": "SBSロジコム株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/09",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": "14日再商談日程確定"
+    },
+    {
+      "id": "f34c8c4f",
+      "company": "株式会社エクスペンション",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/05",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/09/05",
+      "lastContactDate": "2025/09/05",
+      "nextAction": "",
+      "remarks": "メール返信待ち"
+    },
+    {
+      "id": "4f81a05f",
+      "company": "株式会社ALH",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/21",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "2025/09/30",
+      "lastContactDate": "2025/09/30",
+      "nextAction": "",
+      "remarks": "西大路様より　ALHのドラフト送付待ち、社内稟議下りたとの事でドラフト待ち\n相手からのドラフト送付待ち\n\n担当変えて変えた人から連絡しますとの仰せ"
+    },
+    {
+      "id": "e340ea90",
+      "company": "有限会社　和光工業",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/25",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/08/25",
+      "lastContactDate": "2025/08/25",
+      "nextAction": "",
+      "remarks": "メール返信待ち"
+    },
+    {
+      "id": "ff5e1b4c",
+      "company": "株式会社ホゼナル",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/06",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/09/30",
+      "lastContactDate": "2025/09/30",
+      "nextAction": "",
+      "remarks": "電話で商況確認するも連絡つかず"
+    },
+    {
+      "id": "3beccb38",
+      "company": "株式会社サンリフォーム",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/08/04",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2025/09/10",
+      "lastContactDate": "2025/09/10",
+      "nextAction": "",
+      "remarks": "メール返信待ち"
+    },
+    {
+      "id": "94c26bb8",
+      "company": "株式会社グレースコミュニケーション",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/07/22",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/09/10",
+      "lastContactDate": "2025/09/10",
+      "nextAction": "",
+      "remarks": "メール返信待ち"
+    },
+    {
+      "id": "8ace296e",
+      "company": "中北薬品株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/02",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2025/09/02",
+      "lastContactDate": "2025/09/02",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "c0a434f2",
+      "company": "株式会社カナメ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/17",
+      "draftSentDate": "2025/09/17",
+      "contractSentDate": "2025/09/18",
+      "contractSignedDate": "2025/09/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/09/18",
+      "lastContactDate": "2025/09/18",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "15129f31",
+      "company": "テクノプロエンジニアリング",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/18",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "0b16164a",
+      "company": "株式会社WEEVA",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/30",
+      "draftSentDate": "2025/09/30",
+      "contractSentDate": "2025/10/02",
+      "contractSignedDate": "2025/10/03",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/03",
+      "lastContactDate": "2025/10/03",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "c33c2b9f",
+      "company": "株式会社フェローシップ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/01",
+      "draftSentDate": "",
+      "contractSentDate": "2025/10/02",
+      "contractSignedDate": "2025/10/02",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/02",
+      "lastContactDate": "2025/10/02",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "a36800f7",
+      "company": "吉福エンジニアリング",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/26",
+      "draftSentDate": "",
+      "contractSentDate": "2025/10/04",
+      "contractSignedDate": "2025/10/06",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "640c447d",
+      "company": "スバル中四国株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/06",
+      "draftSentDate": "2025/10/06",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": "一週間は回答までに欲しいとの事"
+    },
+    {
+      "id": "8581ed2b",
+      "company": "長印船橋青果株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/07",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": "２０日の週に連絡いただけるとの仰せ"
+    },
+    {
+      "id": "ab8ce72d",
+      "company": "中部ホームサービス株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/09",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/10/09",
+      "lastContactDate": "2025/10/09",
+      "nextAction": "",
+      "remarks": "今月中にご返信します。"
+    },
+    {
+      "id": "6b8ae7a3",
+      "company": "株式会社IBJ",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/02",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": "2週間程度かかります"
+    },
+    {
+      "id": "3d0fa20a",
+      "company": "株式会社アエラス",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/09/30",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": "社内で検討して10日ほどで連絡します。"
+    },
+    {
+      "id": "eb039903",
+      "company": "東急リニューアル",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/10",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "2025/10/06",
+      "lastContactDate": "2025/10/06",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "029ed48d",
+      "company": "旭化成ホームズ株式会社",
+      "representative": "酒井",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/10",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/10/10",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "03567757",
+      "company": "株式会社PRUM",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/14",
+      "draftSentDate": "2025/10/14",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2025/10/27",
+      "lastContactDate": "2025/10/27",
+      "nextAction": "",
+      "remarks": "リーガルチェック待ち➡状況確認メール送信"
+    },
+    {
+      "id": "9b5f21f3",
+      "company": "データアナリティクスラボ株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/22",
+      "draftSentDate": "2025/10/22",
+      "contractSentDate": "2025/10/22",
+      "contractSignedDate": "2025/10/22",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/22",
+      "lastContactDate": "2025/10/22",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "688328e0",
+      "company": "ライクスタッフィング株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/22",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/10/22",
+      "nextAction": "",
+      "remarks": "金額分割可能か確認してほしい"
+    },
+    {
+      "id": "547afff0",
+      "company": "アクサス株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/22",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/10/22",
+      "lastContactDate": "2025/10/22",
+      "nextAction": "",
+      "remarks": "ドラフト待ち"
+    },
+    {
+      "id": "d993ba98",
+      "company": "株式会社irodas",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/28",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "2025/11/18",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/10/28",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "1bfe0399",
+      "company": "イオンネクストデリバリー株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/10/28",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：原本捺印及び返送待ち",
+      "statusUpdatedAt": "2025/12/01",
+      "lastContactDate": "2025/12/01",
+      "nextAction": "原本送付した",
+      "remarks": ""
+    },
+    {
+      "id": "6683f3ac",
+      "company": "株式会社Add Flow",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/07",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/11/10",
+      "lastContactDate": "2025/11/10",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "8055d3f5",
+      "company": "株式会社レバキャリ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/12",
+      "draftSentDate": "2025/11/12",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/11/12",
+      "lastContactDate": "2025/11/12",
+      "nextAction": "",
+      "remarks": "fujioka-shohei@lc.lline-group.co.jpへ送付➡y-mori@partage.jpから"
+    },
+    {
+      "id": "1fc65ff4",
+      "company": "株式会社HRプロビジョン",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/12",
+      "draftSentDate": "2025/11/12",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/11/12",
+      "lastContactDate": "2025/11/12",
+      "nextAction": "",
+      "remarks": "t-murakami@hr-provision.jpへ送付➡y-mori@partage.jpから"
+    },
+    {
+      "id": "fa35f7db",
+      "company": "住友不動産株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/12",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/12",
+      "nextAction": "",
+      "remarks": "契約締結は成約時にするため推薦可能"
+    },
+    {
+      "id": "e94ac877",
+      "company": "富士工機株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/18",
+      "draftSentDate": "2025/11/18",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/18",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jpからメール"
+    },
+    {
+      "id": "444a83ac",
+      "company": "株式会社SP",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/18",
+      "draftSentDate": "2025/11/18",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/18",
+      "nextAction": "",
+      "remarks": "営業職募集：y-mori@partage.jpから"
+    },
+    {
+      "id": "b5e0b74c",
+      "company": "株式会社アントワークス",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/20",
+      "draftSentDate": "2025/11/20",
+      "contractSentDate": "2025/11/20",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/20",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "10f66c0f",
+      "company": "ケイアイスター不動産株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/20",
+      "draftSentDate": "2025/11/20",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/20",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "0d6a9df9",
+      "company": "株式会社feat",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/20",
+      "draftSentDate": "2025/11/20",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/20",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jpから11月21日に送付：recruit@feat-inc.comあて"
+    },
+    {
+      "id": "2428ce3d",
+      "company": "株式会社ビジョン・キャリア",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/21",
+      "draftSentDate": "2025/11/21",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/12/01",
+      "lastContactDate": "2025/12/01",
+      "nextAction": "追いメール実施",
+      "remarks": "y-mori@job-palette.co.jpから11月21日に送付：eriko.yamamoto.7039@visioncareer.co.jpあて"
+    },
+    {
+      "id": "222b3804",
+      "company": "株式会社マルチテック",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/25",
+      "draftSentDate": "2025/11/25",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/12/04",
+      "lastContactDate": "2025/12/04",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jpから11月25日に送付：r_azuma@multi-tec.co.jpあて"
+    },
+    {
+      "id": "7da56d8b",
+      "company": "ディープラス株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "2025/11/25",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jpから11月25日に送付：recruit.big@d-plus.infoあて"
+    },
+    {
+      "id": "ac2f5c09",
+      "company": "株式会社LowCode",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "6e673bb6",
+      "company": "株式会社アールエフテクニカ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/25",
+      "draftSentDate": "2025/11/25",
+      "contractSentDate": "",
+      "contractSignedDate": "2025/11/26",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/11/25",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jpから11月25日に送付：wakao@rftecnica.comあて"
+    },
+    {
+      "id": "69771f0f",
+      "company": "日本ディクス株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/11/26",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/12/11",
+      "lastContactDate": "2025/12/11",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "f1618264",
+      "company": "ハーバーハウス株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "2025/12/04",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/01/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2025/12/11",
+      "lastContactDate": "2025/12/11",
+      "nextAction": "",
+      "remarks": "ra-admin@partage.jp➡recruit@herbarhouse.netへ送付"
+    },
+    {
+      "id": "09eff28c",
+      "company": "GRAND株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/10",
+      "draftSentDate": "2025/12/10",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/10",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡sakai@grd.inc"
+    },
+    {
+      "id": "45cc2c24",
+      "company": "オープンアップITエンジニア",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/10",
+      "draftSentDate": "2025/12/10",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/01/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/10",
+      "nextAction": "",
+      "remarks": "saiyokikaku@openupitengineer.co.jp"
+    },
+    {
+      "id": "b04945cd",
+      "company": "株式会社竜製作所",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/10",
+      "draftSentDate": "2025/12/11",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/10",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡mai_kondo@ryuuss.com"
+    },
+    {
+      "id": "cd1dda12",
+      "company": "株式会社コンテレノ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/18",
+      "draftSentDate": "2025/12/18",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/18",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡a.suzumasa@conterreno.jp"
+    },
+    {
+      "id": "98c3c391",
+      "company": "株式会社横尾材木店",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/18",
+      "draftSentDate": "2025/12/18",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：電子署名サインバック待ち",
+      "statusUpdatedAt": "2026/01/19",
+      "lastContactDate": "2026/01/19",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡sawada-nami@yo-ko-o.com"
+    },
+    {
+      "id": "f64b7a48",
+      "company": "悟空テクノロジーズ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/19",
+      "draftSentDate": "2025/12/19",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/19",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "8fe90dd0",
+      "company": "株式会社FunClock",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/19",
+      "draftSentDate": "2025/12/19",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/19",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "6e05ffd6",
+      "company": "株式会社bond（ツナグ）",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2025/12/25",
+      "draftSentDate": "2025/12/25",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2025/12/25",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡y.washio@bond-tsunagu.com"
+    },
+    {
+      "id": "c3ae0bd0",
+      "company": "HRテクノロジーズ株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/01/06",
+      "draftSentDate": "2026/01/06",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/01/06",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡keisuke.suzuki@hrtechnologies-inc.com"
+    },
+    {
+      "id": "d950f000",
+      "company": "合同会社HACS",
+      "representative": "森",
+      "services": [
+        "人材紹介",
+        "求人ボックス"
+      ],
+      "firstMeetingDate": "2026/01/13",
+      "draftSentDate": "2026/01/13",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/01/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/01/19",
+      "lastContactDate": "2026/01/19",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "f5bb841c",
+      "company": "株式会社ウィルオブ・ワーク",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/01/21",
+      "draftSentDate": "2026/01/21",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/03/11",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/01/21",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡mitsuyuki.kudo@willof.co.jp"
+    },
+    {
+      "id": "3a29e8f3",
+      "company": "株式会社エコリング",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/01/23",
+      "draftSentDate": "2026/01/23",
+      "contractSentDate": "2026/01/30",
+      "contractSignedDate": "2026/02/03",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/01/23",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡ecoringhd-saiyo@eco-ring.com"
+    },
+    {
+      "id": "9ad7c46d",
+      "company": "株式会社アクティアス",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "2026/01/29",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/02/13",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "77784e9d",
+      "company": "株式会社リクソル",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/01/29",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "61bb5d5c",
+      "company": "ALJOY株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/01/29",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "112383f8",
+      "company": "株式会社ZOSTEC",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/01/29",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "eafa4734",
+      "company": "株式会社 ONE-TECH",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/01/29",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "60b91b54",
+      "company": "株式会社 SPIN TECHNOLOGY",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "2026/02/13",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "509f423d",
+      "company": "株式会社ボードルア",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "2026/01/29",
+      "contractSignedDate": "",
+      "status": "相手：電子署名サインバック待ち",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "6eaa8760",
+      "company": "株式会社レオパレス21",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/05",
+      "draftSentDate": "2026/02/05",
+      "contractSentDate": "2026/02/05",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/05",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡takeru_satou@leopalace21.com"
+    },
+    {
+      "id": "6526b7f2",
+      "company": "エッジテクノロジー株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/05",
+      "draftSentDate": "2026/02/05",
+      "contractSentDate": "2026/02/05",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/05",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡k.ishido@edge-tech.co.jp"
+    },
+    {
+      "id": "678baad6",
+      "company": "Akkodis：障碍者支援",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/06",
+      "draftSentDate": "2026/02/06",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/03/11",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "電子契約送付待ち"
+    },
+    {
+      "id": "d9a7d7f3",
+      "company": "株式会社Charm",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/02/18",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡jinji.maekawa@gmail.com"
+    },
+    {
+      "id": "2ea889fd",
+      "company": "株式会社ヴェリタス・インベストメント",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/17",
+      "draftSentDate": "2026/02/17",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/02/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/17",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡t_fujita@veritas-investment.co.jp"
+    },
+    {
+      "id": "e6e7fcf7",
+      "company": "株式会社エコ・エイト",
+      "representative": "森",
+      "services": [
+        "人材紹介",
+        "ヤギオファー",
+        "Note記事代行"
+      ],
+      "firstMeetingDate": "2026/02/18",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "再商談",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "人材紹介含めヤギオファーとSNS確認"
+    },
+    {
+      "id": "935465c6",
+      "company": "OCH株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/18",
+      "draftSentDate": "2026/02/18",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡ayaka_tomii@och.co.jp"
+    },
+    {
+      "id": "2ad3de5c",
+      "company": "阪和エンジニアリング株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/19",
+      "draftSentDate": "2026/02/19",
+      "contractSentDate": "2026/02/19",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/19",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "662793f2",
+      "company": "株式会社FIT PLACE",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/20",
+      "draftSentDate": "2026/02/20",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/20",
+      "nextAction": "",
+      "remarks": "ウロコの早川さんから紹介\ny-mori@job-palette.co.jp➡n.hayakawa@uloqo.net"
+    },
+    {
+      "id": "7c1e69e7",
+      "company": "大和財託株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/24",
+      "draftSentDate": "2026/02/24",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/03/17",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡seiya-sennai@yamatozaitaku.com"
+    },
+    {
+      "id": "4ace741a",
+      "company": "株式会社アスコット",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/25",
+      "draftSentDate": "2026/02/25",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/25",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡k.takeda@ascotcorp.co.jp"
+    },
+    {
+      "id": "586b5ca3",
+      "company": "株式会社はばたーく",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/25",
+      "draftSentDate": "2026/02/25",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡megumi.ishida@haveatalk.jp"
+    },
+    {
+      "id": "5b3e9d09",
+      "company": "写光レンタル販売株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/26",
+      "draftSentDate": "2026/02/26",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/03/06",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/26",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡k-noguchi@syakourental.com"
+    },
+    {
+      "id": "db73a1e6",
+      "company": "スマイティリアルエステート",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/26",
+      "draftSentDate": "2026/02/26",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "成約時に契約",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/02/26",
+      "nextAction": "",
+      "remarks": "inukai_keisuke@kakaku.com"
+    },
+    {
+      "id": "a0cb083d",
+      "company": "オープンワーク株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/02/26",
+      "draftSentDate": "2026/02/26",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡saiyo@openwork.co.jp"
+    },
+    {
+      "id": "afc2c163",
+      "company": "ヒガシオフィスサービス",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/03/05",
+      "draftSentDate": "2026/03/05",
+      "contractSentDate": "",
+      "contractSignedDate": "2026/03/11",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡hanshin3@e-higashi.co.jp"
+    },
+    {
+      "id": "78350b58",
+      "company": "株式会社ミライロ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/03/06",
+      "draftSentDate": "2026/03/06",
+      "contractSentDate": "2026/03/06",
+      "contractSignedDate": "2026/03/11",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡takeshi.kajio@mirairo.co.jp"
+    },
+    {
+      "id": "0413247b",
+      "company": "株式会社WILL",
+      "representative": "山本",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/03/05",
+      "draftSentDate": "2026/03/06",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/03/05",
+      "nextAction": "",
+      "remarks": "r-yamamoto@partage.jp➡will.inc.kitamura@gmail.com"
+    },
+    {
+      "id": "f2ebd358",
+      "company": "株式会社レコフ",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年3月7日",
+      "draftSentDate": "2026年3月7日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "d81c9965",
+      "company": "株式会社グローバルヒューマンブリッジ",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年3月6日",
+      "draftSentDate": "2026年3月6日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "03600514",
+      "company": "Smart HR",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年3月5日",
+      "draftSentDate": "2026年3月6日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "e04b5a28",
+      "company": "株式会社ディーバ：障碍者雇用枠",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年3月2日",
+      "draftSentDate": "2026年3月2日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "2e69151a",
+      "company": "インフィニテック・テクノロジー",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月19日",
+      "draftSentDate": "2026年2月22日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "b4f6bbfa",
+      "company": "株式会社識学",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月19日",
+      "draftSentDate": "2026年2月20日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "b68102e2",
+      "company": "株式会社J.C.O.S",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月17日",
+      "draftSentDate": "2026年2月18日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "2bbf9124",
+      "company": "株式会社ネオキャリア",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月17日",
+      "draftSentDate": "2026年2月18日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "1fff9f45",
+      "company": "燈株式会社",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月12日",
+      "draftSentDate": "面談未実施",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "15167cb8",
+      "company": "合同会社TOIRO",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月19日",
+      "draftSentDate": "2026年2月20日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "116e7ec2",
+      "company": "オートベル株式会社",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年2月4日",
+      "draftSentDate": "2026年2月20日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "adbe9925",
+      "company": "イオンネクストデリバリー社",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年1月21日",
+      "draftSentDate": "2026年2月20日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "b8003bd3",
+      "company": "株式会社カナエル",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年1月14日",
+      "draftSentDate": "提案まで行かず",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "7da56d8b",
+      "company": "ディープラス株式会社",
+      "representative": "安木",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年1月13日",
+      "draftSentDate": "2026年1月15日",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/03/09",
+      "lastContactDate": "2026/03/09",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "76deb290",
+      "company": "株式会社FIDIA SOLUTIONS",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026年3月5日",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026年3月5日",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "74713da9",
+      "company": "日本住宅株式会社",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/3",
+      "draftSentDate": "2026/3/3",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/3",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "4b248c51",
+      "company": "株式会社ケアリッツ・テクノロジーズ",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "1b998e79",
+      "company": "株式会社丹青ディスプレイ",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "df77ecb6",
+      "company": "株式会社SECOM",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/2/27",
+      "draftSentDate": "2026/2/27",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/2/27",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "b89dd454",
+      "company": "株式会社テンダ",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/2/26",
+      "draftSentDate": "2026/2/26",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "自社：契約書ドラフト作成",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/2/26",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "3901ae8c",
+      "company": "株式会社サイマル・インターナショナル",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/10",
+      "draftSentDate": "2026/3/11",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/10",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "f23d9e2e",
+      "company": "株式会社プラウドデータ",
+      "representative": "浅沼",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/11",
+      "draftSentDate": "2026/3/11",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "自社：契約書ドラフト作成",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/11",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "b05b106e",
+      "company": "株式会社コトラ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/11",
+      "draftSentDate": "2026/3/11",
+      "contractSentDate": "2026/3/11",
+      "contractSignedDate": "",
+      "status": "相手：電子署名サインバック待ち",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/11",
+      "nextAction": "",
+      "remarks": "y-mori@partage.jp➡chinatsu.ikeda@kotora.jp"
+    },
+    {
+      "id": "970b5b00",
+      "company": "ブティックス株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/13",
+      "draftSentDate": "2026/3/13",
+      "contractSentDate": "2026/3/19",
+      "contractSignedDate": "",
+      "status": "相手：電子署名サインバック待ち",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/13",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "7b07cfc2",
+      "company": "法律事務所ZeLo",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/13",
+      "draftSentDate": "2026/3/13",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/13",
+      "nextAction": "",
+      "remarks": ""
+    },
+    {
+      "id": "a5c7cc5c",
+      "company": "システムズ・デザイン株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "",
+      "draftSentDate": "2026/3/13",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "",
+      "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "ウロコ林さんから紹介"
+    },
+    {
+      "id": "a118de15",
+      "company": "株式会社 サンブリッジ",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/12",
+      "draftSentDate": "2026/3/13",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/12",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡recruit@sunbridge.com"
+    },
+    {
+      "id": "440ac9d4",
+      "company": "WOOOLY株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/12",
+      "draftSentDate": "2026/3/13",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/12",
+      "nextAction": "",
+      "remarks": "y-mori@job-palette.co.jp➡rinka.tsubaki@woooly.jp・katsumi.niibe@woooly.jp"
+    },
+    {
+      "id": "6accb58e",
+      "company": "BK不動産株式会社",
+      "representative": "森",
+      "services": [
+        "人材紹介"
+      ],
+      "firstMeetingDate": "2026/3/24",
+      "draftSentDate": "",
+      "contractSentDate": "",
+      "contractSignedDate": "",
+      "status": "相手：その他書類送付待ち",
+      "statusUpdatedAt": "",
+      "lastContactDate": "2026/3/24",
+      "nextAction": "",
+      "remarks": ""
+    }
+  ]
+}

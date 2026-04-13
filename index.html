@@ -180,6 +180,55 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
 .p1-adj:hover{background:var(--border2);color:var(--t1)}
 .p1-adj:active{transform:scale(0.9)}
 
+/* LEADS TAB */
+.leads-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.leads-filter{padding:6px 12px;border-radius:var(--r-md);border:1px solid var(--border);
+  background:var(--card);color:var(--t1);font-size:12px;font-family:inherit;cursor:pointer}
+.leads-filter option{background:var(--bg2)}
+.leads-btn{padding:6px 14px;border-radius:var(--r-md);border:1px solid var(--border2);
+  background:none;color:var(--t2);font-size:12px;cursor:pointer;font-family:inherit;
+  transition:all .15s;display:inline-flex;align-items:center;gap:4px}
+.leads-btn:hover{background:var(--border2);color:var(--t1)}
+.leads-btn-primary{background:rgba(59,130,246,0.15);color:var(--blue2);border-color:rgba(59,130,246,0.3)}
+.leads-btn-primary:hover{background:rgba(59,130,246,0.3)}
+.leads-tbl{width:100%;border-collapse:collapse;font-size:12px}
+.leads-tbl th{text-align:left;padding:8px 10px;color:var(--t3);font-weight:600;font-size:11px;
+  text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--bg2);white-space:nowrap}
+.leads-tbl td{padding:6px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+.leads-tbl tr:hover{background:rgba(255,255,255,0.03)}
+.leads-tbl .leads-co{font-weight:600;color:var(--t1);min-width:140px}
+.leads-tbl .leads-rep{color:var(--t2);white-space:nowrap}
+.leads-status-sel{padding:3px 6px;border-radius:6px;border:1px solid var(--border);
+  background:var(--card);color:var(--t1);font-size:11px;font-family:inherit;cursor:pointer;
+  max-width:160px}
+.leads-status-sel option{background:var(--bg2)}
+.leads-editable{background:none;border:1px solid transparent;border-radius:4px;color:var(--t1);
+  font-size:12px;padding:2px 4px;font-family:inherit;width:100%;transition:border-color .15s}
+.leads-editable:hover{border-color:var(--border2)}
+.leads-editable:focus{border-color:var(--blue);outline:none;background:var(--card)}
+.leads-date{width:90px}
+.leads-svc{display:flex;flex-wrap:wrap;gap:2px}
+.leads-svc-tag{padding:1px 5px;border-radius:4px;font-size:10px;
+  background:rgba(99,102,241,0.15);color:var(--indigo)}
+.leads-del{background:none;border:none;color:var(--t3);cursor:pointer;font-size:14px;
+  padding:2px 6px;border-radius:4px;transition:all .15s}
+.leads-del:hover{color:var(--red);background:rgba(239,68,68,0.1)}
+.leads-scroll{max-height:70vh;overflow-y:auto;border-radius:var(--r-lg)}
+.leads-save-indicator{font-size:11px;color:var(--green2);opacity:0;transition:opacity .3s}
+.leads-save-indicator.show{opacity:1}
+.st-done{color:var(--green2)}.st-progress{color:var(--blue2)}.st-wait{color:var(--yellow2)}
+.st-hold{color:var(--t3)}
+.leads-pat-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);
+  z-index:300;display:flex;align-items:center;justify-content:center}
+.leads-pat-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-xl);
+  padding:28px;max-width:480px;width:90%}
+.leads-pat-box h3{margin-bottom:12px;font-size:15px}
+.leads-pat-box input{width:100%;padding:8px 12px;border-radius:var(--r-md);border:1px solid var(--border2);
+  background:var(--card);color:var(--t1);font-size:13px;font-family:inherit;margin:8px 0 16px}
+.leads-pat-box .btn-row{display:flex;gap:8px;justify-content:flex-end}
+.leads-count{font-size:11px;color:var(--t3);margin-left:auto}
+
 /* NUMBER */
 .num{font-variant-numeric:tabular-nums}
 
@@ -460,6 +509,7 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
     <button class="tab-btn" onclick="switchTab('weekly-hist')">週次履歴</button>
     <button class="tab-btn" onclick="switchTab('monthly-hist')">月次履歴</button>
     <button class="tab-btn" onclick="switchTab('applications')">【応募数管理】</button>
+    <button class="tab-btn" onclick="switchTab('leads')">【商談後の引合管理】</button>
   </div>
 </nav>
 
@@ -471,6 +521,7 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
     <div class="panel" id="panel-weekly-hist"></div>
     <div class="panel" id="panel-monthly-hist"></div>
     <div class="panel" id="panel-applications"></div>
+    <div class="panel" id="panel-leads"></div>
   </div>
 </main>
 
@@ -1663,7 +1714,7 @@ function noData() {
 function switchTab(tab) {
   activeTab = tab;
   document.querySelectorAll(".tab-btn").forEach((b, i) => {
-    b.classList.toggle("active", ["weekly","monthly","weekly-hist","monthly-hist","applications"][i] === tab);
+    b.classList.toggle("active", ["weekly","monthly","weekly-hist","monthly-hist","applications","leads"][i] === tab);
   });
   document.querySelectorAll(".panel").forEach(p => p.classList.remove("on"));
   document.getElementById(`panel-${tab}`)?.classList.add("on");
@@ -1678,6 +1729,7 @@ function redraw() {
   else if (activeTab === "weekly-hist")  renderWeeklyHist();
   else if (activeTab === "monthly-hist") renderMonthlyHist();
   else if (activeTab === "applications")  renderApplications();
+  else if (activeTab === "leads")  renderLeads();
   // ヘッダーバッジ更新
   document.getElementById("hdr-month-badge").textContent = monthLabel(curMonth);
 }
@@ -2849,6 +2901,219 @@ function _drawAppCharts(latest, snaps) {
 }
 
 // ═══════════════════════════════════════════════════════════════
+// 商談後の引合管理
+// ═══════════════════════════════════════════════════════════════
+const LEADS_REPO = "ra-admin-ship-it/ra-kpi-dashboard2";
+const LEADS_FILE = "leads_data.json";
+const LEADS_PAT_KEY = "ra_kpi_github_pat";
+const LEAD_STATUSES = [
+  "商談済み・提案中","ドラフト作成中","ドラフト送付済み",
+  "先方リーガルチェック中","クラウドサイン送信準備","クラウドサイン送信済み（承認待ち）",
+  "書類待ち（先方から）","原本対応中","契約締結完了","再商談","見送り・保留",
+  // legacy statuses from imported data
+  "相手：ドラフトリーガルチェック","相手：電子契約サインバック待ち",
+  "相手：原本および返送待ち","相手：その他書類送付待ち",
+  "自社：契約書ドラフト作成","必要時に契約"
+];
+let LEADS_DATA = null;
+let LEADS_SHA  = null; // GitHub file SHA for updates
+let leadsFilterStatus = "all";
+let leadsFilterRep    = "all";
+
+async function loadLeadsData() {
+  try {
+    const url = `https://raw.githubusercontent.com/${LEADS_REPO}/main/${LEADS_FILE}?_=`+Date.now();
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("HTTP "+res.status);
+    LEADS_DATA = await res.json();
+    // Get SHA for updates
+    const pat = localStorage.getItem(LEADS_PAT_KEY);
+    if (pat) {
+      try {
+        const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
+          {headers:{"Authorization":"Bearer "+pat}});
+        if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
+      } catch(e){}
+    }
+  } catch(e) {
+    console.warn("[leads] load failed:", e.message);
+    LEADS_DATA = {leads:[]};
+  }
+}
+
+async function saveLeadsToGitHub() {
+  const pat = localStorage.getItem(LEADS_PAT_KEY);
+  if (!pat) { showPATModal(); return false; }
+  LEADS_DATA.lastUpdated = new Date().toISOString();
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
+  const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
+  try {
+    const res = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,{
+      method:"PUT",headers:{"Authorization":"Bearer "+pat,"Content-Type":"application/json"},
+      body:JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      if (res.status===401||res.status===403) { showPATModal(); return false; }
+      throw new Error(err.message);
+    }
+    const j = await res.json();
+    LEADS_SHA = j.content.sha;
+    showLeadsSaveOK();
+    return true;
+  } catch(e) { alert("保存エラー: "+e.message); return false; }
+}
+
+function showLeadsSaveOK() {
+  const el = document.getElementById("leads-save-ind");
+  if (el) { el.classList.add("show"); setTimeout(()=>el.classList.remove("show"),2000); }
+}
+
+function showPATModal() {
+  const existing = localStorage.getItem(LEADS_PAT_KEY)||"";
+  const modal = document.createElement("div");
+  modal.className = "leads-pat-modal";
+  modal.innerHTML = `<div class="leads-pat-box">
+    <h3>GitHub Personal Access Token</h3>
+    <p style="font-size:12px;color:var(--t2);margin-bottom:8px">
+      データ保存にGitHub PATが必要です。<br>
+      <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:var(--blue2)">
+      GitHub → Settings → Fine-grained tokens</a> でrepo contents read/write権限のトークンを作成してください。
+    </p>
+    <input type="password" id="pat-input" value="${existing}" placeholder="github_pat_...">
+    <div class="btn-row">
+      <button class="leads-btn" onclick="this.closest('.leads-pat-modal').remove()">キャンセル</button>
+      <button class="leads-btn leads-btn-primary" onclick="savePAT()">保存</button>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+}
+function savePAT() {
+  const v = document.getElementById("pat-input")?.value?.trim();
+  if (v) { localStorage.setItem(LEADS_PAT_KEY, v); }
+  document.querySelector(".leads-pat-modal")?.remove();
+  saveLeadsToGitHub();
+}
+
+function _statusClass(s) {
+  if (!s) return "st-hold";
+  if (s.includes("完了")) return "st-done";
+  if (s.includes("見送") || s.includes("保留")) return "st-hold";
+  if (s.includes("待ち") || s.includes("バック")) return "st-wait";
+  return "st-progress";
+}
+
+function renderLeads() {
+  const el = document.getElementById("panel-leads");
+  if (!LEADS_DATA) { el.innerHTML = `<div class="sec"><div class="sec-body" style="text-align:center;padding:40px;color:var(--t3)">データ読み込み中...</div></div>`; return; }
+
+  const leads = LEADS_DATA.leads || [];
+  // Filter
+  let filtered = leads;
+  if (leadsFilterStatus !== "all") filtered = filtered.filter(l => l.status === leadsFilterStatus);
+  if (leadsFilterRep !== "all") filtered = filtered.filter(l => l.representative === leadsFilterRep);
+  // Sort by statusUpdatedAt desc, then firstMeetingDate desc
+  filtered.sort((a,b) => (b.statusUpdatedAt||b.lastContactDate||"").localeCompare(a.statusUpdatedAt||a.lastContactDate||""));
+
+  const statusOpts = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])];
+  const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
+
+  const rows = filtered.map((l,i) => {
+    const idx = leads.indexOf(l);
+    const sc = _statusClass(l.status);
+    const svcs = (l.services||[]).map(s=>`<span class="leads-svc-tag">${s}</span>`).join("");
+    return `<tr>
+      <td class="leads-co">${l.company}</td>
+      <td class="leads-rep">${l.representative||""}</td>
+      <td><div class="leads-svc">${svcs}</div></td>
+      <td style="white-space:nowrap">${l.firstMeetingDate||""}</td>
+      <td><select class="leads-status-sel ${sc}" onchange="editLead(${idx},'status',this.value)">
+        ${statusOpts.map(s=>`<option${s===l.status?" selected":""}>${s}</option>`).join("")}
+        <option value=""${!l.status?" selected":""}>(未設定)</option>
+      </select></td>
+      <td><input class="leads-editable leads-date" type="text" value="${l.lastContactDate||""}" placeholder="YYYY/MM/DD"
+        onchange="editLead(${idx},'lastContactDate',this.value)"></td>
+      <td><input class="leads-editable" type="text" value="${(l.nextAction||"").replace(/"/g,"&quot;")}"
+        placeholder="次のアクション" onchange="editLead(${idx},'nextAction',this.value)"></td>
+      <td><input class="leads-editable" type="text" value="${(l.remarks||"").replace(/"/g,"&quot;")}"
+        placeholder="備考" onchange="editLead(${idx},'remarks',this.value)"></td>
+      <td><button class="leads-del" title="削除" onclick="deleteLead(${idx})">✕</button></td>
+    </tr>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="sec">
+      <div class="sec-head">
+        <div class="sec-icon ic-blue">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+            <rect x="9" y="3" width="6" height="4" rx="1"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sec-title">商談後の引合管理</div>
+          <div class="sec-sub">ステータス・最終接点・次のアクション</div>
+        </div>
+      </div>
+      <div class="sec-body">
+        <div class="leads-toolbar">
+          <select class="leads-filter" onchange="leadsFilterStatus=this.value;renderLeads()">
+            <option value="all">全ステータス</option>
+            ${statusOpts.map(s=>`<option value="${s}"${s===leadsFilterStatus?" selected":""}>${s}</option>`).join("")}
+          </select>
+          <select class="leads-filter" onchange="leadsFilterRep=this.value;renderLeads()">
+            <option value="all">全担当</option>
+            ${repSet.map(r=>`<option value="${r}"${r===leadsFilterRep?" selected":""}>${r}</option>`).join("")}
+          </select>
+          <button class="leads-btn leads-btn-primary" onclick="addLead()">＋ 新規追加</button>
+          <button class="leads-btn" onclick="saveLeadsToGitHub()">💾 保存</button>
+          <span class="leads-save-indicator" id="leads-save-ind">✓ 保存しました</span>
+          <span class="leads-count">${filtered.length} / ${leads.length} 件</span>
+          <button class="leads-btn" onclick="showPATModal()" style="margin-left:4px" title="GitHub PAT設定">⚙</button>
+        </div>
+        <div class="leads-scroll">
+          <table class="leads-tbl">
+            <thead><tr>
+              <th>企業名</th><th>担当</th><th>サービス</th><th>初回商談日</th>
+              <th>ステータス</th><th>最終接点日</th><th>次のアクション</th><th>備考</th><th></th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>
+    </div>`;
+}
+
+function editLead(idx, field, value) {
+  if (!LEADS_DATA || !LEADS_DATA.leads[idx]) return;
+  LEADS_DATA.leads[idx][field] = value;
+  if (field === "status") {
+    LEADS_DATA.leads[idx].statusUpdatedAt = new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/");
+  }
+  renderLeads();
+}
+
+function addLead() {
+  if (!LEADS_DATA) return;
+  const id = Math.random().toString(36).slice(2,10);
+  LEADS_DATA.leads.unshift({
+    id, company:"(新規)", representative:MEMBERS[0]||"", services:[],
+    firstMeetingDate:new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"),
+    draftSentDate:"",contractSentDate:"",contractSignedDate:"",
+    status:"商談済み・提案中", statusUpdatedAt:new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"),
+    lastContactDate:"", nextAction:"", remarks:""
+  });
+  renderLeads();
+}
+
+function deleteLead(idx) {
+  if (!LEADS_DATA || !LEADS_DATA.leads[idx]) return;
+  if (!confirm(`「${LEADS_DATA.leads[idx].company}」を削除しますか？`)) return;
+  LEADS_DATA.leads.splice(idx, 1);
+  renderLeads();
+}
+
+// ═══════════════════════════════════════════════════════════════
 // 初期化
 // ═══════════════════════════════════════════════════════════════
 Chart.defaults.font.family = "Noto Sans JP";
@@ -2856,7 +3121,7 @@ Chart.defaults.color = "#94A3B8";
 
 (async function init() {
   loadP1CSV();          // localStorage から復元
-  [DATA, APP_DATA] = await Promise.all([loadData(), loadAppData()]);
+  [DATA, APP_DATA] = await Promise.all([loadData(), loadAppData(), loadLeadsData()]);
   loadP1Overrides();    // 手動編集値を復元
   const months = Object.keys(DATA).sort();
   curMonth = months[months.length - 1] || curMonth;
