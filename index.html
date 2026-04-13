@@ -642,7 +642,7 @@ async function loadData() {
 
   // 2. GitHub Raw data.json（タイムスタンプでキャッシュ無効化 → push後即時反映）
   try {
-    const rawUrl = "https://raw.githubusercontent.com/mumusic777-hue/ra-kpi-dashboard2/main/data.json?_=" + Date.now();
+    const rawUrl = "https://raw.githubusercontent.com/ra-admin-ship-it/ra-kpi-dashboard2/main/data.json?_=" + Date.now();
     const res = await fetch(rawUrl);
     if (!res.ok) throw new Error("HTTP " + res.status);
     const d = await res.json();
@@ -2163,7 +2163,7 @@ function setMediaTab(name) {
 
 async function loadAppData() {
   try {
-    const rawUrl = "https://raw.githubusercontent.com/mumusic777-hue/ra-kpi-dashboard2/main/applications_data.json?_=" + Date.now();
+    const rawUrl = "https://raw.githubusercontent.com/ra-admin-ship-it/ra-kpi-dashboard2/main/applications_data.json?_=" + Date.now();
     const res = await fetch(rawUrl);
     if (!res.ok) throw new Error("HTTP " + res.status);
     const d = await res.json();
