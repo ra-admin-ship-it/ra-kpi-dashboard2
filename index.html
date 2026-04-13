@@ -3341,7 +3341,8 @@ function openLeadDetail(idx) {
     <div class="ld-svc-add-row">${addBtns}<button class="ld-svc-add-btn" onclick="addCustomService(${idx})">+ その他（自由入力）</button></div>
     <div class="ld-footer">
       <button class="leads-btn" onclick="this.closest('.ld-modal').remove();renderLeads()">閉じる</button>
-      <button class="leads-btn leads-btn-primary" onclick="saveLeadsToGitHub().then(()=>{})">💾 保存</button>
+      <button class="leads-btn leads-btn-primary" id="ld-save-btn" onclick="saveFromModal(this)">💾 保存</button>
+      <span class="leads-save-indicator" id="ld-save-ind" style="margin-left:4px"></span>
     </div>
   </div>`;
   document.body.appendChild(modal);
@@ -3373,6 +3374,20 @@ function addCustomService(idx) {
   const name = prompt("商材名を入力してください:");
   if (!name?.trim()) return;
   addServiceToLead(idx, name.trim());
+}
+
+async function saveFromModal(btn) {
+  btn.disabled = true;
+  btn.textContent = "保存中...";
+  const ind = document.getElementById("ld-save-ind");
+  try {
+    const ok = await saveLeadsToGitHub();
+    if (ok && ind) { ind.textContent = "✓ 保存しました"; ind.className = "leads-save-indicator show"; setTimeout(()=>ind.classList.remove("show"),2000); }
+  } catch(e) {
+    if (ind) { ind.textContent = "✕ エラー"; ind.style.color = "var(--red2)"; ind.className = "leads-save-indicator show"; }
+  }
+  btn.disabled = false;
+  btn.textContent = "💾 保存";
 }
 
 function removeServiceFromLead(idx, svcIdx) {
