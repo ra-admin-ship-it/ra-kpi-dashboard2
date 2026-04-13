@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T16:12:41.035Z",
+  "lastUpdated": "2026-04-13T16:12:56.719Z",
   "leads": [
     {
       "id": "0f625a07",
@@ -3452,8 +3452,8 @@
       "draftSentDate": "2026/3/13",
       "contractSentDate": "2026/3/19",
       "contractSignedDate": "",
-      "status": "相手：電子署名サインバック待ち",
-      "statusUpdatedAt": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/3/13",
       "nextAction": "",
       "remarks": ""
