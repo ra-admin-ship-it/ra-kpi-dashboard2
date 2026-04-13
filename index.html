@@ -3074,7 +3074,9 @@ function renderLeads() {
     return leadsSortDir === "asc" ? cmp : -cmp;
   });
 
-  const statusOpts = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])].filter(s=>s!=="契約締結完了"||!leadsExcludeDone);
+  // ステータス選択肢: 契約締結完了を常に一番上に配置（フィルターで除外中でも変更できるように）
+  const allStatuses = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])];
+  const statusOpts = ["契約締結完了", ...allStatuses.filter(s => s !== "契約締結完了")];
   const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
 
   const rows = filtered.map(l => {
