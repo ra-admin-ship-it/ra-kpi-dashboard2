@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T14:46:17.827Z",
+  "lastUpdated": "2026-04-13T14:46:51.240Z",
   "leads": [
     {
       "id": "0f625a07",
@@ -22,8 +22,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "お見送り",
-      "statusUpdatedAt": "2026/04/13",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "",
       "lastContactDate": "2025/04/25",
       "nextAction": "",
       "remarks": "パクさんに白井さんへ連絡依頼中"
@@ -3691,7 +3691,7 @@
     },
     {
       "id": "1840cd3b",
-      "company": "株式会社テクノプロコンストラクション",
+      "company": "株式会社テクノプロ",
       "representative": "森",
       "firstMeetingDate": "4/1(水)",
       "status": "商談済み・提案中",
@@ -4030,8 +4030,8 @@
       "company": "バリュエンスホールディングス",
       "representative": "森",
       "firstMeetingDate": "3/27(金)",
-      "status": "契約締結完了",
-      "statusUpdatedAt": "2026/04/13",
+      "status": "既存対応",
+      "statusUpdatedAt": "",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
@@ -4296,6 +4296,30 @@
       "firstMeetingDate": "3/18(水)",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
+    {
+      "id": "ee41660b",
+      "company": "sincereed",
+      "representative": "森",
+      "firstMeetingDate": "3/25(水)",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/13",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
