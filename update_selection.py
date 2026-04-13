@@ -135,8 +135,9 @@ def write_selection_data_json(ym: str, values: dict):
     data[ym].setdefault("selection", {})
     for label, val in values.items():
         html_key = STATUS_MAP[label]
-        data[ym]["selection"].setdefault(html_key, {"actual": 0, "target": 0})
+        data[ym]["selection"].setdefault(html_key, {})
         data[ym]["selection"][html_key]["actual"] = val
+        # target は SAMPLE_DATA で管理するため書き込まない
 
     with open(DATA_JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)

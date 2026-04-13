@@ -26,6 +26,7 @@ import os
 import csv
 import io
 import re
+import json
 import subprocess
 import urllib.request
 import urllib.error
@@ -155,6 +156,32 @@ def update_month_in_html(content: str, ym: str, new_val: int) -> tuple[str, bool
 
 
 # =====================================================================
+# data.json 書き込み
+# =====================================================================
+DATA_JSON_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data.json")
+
+def write_alliance_data_json(cur_ym, cur_val, prev_ym, prev_val):
+    """アライアンス応募数を data.json に書き込む。"""
+    try:
+        with open(DATA_JSON_PATH, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception:
+        data = {}
+
+    for ym, val in [(cur_ym, cur_val), (prev_ym, prev_val)]:
+        if val is None:
+            continue
+        data.setdefault(ym, {})
+        data[ym].setdefault("selection", {})
+        data[ym]["selection"].setdefault("アライアンス応募数", {})
+        data[ym]["selection"]["アライアンス応募数"]["actual"] = val
+
+    with open(DATA_JSON_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f"  💾 data.json を更新しました（アライアンス応募数）")
+
+
+# =====================================================================
 # GitHub へ自動プッシュ
 # =====================================================================
 def git_push(now: datetime):
@@ -217,6 +244,9 @@ def update_html(cur_val: int | None, prev_val: int | None):
         f.write(content)
 
     print(f"  💾 index.html を保存しました")
+
+    # data.json にも書き込む
+    write_alliance_data_json(cur_ym, cur_val, prev_ym, prev_val)
     git_push(datetime.now(JST))
 
 

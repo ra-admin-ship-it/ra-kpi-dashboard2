@@ -269,6 +269,11 @@
       "安木": {},
       "浅沼": {},
       "山本": {}
+    },
+    "selection": {
+      "アライアンス応募数": {
+        "actual": 546
+      }
     }
   },
   "2026-04": {
@@ -325,24 +330,22 @@
     },
     "selection": {
       "書類通過数": {
-        "actual": 119,
-        "target": 0
+        "actual": 119
       },
       "一次面接数": {
-        "actual": 83,
-        "target": 0
+        "actual": 83
       },
       "二次面接数": {
-        "actual": 4,
-        "target": 0
+        "actual": 4
       },
       "最終面接数": {
-        "actual": 20,
-        "target": 0
+        "actual": 20
       },
       "内定数": {
-        "actual": 9,
-        "target": 0
+        "actual": 9
+      },
+      "アライアンス応募数": {
+        "actual": 225
       }
     }
   }
