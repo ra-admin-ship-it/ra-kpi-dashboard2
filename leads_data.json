@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T14:39:04.604Z",
+  "lastUpdated": "2026-04-13T14:39:29.120Z",
   "leads": [
     {
       "id": "0f625a07",
@@ -4318,8 +4318,8 @@
       "company": "sincereed",
       "representative": "森",
       "firstMeetingDate": "3/25(水)",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/13",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
