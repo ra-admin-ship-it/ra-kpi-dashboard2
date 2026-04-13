@@ -3067,8 +3067,8 @@ function renderLeads() {
     const q = leadsSearchQuery.toLowerCase();
     filtered = filtered.filter(l => (l.company||"").toLowerCase().includes(q));
   }
-  // Sort
-  filtered.sort((a,b) => {
+  // Sort (copy to avoid mutating original array)
+  filtered = [...filtered].sort((a,b) => {
     const va = a[leadsSortKey]||"", vb = b[leadsSortKey]||"";
     const cmp = va < vb ? -1 : va > vb ? 1 : 0;
     return leadsSortDir === "asc" ? cmp : -cmp;
@@ -3078,7 +3078,7 @@ function renderLeads() {
   const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
 
   const rows = filtered.map(l => {
-    const idx = leads.indexOf(l);
+    const idx = leads.findIndex(x => x.id === l.id);
     const sc = _statusClass(l.status);
     const svcs = _svcNames(l.services).map(s=>`<span class="leads-svc-tag">${s}</span>`).join("");
     return `<tr>
