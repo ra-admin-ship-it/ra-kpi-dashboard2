@@ -2951,7 +2951,7 @@ function _drawAppCharts(latest, snaps) {
 // ═══════════════════════════════════════════════════════════════
 const LEADS_REPO = "ra-admin-ship-it/ra-kpi-dashboard2";
 const LEADS_FILE = "leads_data.json";
-const LEADS_PAT = atob("Z2l0aHViX3BhdF8xMUNBNUFKUUkwZElZUFk0TzRVbjV5XzhZTDNESFFXVHFkVG9FNWRIbTZTZzZQZUVCUGRvazhIUkhzdjREcnoxNHg2NDZaTDNHVHVvQm02VGxr");
+const LEADS_PAT = "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";
 const LEAD_STATUSES = [
   "商談済み・提案中","ドラフト作成中","ドラフト送付済み",
   "先方リーガルチェック中","クラウドサイン送信準備","クラウドサイン送信済み（承認待ち）",
@@ -3087,7 +3087,8 @@ function renderLeads() {
       <td><a class="leads-co-link" onclick="openLeadDetail(${idx})">${l.company}</a></td>
       <td class="leads-rep">${l.representative||""}</td>
       <td><div class="leads-svc">${svcs}</div></td>
-      <td style="white-space:nowrap">${l.firstMeetingDate||""}</td>
+      <td><input class="leads-editable leads-date" type="text" value="${l.firstMeetingDate||""}" placeholder="YYYY/MM/DD"
+        onchange="editLead(${idx},'firstMeetingDate',this.value)"></td>
       <td><select class="leads-status-sel ${sc}" onchange="editLead(${idx},'status',this.value)">
         ${statusOpts.map(s=>`<option${s===l.status?" selected":""}>${s}</option>`).join("")}
         <option value=""${!l.status?" selected":""}>(未設定)</option>
