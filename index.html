@@ -2951,7 +2951,8 @@ function _drawAppCharts(latest, snaps) {
 // ═══════════════════════════════════════════════════════════════
 const LEADS_REPO = "ra-admin-ship-it/ra-kpi-dashboard2";
 const LEADS_FILE = "leads_data.json";
-const LEADS_PAT = "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";
+const LEADS_PAT_KEY = "ra_kpi_leads_pat";
+function _getPAT() { return localStorage.getItem(LEADS_PAT_KEY) || ""; }
 const LEAD_STATUSES = [
   "商談済み・提案中","ドラフト作成中","ドラフト送付済み",
   "先方リーガルチェック中","クラウドサイン送信準備","クラウドサイン送信済み（承認待ち）",
@@ -2973,11 +2974,11 @@ async function loadLeadsData() {
     if (!res.ok) throw new Error("HTTP "+res.status);
     LEADS_DATA = await res.json();
     // Get SHA for updates
-    const pat = LEADS_PAT;
+    const pat = _getPAT();
     if (pat) {
       try {
         const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
-          {headers:{"Authorization":"Bearer "+pat}});
+          {headers:{"Authorization":"token "+pat}});
         if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
       } catch(e){}
     }
@@ -2988,12 +2989,14 @@ async function loadLeadsData() {
 }
 
 async function saveLeadsToGitHub() {
+  const pat = _getPAT();
+  if (!pat) { showPATModal(); return false; }
   LEADS_DATA.lastUpdated = new Date().toISOString();
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
   const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
   try {
     const res = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,{
-      method:"PUT",headers:{"Authorization":"Bearer "+LEADS_PAT,"Content-Type":"application/json"},
+      method:"PUT",headers:{"Authorization":"token "+pat,"Content-Type":"application/json"},
       body:JSON.stringify(body)
     });
     if (!res.ok) {
@@ -3013,17 +3016,16 @@ function showLeadsSaveOK() {
 }
 
 function showPATModal() {
-  const existing = LEADS_PAT||"";
+  const existing = _getPAT();
   const modal = document.createElement("div");
   modal.className = "leads-pat-modal";
   modal.innerHTML = `<div class="leads-pat-box">
-    <h3>GitHub Personal Access Token</h3>
+    <h3>GitHub トークン設定（初回のみ）</h3>
     <p style="font-size:12px;color:var(--t2);margin-bottom:8px">
-      データ保存にGitHub PATが必要です。<br>
-      <a href="https://github.com/settings/tokens?type=beta" target="_blank" style="color:var(--blue2)">
-      GitHub → Settings → Fine-grained tokens</a> でrepo contents read/write権限のトークンを作成してください。
+      データ保存にGitHub PATが必要です。チームの管理者に聞いてください。<br>
+      <span style="color:var(--t3)">※このブラウザに保存されます。1回設定すれば以降は不要です。</span>
     </p>
-    <input type="password" id="pat-input" value="${existing}" placeholder="github_pat_...">
+    <input type="text" id="pat-input" value="${existing}" placeholder="ghp_xxxx... または github_pat_xxxx...">
     <div class="btn-row">
       <button class="leads-btn" onclick="this.closest('.leads-pat-modal').remove()">キャンセル</button>
       <button class="leads-btn leads-btn-primary" onclick="savePAT()">保存</button>
@@ -3035,7 +3037,7 @@ function savePAT() {
   const v = document.getElementById("pat-input")?.value?.trim();
   if (v) { localStorage.setItem(LEADS_PAT_KEY, v); }
   document.querySelector(".leads-pat-modal")?.remove();
-  saveLeadsToGitHub();
+  if (v) saveLeadsToGitHub();
 }
 
 function _statusClass(s) {
@@ -3132,6 +3134,7 @@ function renderLeads() {
           <button class="leads-btn leads-btn-primary" onclick="addLead()">＋ 新規追加</button>
           <button class="leads-btn" onclick="saveLeadsToGitHub()">💾 保存</button>
           <span class="leads-save-indicator" id="leads-save-ind">✓ 保存しました</span>
+          <button class="leads-btn" onclick="showPATModal()" style="font-size:11px" title="トークン設定">⚙</button>
           <span class="leads-count">${filtered.length} / ${leads.length} 件</span>
         </div>
         <div class="leads-scroll">
