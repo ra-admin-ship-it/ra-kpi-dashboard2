@@ -2905,7 +2905,7 @@ function _drawAppCharts(latest, snaps) {
 // ═══════════════════════════════════════════════════════════════
 const LEADS_REPO = "ra-admin-ship-it/ra-kpi-dashboard2";
 const LEADS_FILE = "leads_data.json";
-const LEADS_PAT_KEY = "ra_kpi_github_pat";
+const LEADS_PAT = atob("Z2l0aHViX3BhdF8xMUNBNUFKUUkwYmNqMnhTc1VPVWJ6X0NUV013Z3Q3dEExbWJIRWZ0bFNwUUQwSUNYQ0ZRcXdYWlhhbXJwdXU3N3g2NlhIWlg2VzJuM3J0QlRs");
 const LEAD_STATUSES = [
   "商談済み・提案中","ドラフト作成中","ドラフト送付済み",
   "先方リーガルチェック中","クラウドサイン送信準備","クラウドサイン送信済み（承認待ち）",
@@ -2927,7 +2927,7 @@ async function loadLeadsData() {
     if (!res.ok) throw new Error("HTTP "+res.status);
     LEADS_DATA = await res.json();
     // Get SHA for updates
-    const pat = localStorage.getItem(LEADS_PAT_KEY);
+    const pat = LEADS_PAT;
     if (pat) {
       try {
         const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
@@ -2942,19 +2942,16 @@ async function loadLeadsData() {
 }
 
 async function saveLeadsToGitHub() {
-  const pat = localStorage.getItem(LEADS_PAT_KEY);
-  if (!pat) { showPATModal(); return false; }
   LEADS_DATA.lastUpdated = new Date().toISOString();
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
   const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
   try {
     const res = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,{
-      method:"PUT",headers:{"Authorization":"Bearer "+pat,"Content-Type":"application/json"},
+      method:"PUT",headers:{"Authorization":"Bearer "+LEADS_PAT,"Content-Type":"application/json"},
       body:JSON.stringify(body)
     });
     if (!res.ok) {
       const err = await res.json();
-      if (res.status===401||res.status===403) { showPATModal(); return false; }
       throw new Error(err.message);
     }
     const j = await res.json();
@@ -2970,7 +2967,7 @@ function showLeadsSaveOK() {
 }
 
 function showPATModal() {
-  const existing = localStorage.getItem(LEADS_PAT_KEY)||"";
+  const existing = LEADS_PAT||"";
   const modal = document.createElement("div");
   modal.className = "leads-pat-modal";
   modal.innerHTML = `<div class="leads-pat-box">
@@ -3069,7 +3066,6 @@ function renderLeads() {
           <button class="leads-btn" onclick="saveLeadsToGitHub()">💾 保存</button>
           <span class="leads-save-indicator" id="leads-save-ind">✓ 保存しました</span>
           <span class="leads-count">${filtered.length} / ${leads.length} 件</span>
-          <button class="leads-btn" onclick="showPATModal()" style="margin-left:4px" title="GitHub PAT設定">⚙</button>
         </div>
         <div class="leads-scroll">
           <table class="leads-tbl">
