@@ -228,6 +228,44 @@ body{font-family:'Noto Sans JP',-apple-system,sans-serif;background:var(--bg);
   background:var(--card);color:var(--t1);font-size:13px;font-family:inherit;margin:8px 0 16px}
 .leads-pat-box .btn-row{display:flex;gap:8px;justify-content:flex-end}
 .leads-count{font-size:11px;color:var(--t3);margin-left:auto}
+.leads-co-link{color:var(--blue2);cursor:pointer;text-decoration:none;font-weight:600}
+.leads-co-link:hover{text-decoration:underline}
+.leads-excl{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--t2);cursor:pointer;user-select:none}
+.leads-excl input{accent-color:var(--blue)}
+/* Detail Modal */
+.ld-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);
+  z-index:300;display:flex;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto}
+.ld-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-xl);
+  width:100%;max-width:720px;padding:0;animation:ldIn .2s ease}
+@keyframes ldIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.ld-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
+.ld-header h2{font-size:16px;font-weight:700;color:var(--t1);flex:1}
+.ld-close{background:none;border:none;color:var(--t3);font-size:20px;cursor:pointer;padding:4px 8px;
+  border-radius:var(--r-sm);transition:all .15s}
+.ld-close:hover{background:var(--border2);color:var(--t1)}
+.ld-info{padding:16px 24px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ld-field{display:flex;flex-direction:column;gap:3px}
+.ld-field-lbl{font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.ld-field input,.ld-field select,.ld-field textarea{padding:6px 10px;border-radius:var(--r-sm);
+  border:1px solid var(--border);background:var(--card);color:var(--t1);font-size:12px;font-family:inherit}
+.ld-field textarea{resize:vertical;min-height:48px}
+.ld-field-full{grid-column:1/-1}
+.ld-sep{border:none;border-top:1px solid var(--border);margin:0}
+.ld-svc-header{padding:14px 24px 8px;display:flex;align-items:center;gap:10px}
+.ld-svc-header h3{font-size:13px;font-weight:600;color:var(--t2);flex:1}
+.ld-svc-list{padding:0 24px 16px;display:flex;flex-direction:column;gap:10px}
+.ld-svc-card{border:1px solid var(--border);border-radius:var(--r-md);padding:14px;position:relative}
+.ld-svc-card-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ld-svc-card-name{font-size:13px;font-weight:600;color:var(--indigo);flex:1}
+.ld-svc-card-del{background:none;border:none;color:var(--t3);cursor:pointer;font-size:13px;
+  padding:2px 6px;border-radius:4px}.ld-svc-card-del:hover{color:var(--red)}
+.ld-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ld-svc-grid .ld-field-full{grid-column:1/-1}
+.ld-footer{padding:14px 24px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+.ld-svc-add-row{padding:0 24px 16px;display:flex;gap:6px;flex-wrap:wrap}
+.ld-svc-add-btn{padding:4px 10px;border-radius:var(--r-sm);border:1px dashed var(--border2);
+  background:none;color:var(--t3);font-size:11px;cursor:pointer;font-family:inherit;transition:all .15s}
+.ld-svc-add-btn:hover{border-color:var(--blue);color:var(--blue2);background:rgba(59,130,246,0.05)}
 
 /* NUMBER */
 .num{font-variant-numeric:tabular-nums}
@@ -3000,27 +3038,31 @@ function _statusClass(s) {
   return "st-progress";
 }
 
+let leadsExcludeDone = true; // デフォルト: 契約締結完了を除外
+
+function _svcName(s) { return typeof s === "string" ? s : s?.name || ""; }
+function _svcNames(svcs) { return (svcs||[]).map(s => _svcName(s)); }
+
 function renderLeads() {
   const el = document.getElementById("panel-leads");
   if (!LEADS_DATA) { el.innerHTML = `<div class="sec"><div class="sec-body" style="text-align:center;padding:40px;color:var(--t3)">データ読み込み中...</div></div>`; return; }
 
   const leads = LEADS_DATA.leads || [];
-  // Filter
   let filtered = leads;
+  if (leadsExcludeDone) filtered = filtered.filter(l => l.status !== "契約締結完了");
   if (leadsFilterStatus !== "all") filtered = filtered.filter(l => l.status === leadsFilterStatus);
   if (leadsFilterRep !== "all") filtered = filtered.filter(l => l.representative === leadsFilterRep);
-  // Sort by statusUpdatedAt desc, then firstMeetingDate desc
   filtered.sort((a,b) => (b.statusUpdatedAt||b.lastContactDate||"").localeCompare(a.statusUpdatedAt||a.lastContactDate||""));
 
-  const statusOpts = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])];
+  const statusOpts = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])].filter(s=>s!=="契約締結完了"||!leadsExcludeDone);
   const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
 
-  const rows = filtered.map((l,i) => {
+  const rows = filtered.map(l => {
     const idx = leads.indexOf(l);
     const sc = _statusClass(l.status);
-    const svcs = (l.services||[]).map(s=>`<span class="leads-svc-tag">${s}</span>`).join("");
+    const svcs = _svcNames(l.services).map(s=>`<span class="leads-svc-tag">${s}</span>`).join("");
     return `<tr>
-      <td class="leads-co">${l.company}</td>
+      <td><a class="leads-co-link" onclick="openLeadDetail(${idx})">${l.company}</a></td>
       <td class="leads-rep">${l.representative||""}</td>
       <td><div class="leads-svc">${svcs}</div></td>
       <td style="white-space:nowrap">${l.firstMeetingDate||""}</td>
@@ -3031,9 +3073,9 @@ function renderLeads() {
       <td><input class="leads-editable leads-date" type="text" value="${l.lastContactDate||""}" placeholder="YYYY/MM/DD"
         onchange="editLead(${idx},'lastContactDate',this.value)"></td>
       <td><input class="leads-editable" type="text" value="${(l.nextAction||"").replace(/"/g,"&quot;")}"
-        placeholder="次のアクション" onchange="editLead(${idx},'nextAction',this.value)"></td>
+        placeholder="" onchange="editLead(${idx},'nextAction',this.value)"></td>
       <td><input class="leads-editable" type="text" value="${(l.remarks||"").replace(/"/g,"&quot;")}"
-        placeholder="備考" onchange="editLead(${idx},'remarks',this.value)"></td>
+        placeholder="" onchange="editLead(${idx},'remarks',this.value)"></td>
       <td><button class="leads-del" title="削除" onclick="deleteLead(${idx})">✕</button></td>
     </tr>`;
   }).join("");
@@ -3049,11 +3091,12 @@ function renderLeads() {
         </div>
         <div>
           <div class="sec-title">商談後の引合管理</div>
-          <div class="sec-sub">ステータス・最終接点・次のアクション</div>
+          <div class="sec-sub">企業名クリックで詳細・商材別CRM</div>
         </div>
       </div>
       <div class="sec-body">
         <div class="leads-toolbar">
+          <label class="leads-excl"><input type="checkbox" ${leadsExcludeDone?"checked":""} onchange="leadsExcludeDone=this.checked;renderLeads()">契約締結完了を除く</label>
           <select class="leads-filter" onchange="leadsFilterStatus=this.value;renderLeads()">
             <option value="all">全ステータス</option>
             ${statusOpts.map(s=>`<option value="${s}"${s===leadsFilterStatus?" selected":""}>${s}</option>`).join("")}
@@ -3084,22 +3127,23 @@ function editLead(idx, field, value) {
   if (!LEADS_DATA || !LEADS_DATA.leads[idx]) return;
   LEADS_DATA.leads[idx][field] = value;
   if (field === "status") {
-    LEADS_DATA.leads[idx].statusUpdatedAt = new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/");
+    LEADS_DATA.leads[idx].statusUpdatedAt = _today();
   }
   renderLeads();
 }
+function _today() { return new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"); }
+function _esc(s) { return (s||"").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
 
 function addLead() {
   if (!LEADS_DATA) return;
-  const id = Math.random().toString(36).slice(2,10);
   LEADS_DATA.leads.unshift({
-    id, company:"(新規)", representative:MEMBERS[0]||"", services:[],
-    firstMeetingDate:new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"),
-    draftSentDate:"",contractSentDate:"",contractSignedDate:"",
-    status:"商談済み・提案中", statusUpdatedAt:new Date().toLocaleDateString("ja-JP",{year:"numeric",month:"2-digit",day:"2-digit"}).replace(/-/g,"/"),
-    lastContactDate:"", nextAction:"", remarks:""
+    id: Math.random().toString(36).slice(2,10),
+    company:"(新規)", representative:MEMBERS[0]||"",
+    firstMeetingDate:_today(), status:"商談済み・提案中", statusUpdatedAt:_today(),
+    lastContactDate:"", nextAction:"", remarks:"",
+    services:[{name:"人材紹介",proposalDate:_today(),contactPerson:"",contactEmail:"",contactPhone:"",status:"",impression:"",nextAction:"",remarks:""}]
   });
-  renderLeads();
+  openLeadDetail(0);
 }
 
 function deleteLead(idx) {
@@ -3107,6 +3151,120 @@ function deleteLead(idx) {
   if (!confirm(`「${LEADS_DATA.leads[idx].company}」を削除しますか？`)) return;
   LEADS_DATA.leads.splice(idx, 1);
   renderLeads();
+}
+
+// ── 企業詳細モーダル ────────────────────────────────────────
+function openLeadDetail(idx) {
+  const lead = LEADS_DATA?.leads?.[idx];
+  if (!lead) return;
+  document.querySelector(".ld-modal")?.remove();
+  const statusOpts = [...new Set([...LEAD_STATUSES, ...LEADS_DATA.leads.map(l=>l.status).filter(Boolean)])];
+  const svcTypes = LEADS_DATA.serviceTypes || ["人材紹介","AccessRPO","ヤギオファー","オートハント","求人ボックス","Note記事代行","TORERU","Wantedly運用","アポネクト"];
+  const existingSvcNames = _svcNames(lead.services);
+
+  const svcCards = (lead.services||[]).map((svc, si) => {
+    const s = typeof svc === "string" ? {name:svc} : svc;
+    return `<div class="ld-svc-card">
+      <div class="ld-svc-card-head">
+        <span class="ld-svc-card-name">${s.name}</span>
+        <button class="ld-svc-card-del" onclick="removeServiceFromLead(${idx},${si})" title="この商材を削除">✕</button>
+      </div>
+      <div class="ld-svc-grid">
+        <div class="ld-field"><span class="ld-field-lbl">提案日</span><input value="${_esc(s.proposalDate)}" onchange="editLeadSvc(${idx},${si},'proposalDate',this.value)"></div>
+        <div class="ld-field"><span class="ld-field-lbl">ステータス</span>
+          <select onchange="editLeadSvc(${idx},${si},'status',this.value)">
+            <option value="">(未設定)</option>
+            ${statusOpts.map(o=>`<option${o===s.status?" selected":""}>${o}</option>`).join("")}
+          </select>
+        </div>
+        <div class="ld-field"><span class="ld-field-lbl">相手担当者</span><input value="${_esc(s.contactPerson)}" onchange="editLeadSvc(${idx},${si},'contactPerson',this.value)"></div>
+        <div class="ld-field"><span class="ld-field-lbl">連絡先メール</span><input value="${_esc(s.contactEmail)}" onchange="editLeadSvc(${idx},${si},'contactEmail',this.value)"></div>
+        <div class="ld-field"><span class="ld-field-lbl">電話番号</span><input value="${_esc(s.contactPhone)}" onchange="editLeadSvc(${idx},${si},'contactPhone',this.value)"></div>
+        <div class="ld-field"><span class="ld-field-lbl">所感</span><input value="${_esc(s.impression)}" onchange="editLeadSvc(${idx},${si},'impression',this.value)"></div>
+        <div class="ld-field ld-field-full"><span class="ld-field-lbl">ネクストアクション</span><input value="${_esc(s.nextAction)}" onchange="editLeadSvc(${idx},${si},'nextAction',this.value)"></div>
+        <div class="ld-field ld-field-full"><span class="ld-field-lbl">備考</span><textarea onchange="editLeadSvc(${idx},${si},'remarks',this.value)">${_esc(s.remarks)}</textarea></div>
+      </div>
+    </div>`;
+  }).join("");
+
+  const addBtns = svcTypes.filter(t => !existingSvcNames.includes(t))
+    .map(t => `<button class="ld-svc-add-btn" onclick="addServiceToLead(${idx},'${t}')">+ ${t}</button>`).join("");
+
+  const modal = document.createElement("div");
+  modal.className = "ld-modal";
+  modal.onclick = e => { if (e.target === modal) modal.remove(); };
+  modal.innerHTML = `<div class="ld-box">
+    <div class="ld-header">
+      <h2>${lead.company}</h2>
+      <button class="ld-close" onclick="this.closest('.ld-modal').remove()">✕</button>
+    </div>
+    <div class="ld-info">
+      <div class="ld-field"><span class="ld-field-lbl">企業名</span><input value="${_esc(lead.company)}" onchange="editLead(${idx},'company',this.value)"></div>
+      <div class="ld-field"><span class="ld-field-lbl">担当</span>
+        <select onchange="editLead(${idx},'representative',this.value)">
+          ${MEMBERS.map(m=>`<option${m===lead.representative?" selected":""}>${m}</option>`).join("")}
+        </select>
+      </div>
+      <div class="ld-field"><span class="ld-field-lbl">初回商談日</span><input value="${_esc(lead.firstMeetingDate)}" onchange="editLead(${idx},'firstMeetingDate',this.value)"></div>
+      <div class="ld-field"><span class="ld-field-lbl">全体ステータス</span>
+        <select onchange="editLead(${idx},'status',this.value)">
+          ${statusOpts.map(s=>`<option${s===lead.status?" selected":""}>${s}</option>`).join("")}
+          <option value=""${!lead.status?" selected":""}>(未設定)</option>
+        </select>
+      </div>
+      <div class="ld-field"><span class="ld-field-lbl">最終接点日</span><input value="${_esc(lead.lastContactDate)}" onchange="editLead(${idx},'lastContactDate',this.value)"></div>
+      <div class="ld-field"><span class="ld-field-lbl">次のアクション</span><input value="${_esc(lead.nextAction)}" onchange="editLead(${idx},'nextAction',this.value)"></div>
+      <div class="ld-field ld-field-full"><span class="ld-field-lbl">備考</span><textarea onchange="editLead(${idx},'remarks',this.value)">${_esc(lead.remarks)}</textarea></div>
+    </div>
+    <hr class="ld-sep">
+    <div class="ld-svc-header">
+      <h3>商材別 提案状況</h3>
+    </div>
+    <div class="ld-svc-list">${svcCards || '<p style="color:var(--t3);font-size:12px;padding:0 24px">商材が追加されていません</p>'}</div>
+    <div class="ld-svc-add-row">${addBtns}<button class="ld-svc-add-btn" onclick="addCustomService(${idx})">+ その他（自由入力）</button></div>
+    <div class="ld-footer">
+      <button class="leads-btn" onclick="this.closest('.ld-modal').remove();renderLeads()">閉じる</button>
+      <button class="leads-btn leads-btn-primary" onclick="saveLeadsToGitHub().then(()=>{})">💾 保存</button>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function editLeadSvc(idx, svcIdx, field, value) {
+  const svc = LEADS_DATA?.leads?.[idx]?.services?.[svcIdx];
+  if (!svc) return;
+  if (typeof svc === "string") {
+    LEADS_DATA.leads[idx].services[svcIdx] = {name:svc,[field]:value};
+  } else {
+    svc[field] = value;
+  }
+}
+
+function addServiceToLead(idx, name) {
+  const lead = LEADS_DATA?.leads?.[idx];
+  if (!lead) return;
+  lead.services = lead.services || [];
+  lead.services.push({name,proposalDate:_today(),contactPerson:"",contactEmail:"",contactPhone:"",status:"",impression:"",nextAction:"",remarks:""});
+  if (!LEADS_DATA.serviceTypes?.includes(name)) {
+    LEADS_DATA.serviceTypes = LEADS_DATA.serviceTypes || [];
+    LEADS_DATA.serviceTypes.push(name);
+  }
+  openLeadDetail(idx);
+}
+
+function addCustomService(idx) {
+  const name = prompt("商材名を入力してください:");
+  if (!name?.trim()) return;
+  addServiceToLead(idx, name.trim());
+}
+
+function removeServiceFromLead(idx, svcIdx) {
+  const lead = LEADS_DATA?.leads?.[idx];
+  if (!lead?.services?.[svcIdx]) return;
+  const name = _svcName(lead.services[svcIdx]);
+  if (!confirm(`「${name}」を削除しますか？`)) return;
+  lead.services.splice(svcIdx, 1);
+  openLeadDetail(idx);
 }
 
 // ═══════════════════════════════════════════════════════════════
