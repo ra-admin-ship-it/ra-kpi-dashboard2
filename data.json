@@ -325,15 +325,15 @@
     },
     "selection": {
       "書類通過数": {
-        "actual": 125,
+        "actual": 119,
         "target": 0
       },
       "一次面接数": {
-        "actual": 74,
+        "actual": 83,
         "target": 0
       },
       "二次面接数": {
-        "actual": 3,
+        "actual": 4,
         "target": 0
       },
       "最終面接数": {
@@ -341,7 +341,7 @@
         "target": 0
       },
       "内定数": {
-        "actual": 10,
+        "actual": 9,
         "target": 0
       }
     }
