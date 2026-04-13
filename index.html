@@ -2991,6 +2991,14 @@ async function loadLeadsData() {
 async function saveLeadsToGitHub() {
   const pat = _getPAT();
   if (!pat) { showPATModal(); return false; }
+  // SHA未取得なら取得（初回PAT設定後に必要）
+  if (!LEADS_SHA) {
+    try {
+      const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
+        {headers:{"Authorization":"token "+pat}});
+      if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
+    } catch(e){}
+  }
   LEADS_DATA.lastUpdated = new Date().toISOString();
   const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
   const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
