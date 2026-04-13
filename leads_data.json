@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-13T16:15:50.089Z",
+  "lastUpdated": "2026-04-13T16:16:29.079Z",
   "leads": [
     {
       "id": "0f625a07",
@@ -1448,8 +1448,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "成約時に契約",
-      "statusUpdatedAt": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/11/12",
       "nextAction": "",
       "remarks": "契約締結は成約時にするため推薦可能"
@@ -2561,8 +2561,8 @@
       "draftSentDate": "2026/02/20",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/02/20",
       "nextAction": "",
       "remarks": "ウロコの早川さんから紹介\ny-mori@job-palette.co.jp➡n.hayakawa@uloqo.net"
