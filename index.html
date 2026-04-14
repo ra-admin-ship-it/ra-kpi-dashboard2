@@ -1369,11 +1369,11 @@ function renderWeekPicker() {
   if (!md) return "";
   const weeks = Object.keys(md.weeks).map(Number).sort((a, b) => a - b);
   const items = weeks.map(wn => {
-    const { m, start, end } = weekDateRange(curMonth, wn);
     const isActive = curWeek === wn;
+    const label = weekRangeLabel(curMonth, wn);
     return `<div class="wpick-item${isActive ? ' active' : ''}" onclick="selectWeekPicker(${wn})">
       <span class="wpick-wn">第${wn}週</span>
-      <span class="wpick-range">${m}/${start} 〜 ${m}/${end}</span>
+      <span class="wpick-range">${label}</span>
       ${isActive ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue2)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>` : ''}
     </div>`;
   }).join('');
