@@ -72,6 +72,33 @@ export default {
           };
         }
 
+        // ページ本文（担当者連絡先を記載）
+        const children = [];
+        if (body.contactName || body.contactEmail || body.contactPhone) {
+          children.push({
+            object: "block", type: "heading_2",
+            heading_2: { rich_text: [{ text: { content: "📞 先方担当者情報" } }] },
+          });
+          if (body.contactName) {
+            children.push({
+              object: "block", type: "bulleted_list_item",
+              bulleted_list_item: { rich_text: [{ text: { content: `担当者名: ${body.contactName}` } }] },
+            });
+          }
+          if (body.contactEmail) {
+            children.push({
+              object: "block", type: "bulleted_list_item",
+              bulleted_list_item: { rich_text: [{ text: { content: `メール: ${body.contactEmail}` } }] },
+            });
+          }
+          if (body.contactPhone) {
+            children.push({
+              object: "block", type: "bulleted_list_item",
+              bulleted_list_item: { rich_text: [{ text: { content: `電話番号: ${body.contactPhone}` } }] },
+            });
+          }
+        }
+
         const notionRes = await fetch(`${NOTION_API}/pages`, {
           method: "POST",
           headers: {
@@ -82,6 +109,7 @@ export default {
           body: JSON.stringify({
             parent: { database_id: DATABASE_ID },
             properties,
+            children,
           }),
         });
 

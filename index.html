@@ -3335,7 +3335,7 @@ function openLeadDetail(idx) {
 
   const modal = document.createElement("div");
   modal.className = "ld-modal";
-  modal.onclick = e => { if (e.target === modal) modal.remove(); };
+  // 枠外クリックでは閉じない（✕ボタンか閉じるボタンのみ）
   modal.innerHTML = `<div class="ld-box">
     <div class="ld-header">
       <h2>${lead.company}</h2>
@@ -3376,10 +3376,10 @@ function openLeadDetail(idx) {
         </div>`
       : `<div style="padding:0 24px 16px">
           <div class="ld-svc-grid" style="margin-bottom:12px">
-            <div class="ld-field"><span class="ld-field-lbl">推薦方法</span>
-              <select id="notion-method" multiple style="min-height:80px">
-                ${NOTION_RECOMMEND_METHODS.map(m=>`<option>${m}</option>`).join("")}
-              </select>
+            <div class="ld-field ld-field-full"><span class="ld-field-lbl">推薦方法（複数選択可）</span>
+              <div id="notion-method" style="display:flex;flex-wrap:wrap;gap:4px;max-height:120px;overflow-y:auto;padding:6px;border:1px solid var(--border);border-radius:var(--r-sm);background:var(--card)">
+                ${NOTION_RECOMMEND_METHODS.map(m=>`<label style="display:flex;align-items:center;gap:3px;font-size:11px;color:var(--t1);cursor:pointer;padding:2px 6px;border-radius:4px;background:rgba(255,255,255,0.03)"><input type="checkbox" value="${m}" style="accent-color:var(--blue);width:13px;height:13px">${m}</label>`).join("")}
+              </div>
             </div>
             <div class="ld-field"><span class="ld-field-lbl">契約企業名</span>
               <select id="notion-contract">
@@ -3395,6 +3395,15 @@ function openLeadDetail(idx) {
             </div>
             <div class="ld-field"><span class="ld-field-lbl">新規営業報告書URL</span>
               <input id="notion-url" placeholder="https://...">
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">先方担当者名</span>
+              <input id="notion-contact-name" placeholder="山田太郎">
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">先方メールアドレス</span>
+              <input id="notion-contact-email" placeholder="yamada@example.com">
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">先方電話番号</span>
+              <input id="notion-contact-phone" placeholder="03-1234-5678">
             </div>
             <div class="ld-field ld-field-full"><span class="ld-field-lbl">RAからの注意点</span>
               <textarea id="notion-notes" placeholder="注意事項があれば記入"></textarea>
@@ -3463,8 +3472,8 @@ async function createNotionPage(idx) {
   btn.disabled = true; btn.textContent = "登録中...";
   status.textContent = "";
   try {
-    const methodSel = document.getElementById("notion-method");
-    const methods = [...methodSel.selectedOptions].map(o => o.value);
+    const methodBox = document.getElementById("notion-method");
+    const methods = [...methodBox.querySelectorAll("input:checked")].map(cb => cb.value);
     const res = await fetch(`${NOTION_PROXY}/create-page`, {
       method: "POST",
       headers: {"Content-Type":"application/json"},
@@ -3475,6 +3484,9 @@ async function createNotionPage(idx) {
         volumeEstimate: document.getElementById("notion-volume")?.value || "",
         url: document.getElementById("notion-url")?.value || "",
         notes: document.getElementById("notion-notes")?.value || "",
+        contactName: document.getElementById("notion-contact-name")?.value || "",
+        contactEmail: document.getElementById("notion-contact-email")?.value || "",
+        contactPhone: document.getElementById("notion-contact-phone")?.value || "",
       })
     });
     const data = await res.json();
