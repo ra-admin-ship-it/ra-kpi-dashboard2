@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-14T02:01:50.614Z",
+  "lastUpdated": "2026-04-14T02:02:18.770Z",
   "leads": [
     {
       "id": "uqjlu2ol",
@@ -613,8 +613,8 @@
       "draftSentDate": "2025/10/07",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：その他書類送付待ち",
-      "statusUpdatedAt": "2025/10/07",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/10/07",
       "nextAction": "",
       "remarks": "深江さんに電話：①10月7日➡留守電残し\n\n：深江　俊彦　/　Toshihiko Fukae\n\nMobile: 080-7582-6155\n\nMail: toshihiko.fukae@akkodis.co.jp"
@@ -662,8 +662,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：その他書類送付待ち",
-      "statusUpdatedAt": "2025/10/06",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/10/06",
       "nextAction": "2025/10/07",
       "remarks": "電話で状況確認する"
@@ -1931,8 +1931,8 @@
       "draftSentDate": "2025/12/18",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：電子署名サインバック待ち",
-      "statusUpdatedAt": "2026/01/19",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/01/19",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡sawada-nami@yo-ko-o.com"
