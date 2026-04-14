@@ -64,7 +64,7 @@ export default {
           properties["目安処理件数"] = { select: { name: body.volumeEstimate } };
         }
         if (body.url) {
-          properties["userDefined:URL"] = { url: body.url };
+          properties["URL"] = { url: body.url };
         }
         if (body.notes) {
           properties["RAからの注意点"] = {
