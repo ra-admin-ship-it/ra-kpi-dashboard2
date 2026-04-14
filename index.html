@@ -1433,8 +1433,10 @@ function renderWeekly() {
     AZ:           Object.fromEntries(MEMBERS.map(m => [m, Math.round((targets.p2?.AZ?.[m]         || 0) * wf)])),
   };
 
+  // 商談実施数は leads_data.json の firstMeetingDate から集計
+  const leadsDeals = countDealsFromLeads(curMonth, curWeek);
   const tApo       = sum(p1.アポイント数);
-  const tDeals     = sum(p1.商談数);
+  const tDeals     = sum(leadsDeals);
   const tContracts = sum(p1.契約締結数);
   const tAZ        = sum(az);
   const convRate   = tDeals > 0 ? (tContracts / tDeals * 100).toFixed(1) : "0.0";
@@ -1469,7 +1471,7 @@ function renderWeekly() {
           <tbody>
             ${MEMBERS.map(m => {
               const apo   = p1.アポイント数?.[m] || 0;
-              const deals = p1.商談数?.[m] || 0;
+              const deals = leadsDeals[m] || 0;
               const cont  = p1.契約締結数?.[m] || 0;
               const conv  = deals > 0 ? (cont / deals * 100).toFixed(1) + "%" : "—";
               const adj = (field, d) => `adjustP1('${m}','${field}',${d})`;
@@ -1527,7 +1529,7 @@ function renderMonthly() {
 
   const tgt = md.targets;
   const cAZ  = cumul(md, "AZ", "p2");
-  const cD   = cumul(md, "商談数", "p1");
+  const cD   = countDealsFromLeadsMonthly(curMonth); // leads_data.json から
   const cC   = cumul(md, "契約締結数", "p1");
   const cA   = cumul(md, "アポイント数", "p1");
 
@@ -3063,6 +3065,66 @@ function savePAT() {
   if (v) { localStorage.setItem(LEADS_PAT_KEY, v); }
   document.querySelector(".leads-pat-modal")?.remove();
   if (v) saveLeadsToGitHub();
+}
+
+// ── leads_data.json から商談数を集計 ─────────────────────────
+// firstMeetingDate が指定週に該当する leads を担当者別にカウント
+function countDealsFromLeads(ym, wn) {
+  const counts = {};
+  MEMBERS.forEach(m => counts[m] = 0);
+  if (!LEADS_DATA?.leads) return counts;
+  const wr = weekDateRange(ym, wn);
+  if (!wr) return counts;
+  const wStart = wr.startDate, wEnd = wr.endDate;
+  for (const lead of LEADS_DATA.leads) {
+    if (!lead.firstMeetingDate || !lead.representative) continue;
+    if (!MEMBERS.includes(lead.representative)) continue;
+    // 日付パース（"2026/04/03", "2026年4月3日", "4/3(木)" 等に対応）
+    let d = lead.firstMeetingDate;
+    // "2026年4月3日" → "2026/4/3"
+    d = d.replace(/年/g,"/").replace(/月/g,"/").replace(/日/g,"");
+    // "4/3(木)" → "4/3"
+    d = d.replace(/\(.*?\)/g,"").trim();
+    // "2026/04/03" or "4/3"
+    const parts = d.split("/").map(Number);
+    let dt;
+    if (parts.length === 3) {
+      dt = new Date(parts[0], parts[1]-1, parts[2]);
+    } else if (parts.length === 2) {
+      // 月/日のみ → 現在のym年を使用
+      const [y, m] = ym.split("-").map(Number);
+      dt = new Date(y, parts[0]-1, parts[1]);
+    } else continue;
+    if (isNaN(dt.getTime())) continue;
+    if (dt >= wStart && dt <= wEnd) {
+      counts[lead.representative]++;
+    }
+  }
+  return counts;
+}
+
+// 月次累計版
+function countDealsFromLeadsMonthly(ym) {
+  const counts = {};
+  MEMBERS.forEach(m => counts[m] = 0);
+  if (!LEADS_DATA?.leads) return counts;
+  const weeks = getMonthWeeks(ym);
+  if (!weeks.length) return counts;
+  const monthStart = weeks[0].start;
+  const monthEnd = weeks[weeks.length-1].end;
+  for (const lead of LEADS_DATA.leads) {
+    if (!lead.firstMeetingDate || !lead.representative) continue;
+    if (!MEMBERS.includes(lead.representative)) continue;
+    let d = lead.firstMeetingDate.replace(/年/g,"/").replace(/月/g,"/").replace(/日/g,"").replace(/\(.*?\)/g,"").trim();
+    const parts = d.split("/").map(Number);
+    let dt;
+    if (parts.length === 3) dt = new Date(parts[0], parts[1]-1, parts[2]);
+    else if (parts.length === 2) { const [y,m]=ym.split("-").map(Number); dt=new Date(y,parts[0]-1,parts[1]); }
+    else continue;
+    if (isNaN(dt.getTime())) continue;
+    if (dt >= monthStart && dt <= monthEnd) counts[lead.representative]++;
+  }
+  return counts;
 }
 
 function _statusClass(s) {
