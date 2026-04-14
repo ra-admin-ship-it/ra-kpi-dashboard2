@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-14T01:51:26.898Z",
+  "lastUpdated": "2026-04-14T01:54:06.458Z",
   "leads": [
     {
       "id": "uqjlu2ol",
@@ -1364,8 +1364,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：原本捺印及び返送待ち",
-      "statusUpdatedAt": "2025/12/01",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/12/01",
       "nextAction": "原本送付した",
       "remarks": ""
@@ -2347,8 +2347,8 @@
       "draftSentDate": "2026/02/05",
       "contractSentDate": "2026/02/05",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/02/05",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡takeru_satou@leopalace21.com"
