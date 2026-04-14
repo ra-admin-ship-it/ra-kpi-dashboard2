@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-14T01:54:06.458Z",
+  "lastUpdated": "2026-04-14T02:01:50.614Z",
   "leads": [
     {
       "id": "uqjlu2ol",
@@ -3530,8 +3530,8 @@
       "draftSentDate": "2026/3/13",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "",
-      "statusUpdatedAt": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "ウロコ林さんから紹介"
