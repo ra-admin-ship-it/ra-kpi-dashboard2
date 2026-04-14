@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-14T05:39:40.446Z",
+  "lastUpdated": "2026-04-14T08:41:46.600Z",
   "leads": [
+    {
+      "id": "g2ghu1ka",
+      "company": "イグニション・ポイント株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/14",
+      "status": "見送り・保留",
+      "statusUpdatedAt": "2026/04/14",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/14",
+          "contactPerson": "高室様",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "見送り・保留",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "hi547dry",
       "company": "株式会社緑エンジニアリング",
