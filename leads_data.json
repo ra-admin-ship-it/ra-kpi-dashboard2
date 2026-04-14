@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-13T16:16:29.079Z",
+  "lastUpdated": "2026-04-14T01:40:11.500Z",
   "leads": [
+    {
+      "id": "nid37xzi",
+      "company": "test",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/14",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/14",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/14",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "0f625a07",
       "company": "株式会社アガツマ",
