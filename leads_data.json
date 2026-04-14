@@ -1,33 +1,9 @@
 {
-  "lastUpdated": "2026-04-14T01:49:32.293Z",
+  "lastUpdated": "2026-04-14T01:51:26.898Z",
   "leads": [
     {
-      "id": "8sbjedx2",
-      "company": "test2",
-      "representative": "浅沼",
-      "firstMeetingDate": "2026/04/14",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/14",
-      "lastContactDate": "",
-      "nextAction": "",
-      "remarks": "",
-      "services": [
-        {
-          "name": "人材紹介",
-          "proposalDate": "2026/04/14",
-          "contactPerson": "",
-          "contactEmail": "",
-          "contactPhone": "",
-          "status": "",
-          "impression": "",
-          "nextAction": "",
-          "remarks": ""
-        }
-      ]
-    },
-    {
-      "id": "biaimgq0",
-      "company": "test",
+      "id": "uqjlu2ol",
+      "company": "株式会社エリメントHRC",
       "representative": "浅沼",
       "firstMeetingDate": "2026/04/14",
       "status": "商談済み・提案中",
