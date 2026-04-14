@@ -2957,6 +2957,10 @@ function _drawAppCharts(latest, snaps) {
 const LEADS_REPO = "ra-admin-ship-it/ra-kpi-dashboard2";
 const LEADS_FILE = "leads_data.json";
 const LEADS_PAT_KEY = "ra_kpi_leads_pat";
+const NOTION_PROXY = "https://ra-kpi-notion-proxy.ra-admin.workers.dev";
+const NOTION_RECOMMEND_METHODS = ["スラック","ATS@2eR","ATS@HERP","ATS@Talentio","メール","ATS@Sonar","ATS@Hrmos","ATS＠original","ATS@jobcan","ATS@TARGET","ATS@HRTech","ATS@RPM","採用一括かんりくん","エクスオード","ケンラク採用管理","PERSONA","LINE","Hirehub","Chatwork","ATS@hito-link","HARE","ジョブカン採用","トークノート","Googleフォーム","クラウドエージェントにて転載","ATS＠AOLC","JoBins","Jobuddy","AOLC","推薦フォーム","RPM","HRMOS","じぶんシリーズ","タレントパレット"];
+const NOTION_CONTRACT_COMPANIES = ["株式会社JOBPALETTE","株式会社OpenPath","株式会社Assist","株式会社PARTAGE","MIRIZE株式会社","NKインターナショナル"];
+const NOTION_VOLUME_OPTIONS = ["月1～2件程度","週1～3件程度","週3～5件程度","週5件以上"];
 function _getPAT() { return localStorage.getItem(LEADS_PAT_KEY) || ""; }
 const LEAD_STATUSES = [
   "商談済み・提案中","ドラフト作成中","ドラフト送付済み",
@@ -3356,6 +3360,45 @@ function openLeadDetail(idx) {
     </div>
     <div class="ld-svc-list">${svcCards || '<p style="color:var(--t3);font-size:12px;padding:0 24px">商材が追加されていません</p>'}</div>
     <div class="ld-svc-add-row">${addBtns}<button class="ld-svc-add-btn" onclick="addCustomService(${idx})">+ その他（自由入力）</button></div>
+    <hr class="ld-sep">
+    <div class="ld-svc-header">
+      <h3>📋 Notion 推薦DB</h3>
+    </div>
+    ${lead.notionPageUrl
+      ? `<div style="padding:0 24px 16px;display:flex;align-items:center;gap:10px">
+          <a href="${lead.notionPageUrl}" target="_blank" class="leads-btn leads-btn-primary" style="text-decoration:none">📄 Notionで開く</a>
+          <span style="font-size:11px;color:var(--green2)">✓ 登録済み</span>
+        </div>`
+      : `<div style="padding:0 24px 16px">
+          <div class="ld-svc-grid" style="margin-bottom:12px">
+            <div class="ld-field"><span class="ld-field-lbl">推薦方法</span>
+              <select id="notion-method" multiple style="min-height:80px">
+                ${NOTION_RECOMMEND_METHODS.map(m=>`<option>${m}</option>`).join("")}
+              </select>
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">契約企業名</span>
+              <select id="notion-contract">
+                <option value="">選択してください</option>
+                ${NOTION_CONTRACT_COMPANIES.map(c=>`<option>${c}</option>`).join("")}
+              </select>
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">目安処理件数</span>
+              <select id="notion-volume">
+                <option value="">選択してください</option>
+                ${NOTION_VOLUME_OPTIONS.map(v=>`<option>${v}</option>`).join("")}
+              </select>
+            </div>
+            <div class="ld-field"><span class="ld-field-lbl">新規営業報告書URL</span>
+              <input id="notion-url" placeholder="https://...">
+            </div>
+            <div class="ld-field ld-field-full"><span class="ld-field-lbl">RAからの注意点</span>
+              <textarea id="notion-notes" placeholder="注意事項があれば記入"></textarea>
+            </div>
+          </div>
+          <button class="leads-btn leads-btn-primary" id="notion-submit-btn" onclick="createNotionPage(${idx})">📋 Notionに推薦登録</button>
+          <span id="notion-status" style="font-size:11px;margin-left:8px"></span>
+        </div>`
+    }
     <div class="ld-footer">
       <button class="leads-btn" onclick="this.closest('.ld-modal').remove();renderLeads()">閉じる</button>
       <button class="leads-btn leads-btn-primary" id="ld-save-btn" onclick="saveFromModal(this)">💾 保存</button>
@@ -3405,6 +3448,46 @@ async function saveFromModal(btn) {
   }
   btn.disabled = false;
   btn.textContent = "💾 保存";
+}
+
+async function createNotionPage(idx) {
+  const lead = LEADS_DATA?.leads?.[idx];
+  if (!lead) return;
+  const btn = document.getElementById("notion-submit-btn");
+  const status = document.getElementById("notion-status");
+  btn.disabled = true; btn.textContent = "登録中...";
+  status.textContent = "";
+  try {
+    const methodSel = document.getElementById("notion-method");
+    const methods = [...methodSel.selectedOptions].map(o => o.value);
+    const res = await fetch(`${NOTION_PROXY}/create-page`, {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({
+        companyName: lead.company,
+        recommendMethod: methods,
+        contractCompany: document.getElementById("notion-contract")?.value || "",
+        volumeEstimate: document.getElementById("notion-volume")?.value || "",
+        url: document.getElementById("notion-url")?.value || "",
+        notes: document.getElementById("notion-notes")?.value || "",
+      })
+    });
+    const data = await res.json();
+    if (!res.ok || data.error) throw new Error(data.error || "Notion API error");
+    // 成功 → NotionページURLを保存
+    lead.notionPageUrl = data.pageUrl;
+    lead.notionPageId = data.pageId;
+    status.style.color = "var(--green2)";
+    status.textContent = "✓ 登録完了！";
+    // 自動保存
+    await saveLeadsToGitHub();
+    // モーダルを再描画（Notionリンク表示に切替）
+    setTimeout(() => openLeadDetail(idx), 1000);
+  } catch(e) {
+    status.style.color = "var(--red2)";
+    status.textContent = "✕ エラー: " + e.message;
+  }
+  btn.disabled = false; btn.textContent = "📋 Notionに推薦登録";
 }
 
 function removeServiceFromLead(idx, svcIdx) {
