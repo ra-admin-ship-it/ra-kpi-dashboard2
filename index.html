@@ -3149,7 +3149,10 @@ function renderLeads() {
       </div>
       <div class="sec-body">
         <div class="leads-toolbar">
-          <input class="leads-search" id="leads-search-input" type="text" placeholder="企業名で検索..." value="${_esc(leadsSearchQuery)}" oninput="leadsSearchQuery=this.value;renderLeadsDebounced()">
+          <input class="leads-search" id="leads-search-input" type="text" placeholder="企業名で検索..." value="${_esc(leadsSearchQuery)}"
+            oninput="leadsSearchQuery=this.value;renderLeadsDebounced()"
+            oncompositionstart="_leadsComposing=true"
+            oncompositionend="_leadsComposing=false;leadsSearchQuery=this.value;renderLeadsDebounced()">
           <label class="leads-excl"><input type="checkbox" ${leadsExcludeDone?"checked":""} onchange="leadsExcludeDone=this.checked;renderLeads()">締結完了・見送りを除く</label>
           <select class="leads-filter" onchange="leadsFilterStatus=this.value;renderLeads()">
             <option value="all">全ステータス</option>
@@ -3190,14 +3193,16 @@ function renderLeads() {
 }
 
 let _leadsDebounceTimer = null;
+let _leadsComposing = false; // IME変換中フラグ
 function renderLeadsDebounced() {
+  if (_leadsComposing) return; // IME変換中は何もしない
   clearTimeout(_leadsDebounceTimer);
   _leadsDebounceTimer = setTimeout(() => {
+    if (_leadsComposing) return;
     renderLeads();
-    // 検索ボックスにフォーカスを戻す
     const inp = document.getElementById("leads-search-input");
     if (inp) { inp.focus(); inp.selectionStart = inp.selectionEnd = inp.value.length; }
-  }, 200);
+  }, 300);
 }
 
 function toggleLeadSelect(id) {
