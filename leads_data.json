@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-14T01:47:55.439Z",
+  "lastUpdated": "2026-04-14T01:49:32.293Z",
   "leads": [
+    {
+      "id": "8sbjedx2",
+      "company": "test2",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/14",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/14",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/14",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "biaimgq0",
       "company": "test",
@@ -1364,8 +1388,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "契約締結完了",
-      "statusUpdatedAt": "2026/04/14",
+      "status": "相手：原本捺印及び返送待ち",
+      "statusUpdatedAt": "2025/12/01",
       "lastContactDate": "2025/12/01",
       "nextAction": "原本送付した",
       "remarks": ""
