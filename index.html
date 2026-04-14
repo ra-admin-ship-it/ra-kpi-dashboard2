@@ -2974,19 +2974,23 @@ let leadsFilterRep    = "all";
 
 async function loadLeadsData() {
   try {
+    const pat = _getPAT();
+    // PAT があれば API 経由で読み込み（CDNキャッシュなし・即時反映）
+    if (pat) {
+      const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
+        {headers:{"Authorization":"token "+pat},cache:"no-store"});
+      if (api.ok) {
+        const j = await api.json();
+        LEADS_SHA = j.sha;
+        LEADS_DATA = JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));
+        return;
+      }
+    }
+    // フォールバック: GitHub raw（PAT未設定時）
     const url = `https://raw.githubusercontent.com/${LEADS_REPO}/main/${LEADS_FILE}?_=`+Date.now();
     const res = await fetch(url);
     if (!res.ok) throw new Error("HTTP "+res.status);
     LEADS_DATA = await res.json();
-    // Get SHA for updates
-    const pat = _getPAT();
-    if (pat) {
-      try {
-        const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
-          {headers:{"Authorization":"token "+pat}});
-        if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
-      } catch(e){}
-    }
   } catch(e) {
     console.warn("[leads] load failed:", e.message);
     LEADS_DATA = {leads:[]};
