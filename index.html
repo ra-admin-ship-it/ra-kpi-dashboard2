@@ -2996,29 +2996,35 @@ async function loadLeadsData() {
 async function saveLeadsToGitHub() {
   const pat = _getPAT();
   if (!pat) { showPATModal(); return false; }
-  // 保存前に常に最新SHAを取得（他の更新との競合を防ぐ）
-  try {
-    const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
-      {headers:{"Authorization":"token "+pat}});
-    if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
-  } catch(e){}
   LEADS_DATA.lastUpdated = new Date().toISOString();
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
-  const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
-  try {
-    const res = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,{
-      method:"PUT",headers:{"Authorization":"token "+pat,"Content-Type":"application/json"},
-      body:JSON.stringify(body)
-    });
-    if (!res.ok) {
+  // リトライ付き保存（SHA不一致時に最新SHA取得して再試行）
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      // 毎回最新SHAを取得
+      const api = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,
+        {headers:{"Authorization":"token "+pat},cache:"no-store"});
+      if (api.ok) { const j=await api.json(); LEADS_SHA=j.sha; }
+    } catch(e){}
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(LEADS_DATA, null, 2))));
+    const body = {message:"update leads "+new Date().toLocaleDateString("ja-JP"),content,sha:LEADS_SHA};
+    try {
+      const res = await fetch(`https://api.github.com/repos/${LEADS_REPO}/contents/${LEADS_FILE}`,{
+        method:"PUT",headers:{"Authorization":"token "+pat,"Content-Type":"application/json"},
+        body:JSON.stringify(body)
+      });
+      if (res.ok) {
+        const j = await res.json();
+        LEADS_SHA = j.content.sha;
+        showLeadsSaveOK();
+        return true;
+      }
       const err = await res.json();
+      if (res.status === 409 && attempt < 2) { continue; } // SHA conflict → retry
       throw new Error(err.message);
+    } catch(e) {
+      if (attempt >= 2) { alert("保存エラー: "+e.message); return false; }
     }
-    const j = await res.json();
-    LEADS_SHA = j.content.sha;
-    showLeadsSaveOK();
-    return true;
-  } catch(e) { alert("保存エラー: "+e.message); return false; }
+  }
 }
 
 function showLeadsSaveOK() {
