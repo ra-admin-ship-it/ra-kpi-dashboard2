@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-15T06:55:00.573Z",
+  "lastUpdated": "2026-04-15T07:12:40.551Z",
   "leads": [
+    {
+      "id": "vrlr5xz0",
+      "company": "株式会社ビーテック",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/8",
+      "status": "相手：電子契約サインバック待ち",
+      "statusUpdatedAt": "2026/04/15",
+      "lastContactDate": "4/15",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "内海様",
+          "contactEmail": "n-utsumi@ra-net.co.jp",
+          "contactPhone": "080-6229-9341",
+          "status": "相手：電子契約サインバック待ち",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "cn92l7a6",
       "company": "株式会社UZUZ",
