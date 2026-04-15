@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-15T07:15:58.949Z",
+  "lastUpdated": "2026-04-15T09:52:57.627Z",
   "leads": [
+    {
+      "id": "yc324wew",
+      "company": "株式会社sizebook",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/15",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/15",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "齋藤",
+          "contactEmail": "akari.saito@sizebook.co.jp",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "awrl8xd2",
       "company": "株式会社シーエー・アドバンス",
