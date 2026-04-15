@@ -1,6 +1,41 @@
 {
-  "lastUpdated": "2026-04-14T08:42:07.746Z",
+  "lastUpdated": "2026-04-15T02:51:12.536Z",
   "leads": [
+    {
+      "id": "ixypt7cy",
+      "company": "テクノプロエンジニアリング社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/15",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/15",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "森",
+          "contactEmail": "mori.masashi@technopro.com",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/15",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "g2ghu1ka",
       "company": "イグニション・ポイントフォース株式会社",
@@ -4565,6 +4600,7 @@
     "Note記事代行",
     "TORERU",
     "Wantedly運用",
-    "アポネクト"
+    "アポネクト",
+    "成果報酬型求人ボックス運用"
   ]
 }
