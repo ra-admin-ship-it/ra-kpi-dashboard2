@@ -3127,6 +3127,18 @@ function countDealsFromLeadsMonthly(ym) {
   return counts;
 }
 
+// 各種日付フォーマットを "YYYY-MM-DD" に正規化（ソート用）
+function _parseLeadDate(s) {
+  if (!s) return "";
+  // "2026/04/15" or "2026-04-15"
+  let d = s.replace(/年/g,"/").replace(/月/g,"/").replace(/日/g,"").replace(/\(.*?\)/g,"").trim();
+  const parts = d.split(/[\/\-]/).map(Number);
+  if (parts.length === 3 && parts[0] > 1900) return `${parts[0]}-${String(parts[1]).padStart(2,"0")}-${String(parts[2]).padStart(2,"0")}`;
+  // "4/7" → 今年として扱う
+  if (parts.length === 2) return `${new Date().getFullYear()}-${String(parts[0]).padStart(2,"0")}-${String(parts[1]).padStart(2,"0")}`;
+  return s;
+}
+
 function _statusClass(s) {
   if (!s) return "st-hold";
   if (s.includes("完了")) return "st-done";
@@ -3158,8 +3170,10 @@ function renderLeads() {
     filtered = filtered.filter(l => (l.company||"").toLowerCase().includes(q));
   }
   // Sort (copy to avoid mutating original array)
+  const dateCols = new Set(["firstMeetingDate","lastContactDate","statusUpdatedAt"]);
   filtered = [...filtered].sort((a,b) => {
-    const va = a[leadsSortKey]||"", vb = b[leadsSortKey]||"";
+    let va = a[leadsSortKey]||"", vb = b[leadsSortKey]||"";
+    if (dateCols.has(leadsSortKey)) { va = _parseLeadDate(va); vb = _parseLeadDate(vb); }
     const cmp = va < vb ? -1 : va > vb ? 1 : 0;
     return leadsSortDir === "asc" ? cmp : -cmp;
   });
