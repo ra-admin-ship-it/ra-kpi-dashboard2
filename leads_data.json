@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-15T09:53:10.061Z",
+  "lastUpdated": "2026-04-15T11:27:57.120Z",
   "leads": [
+    {
+      "id": "48oa2r7p",
+      "company": " プロバイドグループ株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/3",
+      "status": "クラウドサイン送信済み（承認待ち）",
+      "statusUpdatedAt": "2026/04/15",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/3",
+          "contactPerson": "加藤様",
+          "contactEmail": "kato@prvd.jp",
+          "contactPhone": "",
+          "status": "クラウドサイン送信済み（承認待ち）",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "yc324wew",
       "company": "株式会社sizebook",
