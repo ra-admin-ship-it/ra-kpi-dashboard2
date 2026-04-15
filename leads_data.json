@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-15T09:52:57.627Z",
+  "lastUpdated": "2026-04-15T09:53:04.687Z",
   "leads": [
     {
       "id": "yc324wew",
@@ -45,7 +45,9 @@
           "nextAction": "",
           "remarks": ""
         }
-      ]
+      ],
+      "notionPageUrl": "https://www.notion.so/sizebook-343b442a2f5f818d8476ecacf1ca3c0e",
+      "notionPageId": "343b442a-2f5f-818d-8476-ecacf1ca3c0e"
     },
     {
       "id": "awrl8xd2",
