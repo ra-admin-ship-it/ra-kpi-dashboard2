@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T02:18:34.378Z",
+  "lastUpdated": "2026-04-17T02:18:49.586Z",
   "leads": [
     {
       "id": "48oa2r7p",
@@ -3987,30 +3987,6 @@
       "firstMeetingDate": "4/1(水)",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "",
-      "lastContactDate": "",
-      "nextAction": "",
-      "remarks": "",
-      "services": [
-        {
-          "name": "人材紹介",
-          "proposalDate": "",
-          "contactPerson": "",
-          "contactEmail": "",
-          "contactPhone": "",
-          "status": "",
-          "impression": "",
-          "nextAction": "",
-          "remarks": ""
-        }
-      ]
-    },
-    {
-      "id": "a1bbfb70",
-      "company": "株式会社sizebook",
-      "representative": "森",
-      "firstMeetingDate": "",
-      "status": "",
-      "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
