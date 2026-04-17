@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-17T04:07:27.779Z",
+  "lastUpdated": "2026-04-17T04:59:57.282Z",
   "leads": [
+    {
+      "id": "f28v2kae",
+      "company": "株式会社FUTU-RE",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/17",
+      "status": "ドラフト作成中",
+      "statusUpdatedAt": "2026/04/17",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "ドラフト作成中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "オートハント",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "48oa2r7p",
       "company": " プロバイドグループ株式会社",
