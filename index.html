@@ -3156,11 +3156,8 @@ let leadsSelected = new Set(); // 選択中のlead ID
 function _svcName(s) { return typeof s === "string" ? s : s?.name || ""; }
 function _svcNames(svcs) { return (svcs||[]).map(s => _svcName(s)); }
 
-function renderLeads() {
-  const el = document.getElementById("panel-leads");
-  if (!LEADS_DATA) { el.innerHTML = `<div class="sec"><div class="sec-body" style="text-align:center;padding:40px;color:var(--t3)">データ読み込み中...</div></div>`; return; }
-
-  const leads = LEADS_DATA.leads || [];
+function _getFilteredLeads() {
+  const leads = LEADS_DATA?.leads || [];
   let filtered = leads;
   if (leadsExcludeDone) filtered = filtered.filter(l => l.status !== "契約締結完了" && l.status !== "お見送り" && l.status !== "見送り・保留");
   if (leadsFilterStatus !== "all") filtered = filtered.filter(l => l.status === leadsFilterStatus);
@@ -3169,7 +3166,6 @@ function renderLeads() {
     const q = leadsSearchQuery.toLowerCase();
     filtered = filtered.filter(l => (l.company||"").toLowerCase().includes(q));
   }
-  // Sort (copy to avoid mutating original array)
   const dateCols = new Set(["firstMeetingDate","lastContactDate","statusUpdatedAt"]);
   filtered = [...filtered].sort((a,b) => {
     let va = a[leadsSortKey]||"", vb = b[leadsSortKey]||"";
@@ -3177,12 +3173,13 @@ function renderLeads() {
     const cmp = va < vb ? -1 : va > vb ? 1 : 0;
     return leadsSortDir === "asc" ? cmp : -cmp;
   });
+  return {leads, filtered};
+}
 
-  // ステータス選択肢: 契約締結完了を常に一番上に配置（フィルターで除外中でも変更できるように）
+function _buildLeadsRows() {
+  const {leads, filtered} = _getFilteredLeads();
   const allStatuses = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])];
   const statusOpts = ["契約締結完了", ...allStatuses.filter(s => s !== "契約締結完了")];
-  const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
-
   const rows = filtered.map(l => {
     const idx = leads.findIndex(x => x.id === l.id);
     const sc = _statusClass(l.status);
@@ -3208,6 +3205,18 @@ function renderLeads() {
       <td><button class="leads-del" title="削除" onclick="deleteLead(${idx})">✕</button></td>
     </tr>`;
   }).join("");
+  return {rows, filteredCount: filtered.length, totalCount: leads.length};
+}
+
+function renderLeads() {
+  const el = document.getElementById("panel-leads");
+  if (!LEADS_DATA) { el.innerHTML = `<div class="sec"><div class="sec-body" style="text-align:center;padding:40px;color:var(--t3)">データ読み込み中...</div></div>`; return; }
+
+  const {leads, filtered} = _getFilteredLeads();
+  const allStatuses = [...new Set([...LEAD_STATUSES, ...leads.map(l=>l.status).filter(Boolean)])];
+  const statusOpts = ["契約締結完了", ...allStatuses.filter(s => s !== "契約締結完了")];
+  const repSet = [...new Set(leads.map(l=>l.representative).filter(Boolean))];
+  const {rows, filteredCount, totalCount} = _buildLeadsRows();
 
   el.innerHTML = `
     <div class="sec">
@@ -3242,7 +3251,7 @@ function renderLeads() {
           <button class="leads-btn" onclick="saveLeadsToGitHub()">💾 保存</button>
           <span class="leads-save-indicator" id="leads-save-ind">✓ 保存しました</span>
           <button class="leads-btn" onclick="showPATModal()" style="font-size:11px" title="トークン設定">⚙</button>
-          <span class="leads-count">${filtered.length} / ${leads.length} 件</span>
+          <span class="leads-count" id="leads-count-label">${filteredCount} / ${totalCount} 件</span>
         </div>
         ${leadsSelected.size >= 2 ? `<div class="leads-merge-bar">
           <span>${leadsSelected.size}件選択中 — マージ先の企業名を選んで統合します</span>
@@ -3261,7 +3270,7 @@ function renderLeads() {
               <th class="sort-th${leadsSortKey==='lastContactDate'?' srt-active':''}" onclick="sortLeads('lastContactDate')">最終接点日<span class="leads-sort-ic">${leadsSortKey==='lastContactDate'?(leadsSortDir==='asc'?'▲':'▼'):'⇅'}</span></th>
               <th>次のアクション</th><th>備考</th><th></th>
             </tr></thead>
-            <tbody>${rows}</tbody>
+            <tbody id="leads-tbody">${rows}</tbody>
           </table>
         </div>
       </div>
@@ -3269,15 +3278,22 @@ function renderLeads() {
 }
 
 let _leadsDebounceTimer = null;
-let _leadsComposing = false; // IME変換中フラグ
+let _leadsComposing = false;
 function renderLeadsDebounced() {
-  if (_leadsComposing) return; // IME変換中は何もしない
+  if (_leadsComposing) return;
   clearTimeout(_leadsDebounceTimer);
   _leadsDebounceTimer = setTimeout(() => {
     if (_leadsComposing) return;
-    renderLeads();
-    const inp = document.getElementById("leads-search-input");
-    if (inp) { inp.focus(); inp.selectionStart = inp.selectionEnd = inp.value.length; }
+    // テーブル本体だけ更新（検索ボックスのDOMは触らない）
+    const tbody = document.getElementById("leads-tbody");
+    const countEl = document.getElementById("leads-count-label");
+    if (tbody) {
+      const {rows, filteredCount, totalCount} = _buildLeadsRows();
+      tbody.innerHTML = rows;
+      if (countEl) countEl.textContent = `${filteredCount} / ${totalCount} 件`;
+    } else {
+      renderLeads();
+    }
   }, 300);
 }
 
