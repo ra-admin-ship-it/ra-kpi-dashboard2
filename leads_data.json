@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-17T06:37:22.254Z",
+  "lastUpdated": "2026-04-17T08:03:33.608Z",
   "leads": [
+    {
+      "id": "t0apmee9",
+      "company": "株式会社キャリアリンク",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/17",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/17",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "求人ボックス",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "017ugi4k",
       "company": "カレント自動車株式会社",
