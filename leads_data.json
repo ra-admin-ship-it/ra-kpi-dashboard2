@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-17T05:57:38.003Z",
+  "lastUpdated": "2026-04-17T06:37:17.920Z",
   "leads": [
+    {
+      "id": "017ugi4k",
+      "company": "カレント自動車株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/17",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/17",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "lvv1vvft",
       "company": "フューチャー・アンティークス株式会社",
