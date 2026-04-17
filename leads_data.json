@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T05:57:14.172Z",
+  "lastUpdated": "2026-04-17T05:57:31.482Z",
   "leads": [
     {
       "id": "lvv1vvft",
@@ -29,7 +29,7 @@
           "contactPerson": "",
           "contactEmail": "",
           "contactPhone": "",
-          "status": "",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
@@ -40,7 +40,7 @@
           "contactPerson": "",
           "contactEmail": "",
           "contactPhone": "",
-          "status": "",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
