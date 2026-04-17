@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-17T02:18:49.586Z",
+  "lastUpdated": "2026-04-17T02:19:45.930Z",
   "leads": [
     {
       "id": "48oa2r7p",
@@ -9,7 +9,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/16",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
@@ -4036,7 +4036,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
@@ -4060,7 +4060,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
