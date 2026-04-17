@@ -3226,7 +3226,7 @@ function renderLeads() {
       <div class="sec-body">
         <div class="leads-toolbar">
           <input class="leads-search" id="leads-search-input" type="text" placeholder="企業名で検索..." value="${_esc(leadsSearchQuery)}"
-            oninput="leadsSearchQuery=this.value;renderLeadsDebounced()"
+            oninput="if(!_leadsComposing){leadsSearchQuery=this.value;renderLeadsDebounced()}"
             oncompositionstart="_leadsComposing=true"
             oncompositionend="_leadsComposing=false;leadsSearchQuery=this.value;renderLeadsDebounced()">
           <label class="leads-excl"><input type="checkbox" ${leadsExcludeDone?"checked":""} onchange="leadsExcludeDone=this.checked;renderLeads()">締結完了・見送りを除く</label>
