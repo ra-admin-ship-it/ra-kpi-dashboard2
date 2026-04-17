@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-17T04:59:57.282Z",
+  "lastUpdated": "2026-04-17T05:56:52.132Z",
   "leads": [
+    {
+      "id": "lvv1vvft",
+      "company": "フューチャー・アンティークス株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/17",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/17",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "石原様",
+          "contactEmail": "y.ishihara@futureantiques.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/17",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "f28v2kae",
       "company": "株式会社FUTU-RE",
