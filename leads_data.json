@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-16T02:14:05.390Z",
+  "lastUpdated": "2026-04-17T02:18:34.378Z",
   "leads": [
     {
       "id": "48oa2r7p",
@@ -34,7 +34,7 @@
       "firstMeetingDate": "2026/04/15",
       "status": "先方リーガルチェック中",
       "statusUpdatedAt": "2026/04/15",
-      "lastContactDate": "",
+      "lastContactDate": "4/15",
       "nextAction": "",
       "remarks": "",
       "services": [
@@ -212,7 +212,7 @@
       "firstMeetingDate": "2026/04/15",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/15",
-      "lastContactDate": "",
+      "lastContactDate": "4/15",
       "nextAction": "",
       "remarks": "",
       "services": [
@@ -260,7 +260,7 @@
       "firstMeetingDate": "2026/04/15",
       "status": "先方リーガルチェック中",
       "statusUpdatedAt": "2026/04/15",
-      "lastContactDate": "",
+      "lastContactDate": "4/15",
       "nextAction": "",
       "remarks": "",
       "services": [
@@ -321,7 +321,7 @@
       "firstMeetingDate": "2026/04/14",
       "status": "先方リーガルチェック中",
       "statusUpdatedAt": "2026/04/14",
-      "lastContactDate": "",
+      "lastContactDate": "4/14",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡hashimoto@midorieng.co.jp",
       "services": [
