@@ -22,6 +22,7 @@ import os
 import csv
 import io
 import json
+import subprocess
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone, timedelta
@@ -291,7 +292,38 @@ def main():
     print(f"  自社           : {st.get('own', 0)}")
     print(f"  企業数         : {len(companies)}")
 
+    git_push(now)
     print(f"\n[完了] {datetime.now(JST).strftime('%Y-%m-%d %H:%M:%S JST')}")
+
+
+def git_push(now: datetime):
+    """applications_data.json を git add → commit → push する。"""
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    date_str  = now.strftime("%Y-%m-%d")
+    msg       = f"auto: update applications {date_str}"
+    try:
+        subprocess.run(["git", "-C", repo_dir, "add", "applications_data.json"],
+                       check=True, capture_output=True)
+        result = subprocess.run(["git", "-C", repo_dir, "diff", "--cached", "--quiet"],
+                                capture_output=True)
+        if result.returncode == 0:
+            print("  ℹ️  applications_data.json に変更なし。git push をスキップしました")
+            return
+        subprocess.run(["git", "-C", repo_dir, "commit", "-m", msg],
+                       check=True, capture_output=True)
+        for attempt in range(3):
+            try:
+                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "origin", "main"],
+                               check=True, capture_output=True)
+                subprocess.run(["git", "-C", repo_dir, "push", "origin", "main"],
+                               check=True, capture_output=True)
+                print(f"  🚀 GitHub へ push 完了: {msg}")
+                return
+            except subprocess.CalledProcessError:
+                if attempt < 2: continue
+                raise
+    except subprocess.CalledProcessError as e:
+        print(f"  ⚠️  git push 失敗（ローカルは更新済み）: {e.stderr.decode(errors='replace').strip()}")
 
 
 if __name__ == "__main__":

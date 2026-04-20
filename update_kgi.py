@@ -266,9 +266,17 @@ def git_push(now: datetime):
             return
         subprocess.run(["git", "-C", repo_dir, "commit", "-m", msg],
                        check=True, capture_output=True)
-        subprocess.run(["git", "-C", repo_dir, "push"],
-                       check=True, capture_output=True)
-        print(f"  🚀 GitHub へ push 完了: {msg}")
+        for attempt in range(3):
+            try:
+                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "origin", "main"],
+                               check=True, capture_output=True)
+                subprocess.run(["git", "-C", repo_dir, "push", "origin", "main"],
+                               check=True, capture_output=True)
+                print(f"  🚀 GitHub へ push 完了: {msg}")
+                return
+            except subprocess.CalledProcessError:
+                if attempt < 2: continue
+                raise
     except subprocess.CalledProcessError as e:
         print(f"  ⚠️  git push 失敗（ローカルは更新済み）: {e.stderr.decode(errors='replace').strip()}")
 
