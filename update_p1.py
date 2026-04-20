@@ -415,7 +415,7 @@ def git_push(now: datetime):
         # pull --rebase してからpush（他からの更新との競合を回避）
         for attempt in range(3):
             try:
-                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "origin", "main"],
+                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "--autostash", "origin", "main"],
                                check=True, capture_output=True)
                 subprocess.run(["git", "-C", repo_dir, "push", "origin", "main"],
                                check=True, capture_output=True)

@@ -268,7 +268,7 @@ def git_push(now: datetime):
                        check=True, capture_output=True)
         for attempt in range(3):
             try:
-                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "origin", "main"],
+                subprocess.run(["git", "-C", repo_dir, "pull", "--rebase", "--autostash", "origin", "main"],
                                check=True, capture_output=True)
                 subprocess.run(["git", "-C", repo_dir, "push", "origin", "main"],
                                check=True, capture_output=True)
