@@ -1,6 +1,54 @@
 {
-  "lastUpdated": "2026-04-20T06:28:16.898Z",
+  "lastUpdated": "2026-04-20T07:56:34.680Z",
   "leads": [
+    {
+      "id": "sg2htdoo",
+      "company": "ゴーワイス株式会社",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/20",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/20",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/20",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/20",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/20",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/348b442a2f5f81d0bd03d40d9550ad23",
+      "notionPageId": "348b442a-2f5f-81d0-bd03-d40d9550ad23"
+    },
     {
       "id": "qe7qnl8o",
       "company": "株式会社ファジー・アド・オフィス",
