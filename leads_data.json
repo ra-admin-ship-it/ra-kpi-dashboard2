@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-17T08:03:33.608Z",
+  "lastUpdated": "2026-04-20T05:26:13.236Z",
   "leads": [
+    {
+      "id": "sz0mhml6",
+      "company": "株式会社エコー",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/20",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/20",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/20",
+          "contactPerson": "田中様",
+          "contactEmail": "d-tanaka@y-echo.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "t0apmee9",
       "company": "株式会社キャリアリンク",
