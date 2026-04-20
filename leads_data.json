@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-20T07:57:05.992Z",
+  "lastUpdated": "2026-04-20T08:53:59.792Z",
   "leads": [
+    {
+      "id": "awp8mmdm",
+      "company": "株式会社TERAZ",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/20",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/20",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/20",
+          "contactPerson": " 波田野",
+          "contactEmail": "hatano-t@teraz.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "sg2htdoo",
       "company": "ゴーワイス株式会社",
