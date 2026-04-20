@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-20T07:56:35.800Z",
+  "lastUpdated": "2026-04-20T07:57:05.992Z",
   "leads": [
     {
       "id": "sg2htdoo",
@@ -29,7 +29,7 @@
           "contactPerson": "",
           "contactEmail": "",
           "contactPhone": "",
-          "status": "",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
@@ -40,7 +40,18 @@
           "contactPerson": "",
           "contactEmail": "",
           "contactPhone": "",
-          "status": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "TORERU",
+          "proposalDate": "2026/04/20",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
