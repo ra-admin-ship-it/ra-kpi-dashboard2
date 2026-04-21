@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-21T06:37:45.927Z",
+  "lastUpdated": "2026-04-21T07:18:32.337Z",
   "leads": [
+    {
+      "id": "w3e7289f",
+      "company": " 株式会社MCクラフト",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/21",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/21",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/21",
+          "contactPerson": "池田様",
+          "contactEmail": "ikeda@mc-craft.net",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/21",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "セカオピ",
+          "proposalDate": "2026/04/21",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "201om4bv",
       "company": "RePath株式会社",
