@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-04-20T08:54:43.841Z",
+  "lastUpdated": "2026-04-21T04:13:31.859Z",
   "leads": [
     {
       "id": "awp8mmdm",
       "company": "株式会社TERAZ",
       "representative": "森",
       "firstMeetingDate": "2026/04/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/20",
+      "status": "相手：電子契約サインバック待ち",
+      "statusUpdatedAt": "2026/04/21",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
