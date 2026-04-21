@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-04-21T04:13:48.246Z",
+  "lastUpdated": "2026-04-21T06:37:25.056Z",
   "leads": [
+    {
+      "id": "201om4bv",
+      "company": "RePath株式会社",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/21",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/21",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/21",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/RePath-349b442a2f5f816c97d9e6f1376c8c77",
+      "notionPageId": "349b442a-2f5f-816c-97d9-e6f1376c8c77"
+    },
     {
       "id": "awp8mmdm",
       "company": "株式会社TERAZ",
