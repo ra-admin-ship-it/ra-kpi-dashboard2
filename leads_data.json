@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-21T07:18:41.337Z",
+  "lastUpdated": "2026-04-22T06:15:55.054Z",
   "leads": [
+    {
+      "id": "xs2cch64",
+      "company": "エースポイントシステムズ株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/22",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/22",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/22",
+          "contactPerson": "伊東様",
+          "contactEmail": "ito@acepoint.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "w3e7289f",
       "company": " 株式会社MCクラフト",
