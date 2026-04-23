@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-04-23T02:57:22.177Z",
+  "lastUpdated": "2026-04-23T04:19:00.398Z",
   "leads": [
+    {
+      "id": "1x9ltznv",
+      "company": "株式会社ギークリー",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/23",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/23",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/23",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/34bb442a2f5f81c393c9d77a71a0388e",
+      "notionPageId": "34bb442a-2f5f-81c3-93c9-d77a71a0388e"
+    },
     {
       "id": "8b3lx936",
       "company": "ヤシマ工業株式会社",
