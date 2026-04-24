@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-23T04:19:06.132Z",
+  "lastUpdated": "2026-04-24T03:28:41.272Z",
   "leads": [
+    {
+      "id": "bvszz65x",
+      "company": "株式会社オレンジハウス",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/24",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/24",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/24",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "1x9ltznv",
       "company": "株式会社ギークリー",
