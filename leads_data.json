@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:37:51.094Z",
+  "lastUpdated": "2026-04-27T02:39:27.289Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -60,7 +60,7 @@
       "firstMeetingDate": "2026/04/24",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/24",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/24",
       "nextAction": "",
       "remarks": "y-mori@partage.jp➡ecruit@orangehouse.co.jp",
       "services": [
@@ -112,7 +112,7 @@
       "firstMeetingDate": "2026/04/23",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/23",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/23",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡\trecruit@yashima-re.co.jp",
       "services": [
@@ -160,7 +160,7 @@
       "firstMeetingDate": "2026/04/22",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/22",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/22",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡ito@acepoint.co.jp",
       "services": [
@@ -186,7 +186,7 @@
       "firstMeetingDate": "2026/04/21",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/21",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/24",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡ikeda@mc-craft.net",
       "services": [
@@ -393,7 +393,7 @@
       "firstMeetingDate": "2026/04/20",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/04/20",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/20",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡d-tanaka@y-echo.co.jp",
       "services": [
@@ -467,7 +467,7 @@
       "statusUpdatedAt": "2026/04/21",
       "lastContactDate": "",
       "nextAction": "",
-      "remarks": "",
+      "remarks": "y-mori@job-palette.co.jp➡agent@currentmotor.co.jp",
       "services": [
         {
           "name": "人材紹介",
