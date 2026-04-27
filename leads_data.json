@@ -1,15 +1,15 @@
 {
-  "lastUpdated": "2026-04-27T01:47:58.520Z",
+  "lastUpdated": "2026-04-27T01:48:27.148Z",
   "leads": [
     {
       "id": "nqqwxxlj",
       "company": "コア・イノベーション株式会社",
       "representative": "森",
       "firstMeetingDate": "2026/04/27",
-      "status": "商談済み・提案中",
+      "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ➡種田さんが締結してきた➡推薦方法確認",
       "remarks": "",
       "services": [
         {
