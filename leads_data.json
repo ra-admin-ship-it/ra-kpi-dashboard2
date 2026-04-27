@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-27T01:48:27.148Z",
+  "lastUpdated": "2026-04-27T01:52:05.872Z",
   "leads": [
+    {
+      "id": "oix9egj6",
+      "company": "レジリエント株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/22",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/22",
+          "contactPerson": "江崎様",
+          "contactEmail": "junichi.esaki@resilient.jp",
+          "contactPhone": "",
+          "status": "先方リーガルチェック中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "nqqwxxlj",
       "company": "コア・イノベーション株式会社",
