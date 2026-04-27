@@ -1,6 +1,43 @@
 {
-  "lastUpdated": "2026-04-27T05:02:46.172Z",
+  "lastUpdated": "2026-04-27T05:04:32.295Z",
   "leads": [
+    {
+      "id": "zu457rty",
+      "company": "ゴーワイズ株式会社",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/20",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "鬼塚涼子",
+          "contactEmail": "ryoko@gowise.co.jp",
+          "contactPhone": "",
+          "status": "ドラフト送付済み",
+          "impression": "",
+          "nextAction": "追いメール：4/27",
+          "remarks": ""
+        },
+        {
+          "name": "成果報酬型求人ボックス運用",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/34fb442a2f5f81bc8b52f4831ce9f200",
+      "notionPageId": "34fb442a-2f5f-81bc-8b52-f4831ce9f200"
+    },
     {
       "id": "m5lwj9cg",
       "company": "株式会社Ai TRUST",
@@ -454,7 +491,7 @@
       "firstMeetingDate": "2026/04/20",
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/27",
-      "lastContactDate": "",
+      "lastContactDate": "2026/4/24",
       "nextAction": "",
       "remarks": "",
       "services": [
