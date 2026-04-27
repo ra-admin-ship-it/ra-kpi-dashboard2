@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:54:12.299Z",
+  "lastUpdated": "2026-04-27T02:55:49.269Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -611,8 +611,8 @@
       "firstMeetingDate": "2026/04/15",
       "status": "先方リーガルチェック中",
       "statusUpdatedAt": "2026/04/15",
-      "lastContactDate": "4/15",
-      "nextAction": "",
+      "lastContactDate": "2026/04/27",
+      "nextAction": "追いメール実施",
       "remarks": "",
       "services": [
         {
