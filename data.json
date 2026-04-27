@@ -167,10 +167,14 @@
       "3": {
         "森": 21,
         "山本": 21
+      },
+      "4": {
+        "森": 34,
+        "浅沼": 69
       }
     }
   },
-  "lastUpdated": "2026-04-20T12:35:14+09:00",
+  "lastUpdated": "2026-04-27T11:18:31+09:00",
   "source": "Google Spreadsheet (Claude Code scheduled)",
   "members": [
     "森",
