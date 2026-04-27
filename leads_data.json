@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:35:51.239Z",
+  "lastUpdated": "2026-04-27T02:37:51.094Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -395,7 +395,7 @@
       "statusUpdatedAt": "2026/04/20",
       "lastContactDate": "",
       "nextAction": "",
-      "remarks": "",
+      "remarks": "y-mori@job-palette.co.jp➡d-tanaka@y-echo.co.jp",
       "services": [
         {
           "name": "人材紹介",
@@ -472,8 +472,8 @@
         {
           "name": "人材紹介",
           "proposalDate": "2026/04/17",
-          "contactPerson": "",
-          "contactEmail": "",
+          "contactPerson": "吉原様",
+          "contactEmail": "agent@currentmotor.co.jp",
           "contactPhone": "",
           "status": "先方リーガルチェック中",
           "impression": "",
