@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T01:54:54.189Z",
+  "lastUpdated": "2026-04-27T02:31:18.275Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -9,7 +9,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
@@ -992,7 +992,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1019,7 +1019,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1046,7 +1046,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1073,7 +1073,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1181,7 +1181,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/07/15",
       "lastContactDate": "2025/07/15",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1235,7 +1235,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/07/22",
       "lastContactDate": "2025/07/22",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "25日までに回答を頂く。"
     },
     {
@@ -1262,7 +1262,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/07/25",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1289,7 +1289,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/07/23",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1343,7 +1343,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/09/04",
       "lastContactDate": "2025/09/04",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "クラウドサイン送付済み"
     },
     {
@@ -1370,7 +1370,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/08/27",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1424,7 +1424,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/09/12",
       "lastContactDate": "2025/09/12",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1451,7 +1451,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/08/26",
       "lastContactDate": "2025/08/26",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "相手のドラフトリーガルチェック"
     },
     {
@@ -1505,7 +1505,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/10/07",
       "lastContactDate": "2025/10/07",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "ドラフト来たので確認OKと返信済み"
     },
     {
@@ -1824,7 +1824,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/09/18",
       "lastContactDate": "2025/09/18",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1878,7 +1878,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/10/03",
       "lastContactDate": "2025/10/03",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -1905,7 +1905,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/10/02",
       "lastContactDate": "2025/10/02",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2175,7 +2175,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/10/22",
       "lastContactDate": "2025/10/22",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2229,7 +2229,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/10/22",
       "lastContactDate": "2025/10/22",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "ドラフト待ち"
     },
     {
@@ -2256,7 +2256,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/10/28",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2310,7 +2310,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/11/10",
       "lastContactDate": "2025/11/10",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2337,7 +2337,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/11/12",
       "lastContactDate": "2025/11/12",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "fujioka-shohei@lc.lline-group.co.jpへ送付➡y-mori@partage.jpから"
     },
     {
@@ -2364,7 +2364,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/11/12",
       "lastContactDate": "2025/11/12",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "t-murakami@hr-provision.jpへ送付➡y-mori@partage.jpから"
     },
     {
@@ -2391,7 +2391,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/11/12",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "契約締結は成約時にするため推薦可能"
     },
     {
@@ -2445,7 +2445,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/11/18",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "営業職募集：y-mori@partage.jpから"
     },
     {
@@ -2472,7 +2472,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/11/20",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2499,7 +2499,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/11/20",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2526,7 +2526,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/11/20",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jpから11月21日に送付：recruit@feat-inc.comあて"
     },
     {
@@ -2580,7 +2580,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/12/04",
       "lastContactDate": "2025/12/04",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jpから11月25日に送付：r_azuma@multi-tec.co.jpあて"
     },
     {
@@ -2661,7 +2661,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/11/25",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jpから11月25日に送付：wakao@rftecnica.comあて"
     },
     {
@@ -2688,7 +2688,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2025/12/11",
       "lastContactDate": "2025/12/11",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2742,7 +2742,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2025/12/10",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡sakai@grd.inc"
     },
     {
@@ -2769,7 +2769,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/10",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "saiyokikaku@openupitengineer.co.jp"
     },
     {
@@ -2796,7 +2796,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/10",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡mai_kondo@ryuuss.com"
     },
     {
@@ -2823,7 +2823,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/18",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡a.suzumasa@conterreno.jp"
     },
     {
@@ -2850,7 +2850,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/01/19",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡sawada-nami@yo-ko-o.com"
     },
     {
@@ -2877,7 +2877,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/19",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2904,7 +2904,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/19",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -2931,7 +2931,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2025/12/25",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡y.washio@bond-tsunagu.com"
     },
     {
@@ -2996,7 +2996,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/01/19",
       "lastContactDate": "2026/01/19",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -3023,7 +3023,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2026/01/21",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡mitsuyuki.kudo@willof.co.jp"
     },
     {
@@ -3050,7 +3050,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2026/01/23",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡ecoringhd-saiyo@eco-ring.com"
     },
     {
@@ -3266,7 +3266,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/02/05",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡takeru_satou@leopalace21.com"
     },
     {
@@ -3320,7 +3320,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/03/09",
       "lastContactDate": "2026/03/09",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "電子契約送付待ち"
     },
     {
@@ -3374,7 +3374,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2026/02/17",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡t_fujita@veritas-investment.co.jp"
     },
     {
@@ -3504,7 +3504,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/02/20",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "ウロコの早川さんから紹介\ny-mori@job-palette.co.jp➡n.hayakawa@uloqo.net"
     },
     {
@@ -3531,7 +3531,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/03/09",
       "lastContactDate": "2026/03/09",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡seiya-sennai@yamatozaitaku.com"
     },
     {
@@ -3612,7 +3612,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "",
       "lastContactDate": "2026/02/26",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡k-noguchi@syakourental.com"
     },
     {
@@ -3693,7 +3693,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/03/09",
       "lastContactDate": "2026/03/09",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡hanshin3@e-higashi.co.jp"
     },
     {
@@ -3720,7 +3720,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/03/09",
       "lastContactDate": "2026/03/09",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡takeshi.kajio@mirairo.co.jp"
     },
     {
@@ -4368,7 +4368,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/3/11",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡chinatsu.ikeda@kotora.jp"
     },
     {
@@ -4395,7 +4395,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/3/13",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -4422,7 +4422,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "2026/3/13",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": ""
     },
     {
@@ -4805,7 +4805,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -4877,7 +4877,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -4949,7 +4949,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -5237,7 +5237,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/13",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
