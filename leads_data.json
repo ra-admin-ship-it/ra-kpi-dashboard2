@@ -1,6 +1,89 @@
 {
-  "lastUpdated": "2026-04-27T04:45:12.073Z",
+  "lastUpdated": "2026-04-27T04:51:14.353Z",
   "leads": [
+    {
+      "id": "9srq9icd",
+      "company": "豊四季不動産",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/24",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "4/27",
+      "nextAction": "リーガルチェック",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "相手：ドラフトリーガルチェック",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "オートハント",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "トスアップ",
+          "remarks": ""
+        }
+      ]
+    },
+    {
+      "id": "wa8kpu1m",
+      "company": "キャリアナビゲーション",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/24",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "2026/4/24",
+      "nextAction": "追いメール：4/29",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/24",
+          "contactPerson": "伊豫田",
+          "contactEmail": "t.iyoda@career-navigation.co.jp",
+          "contactPhone": "",
+          "status": "ドラフト送付済み",
+          "impression": "",
+          "nextAction": "追いメール4/29",
+          "remarks": ""
+        }
+      ]
+    },
+    {
+      "id": "n42qbzuh",
+      "company": "(新規)",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "oix9egj6",
       "company": "レジリエント株式会社",
@@ -184,8 +267,8 @@
       "company": " 株式会社MCクラフト",
       "representative": "森",
       "firstMeetingDate": "2026/04/21",
-      "status": "相手：電子契約サインバック待ち",
-      "statusUpdatedAt": "2026/04/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/21",
       "lastContactDate": "2026/04/24",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡ikeda@mc-craft.net",
@@ -391,8 +474,8 @@
       "company": "株式会社エコー",
       "representative": "森",
       "firstMeetingDate": "2026/04/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/20",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/04/20",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡d-tanaka@y-echo.co.jp",
@@ -417,10 +500,10 @@
       "company": "株式会社キャリアリンク",
       "representative": "浅沼",
       "firstMeetingDate": "2026/04/17",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/17",
-      "lastContactDate": "",
-      "nextAction": "",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "2026/4/24",
+      "nextAction": "後追い中。再TELかける",
       "remarks": "",
       "services": [
         {
@@ -837,8 +920,8 @@
       "firstMeetingDate": "2026/04/15",
       "status": "先方リーガルチェック中",
       "statusUpdatedAt": "2026/04/15",
-      "lastContactDate": "2026/04/27",
-      "nextAction": "契約締結方法連絡済み",
+      "lastContactDate": "4/15",
+      "nextAction": "",
       "remarks": "",
       "services": [
         {
@@ -2550,10 +2633,10 @@
       "draftSentDate": "2025/11/21",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "お見送り",
-      "statusUpdatedAt": "2026/04/27",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2025/12/01",
       "lastContactDate": "2026/4/27",
-      "nextAction": "担当者のメールアドレスが不通になった",
+      "nextAction": "追いメール実施",
       "remarks": "y-mori@job-palette.co.jpから11月21日に送付：eriko.yamamoto.7039@visioncareer.co.jpあて"
     },
     {
@@ -2958,7 +3041,7 @@
       "status": "相手：ドラフトリーガルチェック",
       "statusUpdatedAt": "",
       "lastContactDate": "2026/4/27",
-      "nextAction": "",
+      "nextAction": "追いメール実施",
       "remarks": "y-mori@job-palette.co.jp➡keisuke.suzuki@hrtechnologies-inc.com"
     },
     {
