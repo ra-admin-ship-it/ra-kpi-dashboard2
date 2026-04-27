@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:54:02.054Z",
+  "lastUpdated": "2026-04-27T02:54:12.299Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -4828,8 +4828,8 @@
       "company": "株式会社uloqo",
       "representative": "森",
       "firstMeetingDate": "2026/03/26",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
