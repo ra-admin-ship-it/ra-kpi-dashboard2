@@ -1,6 +1,54 @@
 {
-  "lastUpdated": "2026-04-27T02:55:49.269Z",
+  "lastUpdated": "2026-04-27T04:32:50.809Z",
   "leads": [
+    {
+      "id": "wa8kpu1m",
+      "company": "キャリアナビゲーション",
+      "representative": "浅沼",
+      "firstMeetingDate": "2026/04/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/24",
+          "contactPerson": "伊豫田",
+          "contactEmail": "t.iyoda@career-navigation.co.jp",
+          "contactPhone": "",
+          "status": "ドラフト送付済み",
+          "impression": "",
+          "nextAction": "追いメール4/29",
+          "remarks": ""
+        }
+      ]
+    },
+    {
+      "id": "n42qbzuh",
+      "company": "(新規)",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "oix9egj6",
       "company": "レジリエント株式会社",
@@ -391,8 +439,8 @@
       "company": "株式会社エコー",
       "representative": "森",
       "firstMeetingDate": "2026/04/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/20",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/04/20",
       "nextAction": "",
       "remarks": "y-mori@job-palette.co.jp➡d-tanaka@y-echo.co.jp",
@@ -417,10 +465,10 @@
       "company": "株式会社キャリアリンク",
       "representative": "浅沼",
       "firstMeetingDate": "2026/04/17",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/17",
-      "lastContactDate": "",
-      "nextAction": "",
+      "status": "先方リーガルチェック中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "2026/4/24",
+      "nextAction": "後追い中。再TELかける",
       "remarks": "",
       "services": [
         {
