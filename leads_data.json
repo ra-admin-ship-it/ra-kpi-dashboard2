@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:39:43.090Z",
+  "lastUpdated": "2026-04-27T02:45:56.682Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -4527,8 +4527,8 @@
       "draftSentDate": "",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：その他書類送付待ち",
-      "statusUpdatedAt": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/3/24",
       "nextAction": "",
       "remarks": ""
@@ -4586,8 +4586,8 @@
       "company": "ビジコネット株式会社",
       "representative": "森",
       "firstMeetingDate": "3/31(火)",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
@@ -4684,9 +4684,9 @@
       "firstMeetingDate": "2026/04/01",
       "status": "相手：その他書類送付待ち",
       "statusUpdatedAt": "",
-      "lastContactDate": "",
+      "lastContactDate": "2026/04/27",
       "nextAction": "",
-      "remarks": "",
+      "remarks": "y-mori@partage.jp➡ken.kamiguchi@givery.co.jp",
       "services": [
         {
           "name": "人材紹介",
