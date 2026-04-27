@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T02:45:56.682Z",
+  "lastUpdated": "2026-04-27T02:46:14.002Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -1475,8 +1475,8 @@
       "draftSentDate": "",
       "contractSentDate": "2025/08/29",
       "contractSignedDate": "",
-      "status": "相手：原本捺印及び返送待ち",
-      "statusUpdatedAt": "2025/08/04",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2025/08/04",
       "nextAction": "",
       "remarks": "原本対応"
@@ -2415,8 +2415,8 @@
       "draftSentDate": "2025/11/18",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2025/11/18",
       "nextAction": "",
       "remarks": "y-mori@partage.jpからメール"
