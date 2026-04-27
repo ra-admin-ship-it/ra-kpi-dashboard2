@@ -1433,8 +1433,12 @@ function renderWeekly() {
     AZ:           Object.fromEntries(MEMBERS.map(m => [m, Math.round((targets.p2?.AZ?.[m]         || 0) * wf)])),
   };
 
-  // 商談実施数は leads_data.json の firstMeetingDate から集計
-  const leadsDeals = countDealsFromLeads(curMonth, curWeek);
+  // 商談実施数 = leads_data.json集計 + 手動調整(p1.商談数)
+  const leadsDealsBase = countDealsFromLeads(curMonth, curWeek);
+  const leadsDeals = {};
+  MEMBERS.forEach(m => {
+    leadsDeals[m] = (leadsDealsBase[m] || 0) + (p1.商談数?.[m] || 0);
+  });
   const tApo       = sum(p1.アポイント数);
   const tDeals     = sum(leadsDeals);
   const tContracts = sum(p1.契約締結数);
@@ -1529,7 +1533,11 @@ function renderMonthly() {
 
   const tgt = md.targets;
   const cAZ  = cumul(md, "AZ", "p2");
-  const cD   = countDealsFromLeadsMonthly(curMonth); // leads_data.json から
+  // 商談実施数 = leads_data.json集計 + 手動調整(全週合計)
+  const cDBase = countDealsFromLeadsMonthly(curMonth);
+  const cDManual = cumul(md, "商談数", "p1");
+  const cD   = {};
+  MEMBERS.forEach(m => { cD[m] = (cDBase[m] || 0) + (cDManual[m] || 0); });
   const cC   = cumul(md, "契約締結数", "p1");
   const cA   = cumul(md, "アポイント数", "p1");
 
