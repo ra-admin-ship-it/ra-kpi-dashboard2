@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-04-24T03:28:51.159Z",
+  "lastUpdated": "2026-04-27T01:47:47.614Z",
   "leads": [
+    {
+      "id": "nqqwxxlj",
+      "company": "コア・イノベーション株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/04/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/27",
+          "contactPerson": "原田",
+          "contactEmail": "recruit@karasawanouki.co.jp",
+          "contactPhone": "",
+          "status": "契約締結完了",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "bvszz65x",
       "company": "株式会社オレンジハウス",
@@ -206,10 +230,10 @@
       "company": "株式会社TERAZ",
       "representative": "森",
       "firstMeetingDate": "2026/04/20",
-      "status": "相手：電子契約サインバック待ち",
-      "statusUpdatedAt": "2026/04/21",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -4561,7 +4585,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -4585,7 +4609,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/14",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
