@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T01:53:20.690Z",
+  "lastUpdated": "2026-04-27T01:54:54.189Z",
   "leads": [
     {
       "id": "oix9egj6",
@@ -3828,7 +3828,7 @@
       "status": "相手：ドラフトリーガルチェック",
       "statusUpdatedAt": "2026/03/09",
       "lastContactDate": "2026/03/09",
-      "nextAction": "",
+      "nextAction": "リーガルチェック中から返答なし➡浅沼さんに引継ぎ済み。担当者が種田さんの知人。",
       "remarks": ""
     },
     {
@@ -3879,8 +3879,8 @@
       "draftSentDate": "2026年2月22日",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "2026/03/09",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/03/09",
       "nextAction": "",
       "remarks": ""
@@ -3933,8 +3933,8 @@
       "draftSentDate": "2026年2月18日",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "2026/03/09",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/03/09",
       "nextAction": "",
       "remarks": ""
@@ -4068,8 +4068,8 @@
       "draftSentDate": "2026年2月20日",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "2026/03/09",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/03/09",
       "nextAction": "",
       "remarks": ""
@@ -4095,8 +4095,8 @@
       "draftSentDate": "提案まで行かず",
       "contractSentDate": "",
       "contractSignedDate": "",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "2026/03/09",
+      "status": "お見送り",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "2026/03/09",
       "nextAction": "",
       "remarks": ""
