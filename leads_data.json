@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T04:59:22.857Z",
+  "lastUpdated": "2026-04-27T05:02:46.172Z",
   "leads": [
     {
       "id": "m5lwj9cg",
@@ -8,8 +8,8 @@
       "firstMeetingDate": "2026/04/22",
       "status": "ドラフト送付済み",
       "statusUpdatedAt": "2026/04/27",
-      "lastContactDate": "",
-      "nextAction": "",
+      "lastContactDate": "2026/4/23",
+      "nextAction": "追いメール：4/28",
       "remarks": "",
       "services": [
         {
@@ -341,10 +341,10 @@
       "company": "RePath株式会社",
       "representative": "浅沼",
       "firstMeetingDate": "2026/04/21",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/21",
-      "lastContactDate": "",
-      "nextAction": "",
+      "status": "自社：契約書ドラフト作成",
+      "statusUpdatedAt": "2026/04/27",
+      "lastContactDate": "2026/4/24",
+      "nextAction": "ドラフト修正・再送4/27",
       "remarks": "",
       "services": [
         {
@@ -452,8 +452,8 @@
       "company": "株式会社ファジー・アド・オフィス",
       "representative": "浅沼",
       "firstMeetingDate": "2026/04/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/20",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
       "nextAction": "",
       "remarks": "",
@@ -464,7 +464,7 @@
           "contactPerson": "",
           "contactEmail": "",
           "contactPhone": "",
-          "status": "",
+          "status": "契約締結完了",
           "impression": "",
           "nextAction": "",
           "remarks": ""
