@@ -339,22 +339,22 @@
     },
     "selection": {
       "書類通過数": {
-        "actual": 103
+        "actual": 139
       },
       "一次面接数": {
-        "actual": 80
+        "actual": 74
       },
       "二次面接数": {
-        "actual": 5
+        "actual": 8
       },
       "最終面接数": {
-        "actual": 16
+        "actual": 20
       },
       "内定数": {
-        "actual": 10
+        "actual": 7
       },
       "アライアンス応募数": {
-        "actual": 337
+        "actual": 431
       }
     }
   }
