@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T05:04:32.295Z",
+  "lastUpdated": "2026-04-28T04:42:15.641Z",
   "leads": [
     {
       "id": "zu457rty",
@@ -119,30 +119,6 @@
           "status": "ドラフト送付済み",
           "impression": "",
           "nextAction": "追いメール4/29",
-          "remarks": ""
-        }
-      ]
-    },
-    {
-      "id": "n42qbzuh",
-      "company": "(新規)",
-      "representative": "森",
-      "firstMeetingDate": "2026/04/27",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/27",
-      "lastContactDate": "",
-      "nextAction": "",
-      "remarks": "",
-      "services": [
-        {
-          "name": "人材紹介",
-          "proposalDate": "2026/04/27",
-          "contactPerson": "",
-          "contactEmail": "",
-          "contactPhone": "",
-          "status": "",
-          "impression": "",
-          "nextAction": "",
           "remarks": ""
         }
       ]
