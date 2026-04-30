@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-30T05:13:40.496Z",
+  "lastUpdated": "2026-04-30T05:14:41.840Z",
   "leads": [
     {
       "id": "zu457rty",
@@ -131,7 +131,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/27",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -183,7 +183,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/30",
       "lastContactDate": "2026/04/24",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "y-mori@partage.jp➡ecruit@orangehouse.co.jp",
       "services": [
         {
@@ -309,7 +309,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/28",
       "lastContactDate": "2026/04/24",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡ikeda@mc-craft.net",
       "services": [
         {
@@ -708,7 +708,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/16",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -957,10 +957,10 @@
       "company": "テクノプロエンジニアリング社",
       "representative": "森",
       "firstMeetingDate": "2026/04/15",
-      "status": "先方リーガルチェック中",
-      "statusUpdatedAt": "2026/04/15",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/30",
       "lastContactDate": "4/15",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
