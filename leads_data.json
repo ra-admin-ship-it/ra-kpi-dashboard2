@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T04:42:22.947Z",
+  "lastUpdated": "2026-04-30T05:13:40.496Z",
   "leads": [
     {
       "id": "zu457rty",
@@ -180,8 +180,8 @@
       "company": "株式会社オレンジハウス",
       "representative": "森",
       "firstMeetingDate": "2026/04/24",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/24",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/04/30",
       "lastContactDate": "2026/04/24",
       "nextAction": "",
       "remarks": "y-mori@partage.jp➡ecruit@orangehouse.co.jp",
