@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-01T03:30:55.210Z",
+  "lastUpdated": "2026-05-01T03:50:32.162Z",
   "leads": [
     {
       "id": "pjwzbxyt",
@@ -957,8 +957,8 @@
       "company": "株式会社HUMAN LIFE",
       "representative": "森",
       "firstMeetingDate": "2026/04/15",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/04/15",
+      "status": "クラウドサイン送信済み（承認待ち）",
+      "statusUpdatedAt": "2026/05/01",
       "lastContactDate": "4/15",
       "nextAction": "",
       "remarks": "",
