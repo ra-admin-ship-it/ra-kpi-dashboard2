@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-04-30T05:14:41.840Z",
+  "lastUpdated": "2026-05-01T03:30:50.939Z",
   "leads": [
+    {
+      "id": "pjwzbxyt",
+      "company": "Terra Charge 株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/01",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/01",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/01",
+          "contactPerson": "楢崎様",
+          "contactEmail": "narasaki.nayu@terra-charge.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "採用LP制作",
+          "proposalDate": "2026/05/01",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "RPO",
+          "proposalDate": "2026/05/01",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "zu457rty",
       "company": "ゴーワイズ株式会社",
@@ -5533,6 +5579,8 @@
     "Wantedly運用",
     "アポネクト",
     "成果報酬型求人ボックス運用",
-    "セカオピ"
+    "セカオピ",
+    "採用LP制作",
+    "RPO"
   ]
 }
