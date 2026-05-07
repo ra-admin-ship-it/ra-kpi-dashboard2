@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-07T01:20:00.031Z",
+  "lastUpdated": "2026-05-07T01:46:31.998Z",
   "leads": [
     {
       "id": "pjwzbxyt",
@@ -662,7 +662,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
