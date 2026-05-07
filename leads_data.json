@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-07T01:46:31.998Z",
+  "lastUpdated": "2026-05-07T01:47:22.483Z",
   "leads": [
     {
       "id": "pjwzbxyt",
@@ -9,7 +9,7 @@
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/05/01",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
@@ -633,10 +633,10 @@
       "company": "カレント自動車株式会社",
       "representative": "森",
       "firstMeetingDate": "2026/04/17",
-      "status": "相手：ドラフトリーガルチェック",
-      "statusUpdatedAt": "2026/04/21",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "y-mori@job-palette.co.jp➡agent@currentmotor.co.jp",
       "services": [
         {
@@ -960,7 +960,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "4/15",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
