@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T10:07:15.786Z",
+  "lastUpdated": "2026-05-08T10:07:19.788Z",
   "leads": [
     {
       "id": "pjwzbxyt",
@@ -3545,7 +3545,9 @@
       "statusUpdatedAt": "",
       "lastContactDate": "2026/02/17",
       "nextAction": "AZ済み",
-      "remarks": "y-mori@job-palette.co.jp➡t_fujita@veritas-investment.co.jp"
+      "remarks": "y-mori@job-palette.co.jp➡t_fujita@veritas-investment.co.jp",
+      "notionPageUrl": "https://www.notion.so/35ab442a2f5f814891b8c4aa73f5b848",
+      "notionPageId": "35ab442a-2f5f-8148-91b8-c4aa73f5b848"
     },
     {
       "id": "e6e7fcf7",
