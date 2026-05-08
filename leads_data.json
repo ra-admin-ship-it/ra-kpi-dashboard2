@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-05-07T01:47:22.483Z",
+  "lastUpdated": "2026-05-08T06:05:44.024Z",
   "leads": [
     {
       "id": "pjwzbxyt",
       "company": "Terra Charge 株式会社",
       "representative": "森",
       "firstMeetingDate": "2026/05/01",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/05/01",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/05/08",
       "lastContactDate": "",
       "nextAction": "AZ",
       "remarks": "",
