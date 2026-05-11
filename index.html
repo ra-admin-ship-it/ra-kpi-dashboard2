@@ -1405,7 +1405,9 @@ function selectWeekPicker(wn) {
 function renderWeekPicker() {
   const md = DATA[curMonth];
   if (!md) return "";
-  const weeks = Object.keys(md.weeks).map(Number).sort((a, b) => a - b);
+  // データの有無に関わらず、その月の全週を表示（最終金曜ルールで計算）
+  const totalWeeks = getMonthWeeks(curMonth).length;
+  const weeks = Array.from({length: totalWeeks}, (_, i) => i + 1);
   const items = weeks.map(wn => {
     const isActive = curWeek === wn;
     const label = weekRangeLabel(curMonth, wn);
@@ -1453,8 +1455,7 @@ function renderWeekly() {
   const el = document.getElementById("panel-weekly");
   const md = DATA[curMonth];
   if (!md) { el.innerHTML = noData(); return; }
-  const wd = md.weeks[curWeek];
-  if (!wd) { el.innerHTML = noData(); return; }
+  const wd = md.weeks[curWeek] || { p1: {}, p2: {} };
 
   const targets = md.targets;
   const wf = 0.25; // 週次目標係数
@@ -1844,18 +1845,11 @@ function nextMonth() {
   if (i < months.length - 1) { curMonth = months[i+1]; redraw(); }
 }
 function prevWeek() {
-  const md = DATA[curMonth];
-  if (!md) return;
-  const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
-  const i = ws.indexOf(curWeek);
-  if (i > 0) { curWeek = ws[i-1]; redraw(); }
+  if (curWeek > 1) { curWeek--; redraw(); }
 }
 function nextWeek() {
-  const md = DATA[curMonth];
-  if (!md) return;
-  const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
-  const i = ws.indexOf(curWeek);
-  if (i < ws.length - 1) { curWeek = ws[i+1]; redraw(); }
+  const total = getMonthWeeks(curMonth).length;
+  if (curWeek < total) { curWeek++; redraw(); }
 }
 
 // ═══════════════════════════════════════════════════════════════
@@ -3668,8 +3662,16 @@ Chart.defaults.color = "#94A3B8";
   curMonth = months[months.length - 1] || curMonth;
   const md = DATA[curMonth];
   if (md) {
-    const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
-    curWeek = ws[ws.length - 1] || 3;
+    // 今日が含まれる週を初期選択（無ければデータがある最後の週）
+    const today = new Date();
+    const weeks = getMonthWeeks(curMonth);
+    const todayIdx = weeks.findIndex(w => today >= w.start && today <= w.end);
+    if (todayIdx >= 0) {
+      curWeek = todayIdx + 1;
+    } else {
+      const ws = Object.keys(md.weeks).map(Number).sort((a,b)=>a-b);
+      curWeek = ws[ws.length - 1] || weeks.length || 1;
+    }
   }
   redraw();
   setupDropZone();      // ドロップゾーン設定
