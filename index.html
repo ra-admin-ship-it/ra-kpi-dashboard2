@@ -2546,16 +2546,19 @@ function _appSection2(latest, snaps) {
         <div class="sum-lbl">今月 総応募数</div>
         <div class="sum-val num">${fmtN(mt.total)}</div>
         <div class="sum-sub">${_growthChip(mt.growthTotal)} 前月比</div>
+        <div class="sum-sub" style="color:var(--t3);margin-top:4px">先月 ${fmtN(ml.total)} 件</div>
       </div>
       <div class="sum-card" style="--mc:var(--blue2)">
         <div class="sum-lbl" style="color:var(--blue2)">今月 アライアンス</div>
         <div class="sum-val num" style="color:var(--blue2)">${fmtN(mt.alliance)}</div>
         <div class="sum-sub">${alliPct}% ${_growthChip(mt.growthAlliance)} 前月比</div>
+        <div class="sum-sub" style="color:var(--t3);margin-top:4px">先月 ${fmtN(ml.alliance)} 件</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl" style="color:var(--green)">今月 自社</div>
         <div class="sum-val num" style="color:var(--green)">${fmtN(mt.own)}</div>
         <div class="sum-sub">${ownPct}% ${_growthChip(mt.growthOwn)} 前月比</div>
+        <div class="sum-sub" style="color:var(--t3);margin-top:4px">先月 ${fmtN(ml.own)} 件</div>
       </div>
       <div class="sum-card">
         <div class="sum-lbl">今週 総応募数</div>
