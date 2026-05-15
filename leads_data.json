@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-05-14T07:45:50.943Z",
+  "lastUpdated": "2026-05-15T02:47:13.313Z",
   "leads": [
+    {
+      "id": "inukep1w",
+      "company": "ラケットショップフジ",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/15",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/15",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/15",
+          "contactPerson": "黒岩様",
+          "contactEmail": "kuroiwa@rsfuji.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "anxdmlp1",
       "company": "株式会社ALOBASE",
