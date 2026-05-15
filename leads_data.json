@@ -1,6 +1,30 @@
 {
-  "lastUpdated": "2026-05-15T02:47:53.519Z",
+  "lastUpdated": "2026-05-15T04:30:09.955Z",
   "leads": [
+    {
+      "id": "xe0vkwzb",
+      "company": "株式会社SAKURUG",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/15",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/15",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/15",
+          "contactPerson": "軍地様",
+          "contactEmail": "gunji@sakurug.co.jp",
+          "contactPhone": "080-7138-4256",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "inukep1w",
       "company": "ラケットショップフジ",
