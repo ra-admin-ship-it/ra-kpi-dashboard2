@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-15T02:47:13.313Z",
+  "lastUpdated": "2026-05-15T02:47:53.519Z",
   "leads": [
     {
       "id": "inukep1w",
@@ -18,7 +18,29 @@
           "contactPerson": "黒岩様",
           "contactEmail": "kuroiwa@rsfuji.co.jp",
           "contactPhone": "",
-          "status": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Note記事代行",
+          "proposalDate": "2026/05/15",
+          "contactPerson": "黒岩様",
+          "contactEmail": "kuroiwa@rsfuji.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Wantedly運用",
+          "proposalDate": "2026/05/15",
+          "contactPerson": "黒岩様",
+          "contactEmail": "kuroiwa@rsfuji.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
