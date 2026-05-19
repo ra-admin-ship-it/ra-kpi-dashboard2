@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-05-19T00:34:51.859Z",
+  "lastUpdated": "2026-05-19T02:49:56.014Z",
   "leads": [
+    {
+      "id": "mahyp1uy",
+      "company": "株式会社ナハト",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/19",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/19",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/19",
+          "contactPerson": "片山様",
+          "contactEmail": "ryo.katayama@nahato.co.jp",
+          "contactPhone": "070-3301-8090",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/365b442a2f5f818a8e40c577e8ca9692",
+      "notionPageId": "365b442a-2f5f-818a-8e40-c577e8ca9692"
+    },
     {
       "id": "5m7c5pfb",
       "company": "エースポイントシステムズ株式会社",
