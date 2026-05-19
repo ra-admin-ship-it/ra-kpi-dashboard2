@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-05-15T06:12:21.762Z",
+  "lastUpdated": "2026-05-19T00:34:26.477Z",
   "leads": [
+    {
+      "id": "5m7c5pfb",
+      "company": "エースポイントシステムズ株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/19",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/19",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/04/22",
+          "contactPerson": "伊東様",
+          "contactEmail": "ito@acepoint.co.jp",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/365b442a2f5f817bafd1d71737a734e4",
+      "notionPageId": "365b442a-2f5f-817b-afd1-d71737a734e4"
+    },
     {
       "id": "gkchxryh",
       "company": "株式会社プラスト",
