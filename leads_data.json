@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-20T04:55:10.202Z",
+  "lastUpdated": "2026-05-20T04:55:40.230Z",
   "leads": [
     {
       "id": "zrb96ji0",
@@ -14,6 +14,17 @@
       "services": [
         {
           "name": "人材紹介",
+          "proposalDate": "2026/05/20",
+          "contactPerson": "澁田様",
+          "contactEmail": "k.shibuta@jinzai-bank.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "求人ボックス",
           "proposalDate": "2026/05/20",
           "contactPerson": "澁田様",
           "contactEmail": "k.shibuta@jinzai-bank.jp",
