@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-05-20T02:59:08.199Z",
+  "lastUpdated": "2026-05-20T03:00:42.472Z",
   "leads": [
+    {
+      "id": "pc0plpxe",
+      "company": "マンパワーグループコンストラクション株式会社",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/20",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/20",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/20",
+          "contactPerson": "植野様",
+          "contactEmail": "M-Con_saiyo@mpg-construction.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/366b442a2f5f81bf805ff51420a64533",
+      "notionPageId": "366b442a-2f5f-81bf-805f-f51420a64533"
+    },
     {
       "id": "mahyp1uy",
       "company": "株式会社ナハト",
