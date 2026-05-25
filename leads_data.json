@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-20T07:45:17.046Z",
+  "lastUpdated": "2026-05-25T01:09:33.993Z",
   "leads": [
     {
       "id": "zrb96ji0",
@@ -1656,6 +1656,17 @@
           "contactEmail": "",
           "contactPhone": "",
           "status": "契約締結完了",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "オートハント",
+          "proposalDate": "2026/05/25",
+          "contactPerson": "寺田さん",
+          "contactEmail": "スラック",
+          "contactPhone": "08034497857",
+          "status": "商談済み・提案中",
           "impression": "",
           "nextAction": "",
           "remarks": ""
