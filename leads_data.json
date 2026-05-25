@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-25T02:41:14.661Z",
+  "lastUpdated": "2026-05-25T02:41:50.915Z",
   "leads": [
     {
       "id": "zrb96ji0",
@@ -46,7 +46,7 @@
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/05/20",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -272,7 +272,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/08",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -494,7 +494,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/30",
       "lastContactDate": "2026/04/24",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@partage.jp➡ecruit@orangehouse.co.jp",
       "services": [
         {
@@ -546,7 +546,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/20",
       "lastContactDate": "2026/04/23",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡\trecruit@yashima-re.co.jp",
       "services": [
         {
@@ -899,7 +899,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "y-mori@job-palette.co.jp➡agent@currentmotor.co.jp",
       "services": [
         {
@@ -925,7 +925,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -1223,7 +1223,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/07",
       "lastContactDate": "4/15",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -1271,7 +1271,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/04/30",
       "lastContactDate": "4/15",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
