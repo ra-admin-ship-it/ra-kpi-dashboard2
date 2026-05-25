@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-25T02:41:50.915Z",
+  "lastUpdated": "2026-05-25T02:48:15.530Z",
   "leads": [
     {
       "id": "zrb96ji0",
@@ -124,7 +124,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/20",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
@@ -150,7 +150,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/25",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
