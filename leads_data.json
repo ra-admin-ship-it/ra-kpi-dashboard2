@@ -1,6 +1,43 @@
 {
-  "lastUpdated": "2026-05-25T02:48:15.530Z",
+  "lastUpdated": "2026-05-25T06:12:47.664Z",
   "leads": [
+    {
+      "id": "jkhsw4yi",
+      "company": "株式会社プリセプト",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/25",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/25",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/25",
+          "contactPerson": "曽山様",
+          "contactEmail": "pro.pr.jinji@precept.co.jp",
+          "contactPhone": "",
+          "status": "ドラフト送付済み",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "オートハント",
+          "proposalDate": "2026/05/25",
+          "contactPerson": "曽山様",
+          "contactEmail": "pro.pr.jinji@precept.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/36bb442a2f5f81e29245ebf94e6a83ff",
+      "notionPageId": "36bb442a-2f5f-81e2-9245-ebf94e6a83ff"
+    },
     {
       "id": "zrb96ji0",
       "company": "人財バンク",
