@@ -1,6 +1,32 @@
 {
-  "lastUpdated": "2026-05-27T03:36:54.370Z",
+  "lastUpdated": "2026-05-27T08:11:54.492Z",
   "leads": [
+    {
+      "id": "9jhobvk4",
+      "company": "株式会社FACT",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/27",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/27",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/27",
+          "contactPerson": "馬場様",
+          "contactEmail": "j.baba@fact-co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ],
+      "notionPageUrl": "https://www.notion.so/FACT-36db442a2f5f8126adf7c971a2db5208",
+      "notionPageId": "36db442a-2f5f-8126-adf7-c971a2db5208"
+    },
     {
       "id": "xktz15t6",
       "company": "株式会社REGLOS",
