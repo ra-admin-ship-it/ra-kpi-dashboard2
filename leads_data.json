@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-27T03:00:46.872Z",
+  "lastUpdated": "2026-05-27T03:34:40.926Z",
   "leads": [
     {
       "id": "xktz15t6",
@@ -69,10 +69,10 @@
       "company": "人財バンク",
       "representative": "森",
       "firstMeetingDate": "2026/05/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/05/20",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/05/27",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ",
       "remarks": "",
       "services": [
         {
@@ -106,8 +106,8 @@
       "company": "マンパワーグループコンストラクション株式会社",
       "representative": "森",
       "firstMeetingDate": "2026/05/20",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/05/20",
+      "status": "相手：ドラフトリーガルチェック",
+      "statusUpdatedAt": "2026/05/27",
       "lastContactDate": "",
       "nextAction": "AZ済み",
       "remarks": "",
@@ -213,7 +213,7 @@
       "status": "契約締結完了",
       "statusUpdatedAt": "2026/05/25",
       "lastContactDate": "",
-      "nextAction": "AZ",
+      "nextAction": "AZ済み",
       "remarks": "",
       "services": [
         {
