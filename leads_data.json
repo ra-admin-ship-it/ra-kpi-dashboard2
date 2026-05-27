@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-27T03:34:40.926Z",
+  "lastUpdated": "2026-05-27T03:36:54.370Z",
   "leads": [
     {
       "id": "xktz15t6",
@@ -134,8 +134,8 @@
       "firstMeetingDate": "2026/05/19",
       "status": "商談済み・提案中",
       "statusUpdatedAt": "2026/05/19",
-      "lastContactDate": "",
-      "nextAction": "",
+      "lastContactDate": "2026/05/27",
+      "nextAction": "後追いメール送付",
       "remarks": "",
       "services": [
         {
