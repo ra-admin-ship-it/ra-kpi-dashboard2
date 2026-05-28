@@ -1,6 +1,52 @@
 {
-  "lastUpdated": "2026-05-27T08:12:07.155Z",
+  "lastUpdated": "2026-05-28T02:46:37.615Z",
   "leads": [
+    {
+      "id": "tqx12ite",
+      "company": "株式会社ベクタス",
+      "representative": "森",
+      "firstMeetingDate": "2026/05/28",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/05/28",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/05/28",
+          "contactPerson": "富川さま",
+          "contactEmail": " tomikawa@bqts.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Wantedly運用",
+          "proposalDate": "2026/05/28",
+          "contactPerson": "富川さま",
+          "contactEmail": " tomikawa@bqts.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Note記事代行",
+          "proposalDate": "2026/05/28",
+          "contactPerson": "富川さま",
+          "contactEmail": " tomikawa@bqts.co.jp",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "9jhobvk4",
       "company": "株式会社FACT",
