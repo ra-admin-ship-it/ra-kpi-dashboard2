@@ -1,6 +1,63 @@
 {
-  "lastUpdated": "2026-05-28T07:27:42.729Z",
+  "lastUpdated": "2026-06-01T03:38:19.464Z",
   "leads": [
+    {
+      "id": "ao3s4cgp",
+      "company": " (株)ロビン・インターナショナル",
+      "representative": "森",
+      "firstMeetingDate": "2026/06/01",
+      "status": "商談済み・提案中",
+      "statusUpdatedAt": "2026/06/01",
+      "lastContactDate": "",
+      "nextAction": "",
+      "remarks": "",
+      "services": [
+        {
+          "name": "人材紹介",
+          "proposalDate": "2026/06/01",
+          "contactPerson": "",
+          "contactEmail": "",
+          "contactPhone": "",
+          "status": "",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Note記事代行",
+          "proposalDate": "2026/06/01",
+          "contactPerson": "館小路様：代表",
+          "contactEmail": "info@robins-town.com",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "Wantedly運用",
+          "proposalDate": "2026/06/01",
+          "contactPerson": "館小路様",
+          "contactEmail": "info@robins-town.com",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        },
+        {
+          "name": "HP制作",
+          "proposalDate": "2026/06/01",
+          "contactPerson": "館小路様",
+          "contactEmail": "info@robins-town.com",
+          "contactPhone": "",
+          "status": "商談済み・提案中",
+          "impression": "",
+          "nextAction": "",
+          "remarks": ""
+        }
+      ]
+    },
     {
       "id": "qrmb3t6a",
       "company": "SMHC株式会社",
@@ -6020,6 +6077,7 @@
     "成果報酬型求人ボックス運用",
     "セカオピ",
     "採用LP制作",
-    "RPO"
+    "RPO",
+    "HP制作"
   ]
 }
