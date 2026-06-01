@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-01T04:43:44.083Z",
+  "lastUpdated": "2026-06-01T06:11:43.486Z",
   "leads": [
     {
       "id": "ccxzyyvt",
@@ -187,10 +187,10 @@
       "company": "株式会社REGLOS",
       "representative": "森",
       "firstMeetingDate": "2026/05/27",
-      "status": "商談済み・提案中",
-      "statusUpdatedAt": "2026/05/27",
+      "status": "契約締結完了",
+      "statusUpdatedAt": "2026/06/01",
       "lastContactDate": "",
-      "nextAction": "",
+      "nextAction": "AZ済み",
       "remarks": "https://reglos.net/service/human-resources/",
       "services": [
         {
